@@ -9,7 +9,7 @@
 	<table class="table">
 		<thead>
 		<tr>
-			<td>ID</td>
+<!--		<td>ID</td>-->
 			<td>Titre</td>
 			<td>Actions</td>
 		</tr>
@@ -18,7 +18,7 @@
 		<tbody>
 		<?php foreach ($categories as $category): ?>
 			<tr>
-				<td><?= $category->id; ?></td>
+<!--			<td>--><?//= $category->id; ?><!--</td>-->
 				<td><?= $category->titre; ?></td>
 				<td>
 					<a class="btn-edit" href="?p=admin.categories.edit&id=<?= $category->id; ?>">Modifier</a>

@@ -104,8 +104,7 @@
 	<script>
 		tinymce.init({
 			selector: '#content form div textarea',
-			width: 650,
-			height: 300,
+			content_css: "/css/main.css,/css/admin.css",
 			menubar: false,
 			plugins: [
 				'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',

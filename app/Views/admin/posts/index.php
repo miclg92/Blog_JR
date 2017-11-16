@@ -9,7 +9,7 @@
 	<table class="table">
 		<thead>
 		<tr>
-			<td>ID</td>
+<!--		<td>ID</td>-->
 			<td>Episode</td>
 			<td>Titre</td>
 			<td>Actions</td>
@@ -19,7 +19,7 @@
 		<tbody>
 		<?php foreach ($posts as $post): ?>
 			<tr>
-				<td><?= $post->id; ?></td>
+<!--			<td>--><?//= $post->id; ?><!--</td>-->
 				<td><?= $post->episode; ?></td>
 				<td><?= $post->titre; ?></td>
 				<td id="buttons-actions">

@@ -45,7 +45,7 @@ class PostTable extends Table
 			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr
 			FROM articles
 			LEFT JOIN categories ON category_id = categories.id
-			ORDER BY articles.id DESC LIMIT 1
+			ORDER BY articles.episode DESC LIMIT 1
 		");
 	}
 	
@@ -59,7 +59,7 @@ class PostTable extends Table
 			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr
 			FROM articles
 			LEFT JOIN categories ON category_id = categories.id
-			ORDER BY articles.id LIMIT 1
+			ORDER BY articles.episode LIMIT 1
 		");
 	}
 

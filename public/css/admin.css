@@ -223,20 +223,35 @@
 	box-shadow: 0px 0px 50px #000000;
 }
 
-#add-post form div{
+/* TINY MCE */
+#mceu_15{
+	margin: 10px auto;
+}
+
+/* Bloc Label + Input */
+.form-group{
 	display: flex;
 	flex-direction: row;
-	text-align: center;
-	margin: 10px 20px;
+	justify-content: flex-start;
+	margin: 10px auto;
 }
 
 #add-post form div label{
 	display: block;
 	width: 30%;
+	margin-right: 10px;
 	text-align: left;
 	font-size: 1.5em;
 	color: #828383;
 	font-style: italic;
+}
+
+#add-post form div input{
+	width: 40%;
+}
+
+#add-post form div select{
+	width: 15%;
 }
 
 #add-category form div{
@@ -255,21 +270,7 @@
 	margin: 0 20px;
 }
 
-#add-post form div input{
-	width: 40%;
-}
-
-#add-post form div textarea{
-	width: 60%;
-	height: 150px;
-}
-
-#add-post form div select{
-	width: 15%;
-}
-
-#add-post form button,
-#add-category form button{
+.btn-save{
 	width: 50%;
 	margin: 30px auto;
 	font-size: 1.5em;
@@ -282,8 +283,7 @@
 	text-align: center;
 }
 
-#add-post form button:hover,
-#add-category form button:hover{
+.btn-save:hover{
 	color: #000000;
 	cursor: pointer;
 }

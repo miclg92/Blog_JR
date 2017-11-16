@@ -1,9 +1,5 @@
-#login_choices{
-	display: flex;
-	flex-direction: row;
-}
-
-#login_choices form {
+#login_user form,
+#register form{
 	width: 40%;
 	margin: 100px auto;
 	padding: 20px;
@@ -13,7 +9,8 @@
 	box-shadow: 0px 0px 50px #000000;
 }
 
-#login_choices form h3 {
+#login_user form h3,
+#register form h3{
 	font-size: 3em;
 	margin: 0 auto;
 	text-align: center;
@@ -21,7 +18,8 @@
 	color: #508cc7;
 }
 
-#login_choices form p {
+#login_user form p,
+#register form p{
 	font-size: 1.53em;
 	margin: 0 auto;
 	text-align: center;
@@ -30,23 +28,26 @@
 	font-style: italic;
 }
 
-#login_choices form div{
+#login_user form div,
+#register form div{
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	margin: 10px auto;
 }
 
-#login_choices form div label{
+#login_user form div label,
+#register form div label{
 	display: block;
-	width: 40%;
+	width: 50%;
 	text-align: left;
 	font-size: 1.5em;
 	color: #828383;
 	font-style: italic;
 }
 
-#login_choices form button {
+#login_user form button,
+#register form button{
 	width: 50%;
 	margin: 30px auto;
 	font-size: 1.5em;
@@ -59,12 +60,14 @@
 	text-align: center;
 }
 
-#login_choices form button:hover{
+#login_user form button:hover,
+#register form button:hover{
 	color: #000000;
 	cursor: pointer;
 }
 
-#login_choices form .errors{
+#login_user form .errors,
+#register form .errors{
 	color: #FF0000;
 	background-color: #edbcb6;
 	font-size: 1.5em;
