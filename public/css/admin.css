@@ -1,0 +1,289 @@
+/* Page de choix des articles à administrer */
+#admin_choices{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin: 100px auto;
+	width: 50%;
+	padding: 20px;
+	background-color: #FFF;
+	text-align: center;
+	border-radius: 10px;
+	box-shadow: 0px 0px 50px #000000;
+}
+
+#admin_choices p a{
+	text-decoration: none;
+	font-size: 1.5em;
+	color: #FFF;
+	background-color: #508cc7;
+	padding: 10px;
+	border-radius: 10px;
+	border: 2px solid #d6dbdb;
+	box-shadow: 0px 0px 20px #d6dbdb;
+	text-align: center;
+}
+
+#admin_choices p a:hover {
+	color: #000000;
+	cursor: pointer;
+}
+
+/* PAge de connexion administrateur*/
+.admin_login{
+	width: 40%;
+	margin: 100px auto;
+	padding: 20px;
+	background-color: #FFF;
+	text-align: center;
+	border-radius: 10px;
+	box-shadow: 0px 0px 50px #000000;
+}
+
+.admin_login h3{
+	font-size: 3em;
+	margin: 0 auto;
+	text-align: center;
+	font-weight: bold;
+	color: #508cc7;
+}
+
+.admin_login p{
+	font-size: 1.53em;
+	margin: 0 auto;
+	text-align: center;
+	font-weight: bold;
+	color: #828383;
+	font-style: italic;
+}
+
+.admin_login div{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: 10px auto;
+}
+
+.admin_login div label{
+	display: block;
+	width: 40%;
+	text-align: left;
+	font-size: 1.5em;
+	color: #828383;
+	font-style: italic;
+}
+
+.admin_login button {
+	width: 50%;
+	margin: 30px auto;
+	font-size: 1.5em;
+	color: #FFF;
+	background-color: #508cc7;
+	padding: 10px;
+	border-radius: 10px;
+	border: 2px solid #d6dbdb;
+	box-shadow: 0px 0px 20px #d6dbdb;
+	text-align: center;
+}
+
+.admin_login button:hover{
+	color: #000000;
+	cursor: pointer;
+}
+
+.admin_login .errors{
+	color: #FF0000;
+	background-color: #edbcb6;
+	font-size: 1.5em;
+}
+
+
+/* Vue de gestion des épisodes/categories */
+#admin_episodes,
+#admin_categories{
+	width: 50%;
+	margin: 100px auto;
+	padding: 20px;
+	background-color: #FFF;
+	text-align: center;
+	border-radius: 10px;
+	box-shadow: 0px 0px 50px #000000;
+}
+
+#admin_episodes table,
+#admin_categories table{
+	border-collapse: separate;
+	border-spacing: 10px 30px;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 1.5em;
+	color: #FFF;
+	background-color: #508cc7;
+	border-radius: 10px;
+}
+
+#admin_episodes table tr:hover,
+#admin_categories table tr:hover{
+	color: #0206fc;
+}
+
+/* Bouton Retour */
+.return{
+	width: 7%;
+	margin: 10px;
+	padding: 0;
+	text-align: center;
+}
+
+.return a{
+	font-size: 2em;
+}
+
+/* Bouton Ajouter */
+#admin_episodes p,
+#admin_categories p{
+	margin-bottom: 30px;
+}
+
+.btn-add {
+	width: 50%;
+	font-size: 1.5em;
+	color: #FFF;
+	background-color: #508cc7;
+	padding: 10px;
+	border-radius: 10px;
+	border: 2px solid #d6dbdb;
+	box-shadow: 0px 0px 20px #d6dbdb;
+	text-align: center;
+	text-decoration: none;
+}
+
+.btn-add:hover{
+	color: #000000;
+	cursor: pointer;
+}
+
+/* Div boutons Modifier/Supprimer */
+#buttons-actions{
+	width: 30%;
+	height: 80%;
+}
+
+/* Bouton Modifier */
+.btn-edit {
+	width: 50%;
+	color: #FFF;
+	background-color: #4ea653;
+	font-size: 0.9em;
+	padding: 5px;
+	border-radius: 10px;
+	border: 1px solid #FFF;
+	text-decoration: none;
+}
+
+.btn-edit:hover{
+	color: #000000;
+	cursor: pointer;
+}
+
+/* Bouton Annuler */
+.btn-delete{
+	font-family: 'BenchNine', sans-serif;
+	width: 50%;
+	color: #FFF;
+	background-color: #f1292a;
+	font-size: 0.9em;
+	padding: 5px;
+	border-radius: 10px;
+	border: 1px solid #FFF;
+	text-decoration: none;
+}
+
+.btn-delete:hover{
+	color: #000000;
+	cursor: pointer;
+}
+
+#admin_categories .btn-delete{
+	width: 25%;
+}
+
+
+
+/* Vue Ajouter un épisode/une catégorie */
+#add-post form,
+#add-category form{
+	width: 50%;
+	margin: 50px auto;
+	padding: 10px;
+	background-color: #FFF;
+	text-align: center;
+	border-radius: 10px;
+	box-shadow: 0px 0px 50px #000000;
+}
+
+#add-post form div{
+	display: flex;
+	flex-direction: row;
+	text-align: center;
+	margin: 10px 20px;
+}
+
+#add-post form div label{
+	display: block;
+	width: 30%;
+	text-align: left;
+	font-size: 1.5em;
+	color: #828383;
+	font-style: italic;
+}
+
+#add-category form div{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	text-align: center;
+	margin: 10px;
+}
+
+#add-category form div label{
+	text-align: center;
+	font-size: 1.5em;
+	color: #828383;
+	font-style: italic;
+	margin: 0 20px;
+}
+
+#add-post form div input{
+	width: 40%;
+}
+
+#add-post form div textarea{
+	width: 60%;
+	height: 150px;
+}
+
+#add-post form div select{
+	width: 15%;
+}
+
+#add-post form button,
+#add-category form button{
+	width: 50%;
+	margin: 30px auto;
+	font-size: 1.5em;
+	color: #FFF;
+	background-color: #508cc7;
+	padding: 10px;
+	border-radius: 10px;
+	border: 2px solid #d6dbdb;
+	box-shadow: 0px 0px 20px #d6dbdb;
+	text-align: center;
+}
+
+#add-post form button:hover,
+#add-category form button:hover{
+	color: #000000;
+	cursor: pointer;
+}

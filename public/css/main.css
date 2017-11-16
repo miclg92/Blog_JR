@@ -1,0 +1,409 @@
+html, body{
+	width: auto;
+	margin: 0 auto;
+}
+
+body {
+	font-family: 'BenchNine', sans-serif;
+}
+
+#bloc_page {
+	width: 100%;
+	max-width: 1280px;
+	margin: 0 auto;
+}
+
+
+/* -------------------- HEADER -------------------- */
+/* En-tête (Photo, Titre, auteur, et lien dernier article) */
+#home{
+	display: block;
+	position: relative;
+	margin: 0 auto;
+	width: auto;
+	height: 853px;
+	background: url("/img/alaska_paysage7.jpg") center;
+	-webkit-background-size: cover; /* pour anciens Chrome et Safari */
+	background-size: cover; /* version standardisée */
+	text-align: center;
+}
+
+/* Bloc Titre + Boutons de liens aus épisodes */
+#title{
+	width: 100%;
+}
+
+/* Titre "Billet simple pour l'Alaska" (Lien de retour vers l'accueil) */
+.go_home{
+	margin: 0 auto;
+	padding-top: 20px;
+}
+
+.go_home a {
+	
+	font-size: 3.2em;
+	color: #000000;
+	text-decoration: none;
+	font-weight: bold;
+	opacity: 0.8;
+}
+
+.go_home a:hover{
+	color: #508cc7;
+}
+
+/* DIV liens vers 1er/dernier épisodes */
+#link_episodes{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin-bottom: 50px;
+}
+
+#link_episodes p{
+	width: auto;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding: 0 10px;
+	font-weight: bold;
+	font-size: 1.7em;
+	background-color: #508cc7;
+	border: 3px solid #828383;
+	border-radius: 10px;
+}
+
+#link_episodes p:hover {
+	background-color: #FFF;
+	cursor: pointer;
+	border: 3px solid #508cc7;
+}
+
+#first_episode a,
+#last_episode a{
+	color: #FFF;
+	text-decoration: none;
+}
+
+#first_episode a:hover,
+#last_episode a:hover {
+	color: #508cc7;
+}
+
+/* Présentation du roman en ligne */
+#presentation{
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	color: #000000;
+	background-color: #FFF;
+	opacity: 0.6;
+	padding: 10px;
+}
+
+#presentation h2{
+	font-size: 2.9em;
+	font-weight: 500;
+	font-style: italic;
+	margin: 10px auto;
+	height: auto;
+	line-height: 54px;
+}
+
+#presentation h4{
+	font-family: 'Meddon', cursive;
+	font-size: 1.8em;
+	text-align: center;
+	margin: 20px auto;
+	height: auto;
+	line-height: 34px;
+}
+
+/* Menu de navigation */
+#menu{
+	background-color: #508cc7;
+	color: #FFF;
+	padding-top: 0;
+}
+
+#menu ul{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	height: 45px;
+	line-height: 45px;
+	list-style-type: none;
+	margin: 0 auto;
+	padding: 0;
+	border: 2px solid #828383;
+	box-shadow: 0px 0px 6px #d6dbdb;
+}
+
+#menu li{
+	font-size: 1.5em;
+	margin: 0 auto;
+	width: 25%;
+	border: 2px solid #828383;
+	box-shadow: 0px 0px 6px #d6dbdb;
+	text-align: center;
+}
+
+#menu a{
+	text-decoration: none;
+	color: #FFF;
+}
+
+#menu a:hover{
+	color: black;
+}
+
+
+/* -------------------- SECTION CONTAINER -------------------- */
+
+
+/* Contenu général des épisodes */
+#bloc_content{
+	margin: 0 auto;
+	width: 60%;
+	color: #828383;
+	text-align: justify;
+}
+
+/* Titre de la page */
+.category_title{
+	color: #508cc7;
+	font-size: 3em;
+	text-align: center;
+	text-decoration: underline;
+}
+
+#content{
+	padding-top: 20px;
+	padding-bottom: 150px;
+	background: url("/img/alaska_neige.png") no-repeat center fixed;
+	-webkit-background-size: cover; /* pour anciens Chrome et Safari */
+	background-size: cover; /* version standardisée */
+}
+
+/* Liste des différentes catégories */
+.category{
+	margin-top: 100px;
+}
+
+.category ul{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: 0 auto -40px auto;
+}
+
+.category ul li{
+	width: 100px;
+	font-size: 1.3em;
+	height: 25px;
+	line-height: 25px;
+	list-style-type: none;
+	margin: 0 10px;
+	padding: 0;
+	background-color: #508cc7;
+	border: 2px solid #828383;
+	box-shadow: 0px 0px 6px #828383;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.category ul li a{
+	color: #FFF;
+	text-decoration: none;
+}
+
+.category ul li a:hover{
+	color: #000000;
+}
+
+.category ul h3{
+	font-size: 1.5em;
+	height: 30px;
+	line-height: 30px;
+	color: #FFF;
+	background-color: #828383;
+	margin: 0 10px;
+	padding: 0 20px;
+	border-radius: 10px;
+}
+
+/* Accès à chaque épisode */
+.post{
+	font-size: 1.8em;
+	margin-top: 80px;
+	padding: 10px;
+	background-color: #FFF;
+	border-radius: 10px;
+	box-shadow: 0px 0px 50px #000000;
+	height: auto;
+}
+
+/* Titre de l'épisode */
+.post_title{
+	color: #508cc7;
+	font-size: 1.7em;
+	font-weight: bold;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.post_title a{
+	color: #508cc7;
+	text-decoration: none;
+}
+
+/* Catégorie de l'épisode */
+.post_category{
+	font-size: 0.9em;
+	font-weight: bold;
+	margin: 0 auto;
+	color: #828383;
+	text-align: center;
+}
+
+/* Extrait de l'épisode */
+.post_extrait{
+	border: 2px solid #d6dbdb;
+	box-shadow: 0px 0px 6px #d6dbdb;
+	margin: 20px auto 40px;
+}
+
+.posts p:nth-child(4){
+	font-size: 0.8em;
+	padding: 10px;
+}
+
+.posts p:nth-child(5) img{
+	width: 60%;
+}
+
+.post_full{
+	border-top: 6px solid #d6dbdb;
+	padding: 20px 10px;
+}
+
+/* Lien "lire l'épisode" */
+.posts p:nth-child(5){
+	width: 30%;
+	margin: 30px auto 0;
+	background-color: #508cc7;
+	padding: 10px;
+	border-radius: 10px;
+	border: 2px solid #d6dbdb;
+	box-shadow: 0px 0px 20px #d6dbdb;
+	text-align: center;
+}
+
+.posts p:nth-child(5) a{
+	color: #FFF;
+	text-decoration: none;
+	font-size: 0.9em;
+}
+
+.posts p:nth-child(5) a:hover{
+	color: #000000;
+}
+
+/* Bouton "Tous les épisodes */
+.btn_all_episodes{
+	display: flex;
+	justify-content: center;
+	margin: 80px auto;
+	width: 50%;
+	height: 50px;
+	font-size: 1.5em;
+	background-color: #508cc7;
+	border-radius: 10px;
+	border: 2px solid #828383;
+	box-shadow: 0px 0px 20px #828383;
+}
+
+.btn_all_episodes a{
+	color: #FFF;
+	text-decoration: none;
+}
+
+.btn_all_episodes:hover{
+	color: #000000;
+}
+
+
+/* -------------------- FOOTER -------------------- */
+
+footer{
+	margin-bottom: 20px;
+}
+
+#me{
+	display: flex;
+	flex-direction: row;
+	color: #FFF;
+	background-color: #508cc7;
+	padding: 10px;
+}
+
+/* Photo */
+#me_picture{
+	width: 40%;
+	margin: 10px;
+}
+
+#me_picture img {
+	width: 100%;
+}
+
+/* SIGNATURE */
+#sign{
+	font-family: 'Meddon', cursive;
+	font-size: 1.5em;
+	margin: 20px auto;
+	text-align: center;
+}
+
+/* Bloc Qui suis je ? */
+#about_me{
+	width: 60%;
+	margin: 10px;
+	font-size: 1.2em;
+	text-align: justify;
+	font-style: italic ;
+}
+
+#about_me p{
+	margin: 0 auto 10px auto;
+}
+
+/* Titre Qui suis je ? */
+#about_me h2{
+	font-style: normal ;
+	margin: 0 auto 10px auto;
+}
+
+/* Copyright */
+#copyright{
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	margin: 0 auto;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.3em;
+	color: #FFF;
+	background-color: #828383;
+	text-align: center;
+}
+
+#copyright p{
+	margin: 0 20px;
+	text-align: left;
+}
+
+/* Administration du blog */
+#copyright p a{
+	float: right;
+	text-decoration: none;
+	color: #FFF;
+}

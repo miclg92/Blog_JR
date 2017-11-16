@@ -1,0 +1,71 @@
+#login_choices{
+	display: flex;
+	flex-direction: row;
+}
+
+#login_choices form {
+	width: 40%;
+	margin: 100px auto;
+	padding: 20px;
+	background-color: #FFF;
+	text-align: center;
+	border-radius: 10px;
+	box-shadow: 0px 0px 50px #000000;
+}
+
+#login_choices form h3 {
+	font-size: 3em;
+	margin: 0 auto;
+	text-align: center;
+	font-weight: bold;
+	color: #508cc7;
+}
+
+#login_choices form p {
+	font-size: 1.53em;
+	margin: 0 auto;
+	text-align: center;
+	font-weight: bold;
+	color: #828383;
+	font-style: italic;
+}
+
+#login_choices form div{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: 10px auto;
+}
+
+#login_choices form div label{
+	display: block;
+	width: 40%;
+	text-align: left;
+	font-size: 1.5em;
+	color: #828383;
+	font-style: italic;
+}
+
+#login_choices form button {
+	width: 50%;
+	margin: 30px auto;
+	font-size: 1.5em;
+	color: #FFF;
+	background-color: #508cc7;
+	padding: 10px;
+	border-radius: 10px;
+	border: 2px solid #d6dbdb;
+	box-shadow: 0px 0px 20px #d6dbdb;
+	text-align: center;
+}
+
+#login_choices form button:hover{
+	color: #000000;
+	cursor: pointer;
+}
+
+#login_choices form .errors{
+	color: #FF0000;
+	background-color: #edbcb6;
+	font-size: 1.5em;
+}

@@ -1,0 +1,50 @@
+/* PAGE TOUS LES EPISODES */
+
+/* Contenu général des épisodes */
+#bloc_content_all{
+	display: flex;
+	flex-direction: row;
+	margin: 0 auto;
+	color: #828383;
+	text-align: justify;
+}
+
+/* Div contenant tous les épisodes */
+.posts_all{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	width: 100%;
+}
+
+/* Episode spécifique */
+.post_all{
+	width: 28%;
+	text-align: center;
+	padding: 0;
+	font-size: 1.8em;
+	margin-top: 80px;
+	background-color: #FFF;
+	border-radius: 10px;
+	box-shadow: 0px 0px 50px #000000;
+	height: auto;
+}
+
+.post_all:hover{
+	background-color: #508cc7;
+}
+
+/* Titre de l'épisode */
+.post_all a{
+	text-decoration: none;
+	font-size: 1.3em;
+	color: #508cc7;
+}
+
+.post_all a:hover{
+	color: #FFF;
+}
+
+.post_full{
+	margin-bottom: 0;
+}
