@@ -61,9 +61,28 @@
 		<nav id="menu">
 			<ul>
 				<li><a href="index.php">Accueil</a></li>
-				<li><a href="index.php?p=posts.indexall">Tous les épisodes</a></li>
-				<li><a href="index.php?p=users.login">Se connecter</a></li>
-				<li><a href="index.php?p=users.register">S'inscrire</a></li>
+				<li><a href="index.php?p=posts.allEpisodes">Tous les épisodes</a></li>
+				<?php
+				if(isset($_SESSION['auth'])){
+					if($_SESSION['flag'] == 1){
+					?>
+						<li >Bonjour <?= $_SESSION['user'];?> - <a href="">Mon compte</a></li>
+						<li><a href="index.php?p=users.logout">Deconnexion</a></li>
+					<?php
+					} elseif($_SESSION['flag'] == 2) {
+					?>
+						<li >Bonjour <?= $_SESSION['user'];?> - <a href="">Mon compte</a></li>
+						<li><a href="index.php?p=users.logout">Deconnexion</a></li>
+						<li><a href="index.php?p=posts.administration">Administration du site</a></li>
+					<?php
+					}
+				} else {
+				?>
+					<li><a href="index.php?p=users.login">Connexion</a></li>
+					<li><a href="index.php?p=users.register">Inscription</a></li>
+				<?php
+				}
+				?>
 			</ul>
 		</nav>
 
@@ -91,7 +110,6 @@
 			<div id="copyright">
 				<p>
 					C 2017 Jean Forteroche | Tous droits réservés
-					<a href="index.php?p=posts.indexadmin">Administration du site</a>
 				</p>
 			</div>
 		</footer>

@@ -12,14 +12,7 @@ class PostsController extends AppController
 		parent::__construct();
 		$this->loadModel('Post');
 		$this->loadModel('Category');
-	}
-	
-	/* Affiche la liste de tous les épisodes */
-	public function indexall()
-	{
-		$posts = $this->Post->all();
-		$categories = $this->Category->all();
-		$this->render('posts.indexall', compact('posts', 'categories'));
+		$this->loadModel('comment');
 	}
 	
 	/* Affiche la liste des 3 derniers épisodes */
@@ -28,6 +21,14 @@ class PostsController extends AppController
 		$posts = $this->Post->last();
 		$categories = $this->Category->all();
 		$this->render('posts.index', compact('posts', 'categories'));
+	}
+	
+	/* Affiche la liste de tous les épisodes */
+	public function allEpisodes()
+	{
+		$posts = $this->Post->all();
+		$categories = $this->Category->all();
+		$this->render('posts.allEpisodes', compact('posts', 'categories'));
 	}
 	
 	/* Affiche le dernier épisode */
@@ -46,6 +47,14 @@ class PostsController extends AppController
 		$this->render('posts.firstEpisode', compact('posts', 'categories'));
 	}
 	
+	/* Affiche l'épisode suivant */
+	public function nextEpisode()
+	{
+		$posts = $this->Post->nextOne();
+		$categories = $this->Category->all();
+		$this->render('posts.nextEpisode', compact('posts',  'categories'));
+	}
+	
 	/* Affiche la liste des catégories */
 	public function category()
 	{
@@ -59,20 +68,57 @@ class PostsController extends AppController
 		$this->render('posts.category', compact('articles', 'categories', 'categorie'));
 	}
 	
-	/* Affiche un épisode en particulier avec la catégorie correspondante */
+	/* Affiche un épisode en particulier avec la catégorie correspondante et les commentaires correspondants */
 	public function show()
 	{
+		if (!empty($_POST)) {
+			$result = $this->comment->create([
+				'author' => $_POST['author'],
+				'comment' => $_POST['comment'],
+				'article_id' => $_POST['id']
+			]);
+			return $this->index();
+		}
 		$article = $this->Post->findWithCategory($_GET['id']);
-		$this->render('posts.show', compact('article'));
+		$form = new BootstrapForm($_POST);
+//		var_dump($article);
+//		die();
+		$this->render('posts.show', compact('article', 'form', 'result'));
 	}
 	
+//	/* Affiche le formulaire d'ajout d'un commentaire sur un épisode en particulier */
+//	public function addComment()
+//	{
+//		if (!empty($_POST)) {
+//			$result = $this->comment->create([
+//				'author' => $_POST['author'],
+//				'comment' => $_POST['comment'],
+//				'article_id' => $_POST['id']
+//			]);
+//			return $this->index();
+//		}
+//
+//		$article = $this->Post->findWithCategory($_GET['id']);
+//		$form = new BootstrapForm($_POST);
+//		$this->render('posts.show', compact('article', 'form', 'comment'));
+//	}
+//
+//	/* Affiche les commentaires d'un épisode en particulier */
+//	public function showComments()
+//	{
+//		$comments = $this->comment->all();
+//		$this->render('posts.show', compact('comments'));
+//	}
+//
+	
 	/* Affiche la liste des épisodes à administrer (Episodes et catégories) */
-	public function indexadmin()
+	public function administration()
 	{
 		$errors = false;
 		$form = new BootstrapForm($_POST);
-		$this->render('posts.indexadmin', compact('posts', 'categories', 'form', 'errors'));
+		$this->render('posts.administration', compact('posts', 'categories', 'form', 'errors'));
 	}
+
 	
 
 }

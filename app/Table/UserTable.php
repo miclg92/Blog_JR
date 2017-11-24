@@ -7,16 +7,42 @@ class UserTable extends Table
 {
 	protected $table = "Users";
 	
-	/**
-	 * Récupère tous les utilisateurs
-	 * @return array
-	 */
-	public function allUsers()
+	public function checkUsername($username)
 	{
-		return $this->query("
-			SELECT users.id, users.username, users.email, users.password, users.flag
+		$result = $this->query('
+			SELECT COUNT(*) AS nbUsername
 			FROM users
-			ORDER BY users.id
-		");
+			WHERE username = ?', [$username], true);
+		return $result->nbUsername;
 	}
+
+	public function checkUsermail($email)
+	{
+		$result = $this->query('
+			SELECT COUNT(*) AS nbUsermail
+			FROM users
+			WHERE email = ?', [$email],  true);
+		return $result->nbUsermail;
+	}
+	
+	// Confirmation du compte par mail (confirmation_token)
+	public function confirm($user_id)
+	{
+		$user =  $this->query('
+			SELECT *
+			FROM users
+			WHERE id= ?',[$user_id] , true);
+		return $user;
+	}
+	
+	// Quand le compte est confirmé, supprimer le token, et ajouter la date de confirmation du compte à la BDD
+	public function updateToken($user_id)
+	{
+		$this->query('
+			UPDATE users
+			SET confirmation_token = NULL, confirmed_at = NOW()
+			WHERE id = ?',[$user_id] , true);
+	}
+	
+	
 }

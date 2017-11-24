@@ -3,7 +3,7 @@
 
 <div id="admin_episodes">
 	
-	<p class="return"><a href="?p=posts.indexadmin" >Retour</a></p>
+	<p class="return"><a href="?p=posts.administration" >Retour</a></p>
 	<p><a href="?p=admin.posts.add" class="btn-add">Ajouter un épisode</a></p>
 	
 	<table class="table">

@@ -3,7 +3,7 @@
 
 <div id="admin_categories">
 	
-	<p class="return"><a href="?p=posts.indexadmin" >Retour</a></p>
+	<p class="return"><a href="?p=posts.administration" >Retour</a></p>
 	<p><a href="?p=admin.categories.add" class="btn-add">Ajouter une catégorie</a></p>
 	
 	<table class="table">

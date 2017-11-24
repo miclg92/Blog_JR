@@ -1,16 +1,28 @@
 /* Page spécifique aux Commentaires*/
 
-/* Liens Commenter et liste des commentaires */
-.comment{
-	text-align: right;
-	padding: 10px;
-	margin: 0;
+/* Liens Précédemment et prochain épisode */
+.other_episodes{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.prev{
+	margin-left: 40px;
 }
 
-.comment a{
+.next{
+	margin-right: 40px;
+}
+
+.prev a,
+.next a{
 	text-decoration: none;
 	color: #508cc7;
-	font-size: 0.9em;
+}
+
+.prev a:hover,
+.next a:hover{
+	color: #000000;
 }
 
 /* Lien Retour */
@@ -29,7 +41,7 @@
 .return_episodes{
 	text-align: left;
 	padding: 10px;
-	margin: -60px 0 0 0;
+	margin: 0 auto 20px;
 }
 
 .return_episodes a{
@@ -51,23 +63,25 @@
 	margin: 0 auto;
 	color: #508cc7;
 	font-size: 1.6em;
+	text-align: center;
 }
 
 .comment_author{
 	margin: 0 auto;
 	font-weight: bold;
 	color: #508cc7;
-	font-size: 1.2em;
+	font-size: 1.4em;
 }
 
 .comment_author span{
 	color: #828383;
 	margin-left: 5px;
-	font-size: 0.8em;
+	font-size: 0.7em;
 }
 
 .comment_text{
 	margin-top: 0;
+	font-size: 1.2em;
 }
 
 /* Lien signaler le commentaire */
@@ -78,15 +92,7 @@
 }
 
 /* Page Ajouter un commentaire */
-.comment_title{
-	font-weight: bold;
-	font-size: 3em;
-	color: #508cc7;
-	text-decoration: underline;
-}
-
 #add-comment form{
-	width: 50%;
 	margin: 50px auto;
 	padding: 10px;
 	background-color: #FFF;
@@ -102,6 +108,12 @@
 	margin: 10px 20px;
 }
 
+#add-comment form h3{
+	margin: 0 auto;
+	color: #508cc7;
+	font-size: 1.6em;
+}
+
 #add-comment form div label{
 	display: block;
 	width: 30%;
@@ -115,25 +127,19 @@
 	width: 40%;
 }
 
-#add-comment form div textarea{
-	width: 60%;
-	height: 150px;
-}
-
-#add-comment form button{
-	width: 50%;
-	margin: 30px auto;
-	font-size: 1.5em;
+.btn_post{
+	width: 15%;
+	margin: 10px auto;
+	font-size: 1em;
 	color: #FFF;
 	background-color: #508cc7;
-	padding: 10px;
 	border-radius: 10px;
 	border: 2px solid #d6dbdb;
 	box-shadow: 0px 0px 20px #d6dbdb;
 	text-align: center;
 }
 
-#add-comment form button:hover{
+.btn_post:hover{
 	color: #000000;
 	cursor: pointer;
 }

@@ -62,6 +62,18 @@ class PostTable extends Table
 			ORDER BY articles.episode LIMIT 1
 		");
 	}
+	
+	
+	public function nextOne()
+	{
+		return $this->query("
+			SELECT *
+			FROM articles
+			LEFT JOIN categories ON category_id = categories.id
+			WHERE articles.id > ('id')
+			order by articles.id
+			LIMIT 1");
+	}
 
 	
 	/**
@@ -101,4 +113,12 @@ class PostTable extends Table
 			LEFT JOIN comments ON articles.id = comments.article_id
 			WHERE articles.id = ?", [$id], true);
 	}
+//
+//		return $this->query("
+//			SELECT *
+//			FROM articles
+//			LEFT JOIN comments ON articles.id = comments.article_id
+//			WHERE articles.id = ?
+//			GROUP BY comments.id", [$id]);
+//	}
 }
