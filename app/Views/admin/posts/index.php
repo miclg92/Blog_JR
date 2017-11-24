@@ -1,15 +1,14 @@
-<h2 class="category_title">Ajouter, Modifier ou Supprimer un épisode</h2>
-</br>
-
 <div id="admin_episodes">
 	
 	<p class="return"><a href="?p=posts.administration" >Retour</a></p>
+	<h2 class="category_title">Ajouter, Modifier ou Supprimer un épisode</h2>
+	</br>
+	
 	<p><a href="?p=admin.posts.add" class="btn-add">Ajouter un épisode</a></p>
 	
 	<table class="table">
 		<thead>
 		<tr>
-<!--		<td>ID</td>-->
 			<td>Episode</td>
 			<td>Titre</td>
 			<td>Actions</td>
@@ -19,7 +18,6 @@
 		<tbody>
 		<?php foreach ($posts as $post): ?>
 			<tr>
-<!--			<td>--><?//= $post->id; ?><!--</td>-->
 				<td><?= $post->episode; ?></td>
 				<td><?= $post->titre; ?></td>
 				<td id="buttons-actions">

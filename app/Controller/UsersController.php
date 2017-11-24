@@ -20,7 +20,12 @@ class UsersController extends AppController
 		if (!empty($_POST)) {
 			$auth = new DBAuth(App::getInstance()->getDb());
 			if ($auth->login($_POST['username'], $_POST['password'])) {
-				header('Location: index.php');
+				if($_SESSION['flag'] == 1){
+					header('Location: index.php?p=users.account');
+				} elseif($_SESSION['flag'] == 2){
+					header('Location: index.php?p=posts.administration');
+				}
+				
 			} else {
 				$errors = true;
 			}
@@ -70,19 +75,18 @@ class UsersController extends AppController
 					'password' => $hashPass,
 					'confirmation_token' => $token
 				]);
-
-
+				
+				$users = $this->login('username', 'password');
+//				header('Location: index.php');
+				
+				
 //				CONFIRMATION DU COMPTE PAR MAIL -> PB ACCES LASTINSERTID()
 //				$user_id = $this->User->lastInsertId();
 //				mail($_POST['email'], 'Confirmation de votre compte', "Afin de valider votre compte, merci de cliquer sur ce lien :\n\nhttp://localhost:8888/index.php?p=users.confirm.php?id=$user_id&token=$token");
 //				header('Location: index.php');
 //				exit();
-
-//				header('Location: index.php');
-
-//				$this->logged();
-				
 			}
+//			header('Location: index.php');
 			
 		} else {
 			$form = new BootstrapForm($_POST);
@@ -114,6 +118,12 @@ class UsersController extends AppController
 		
 		// On redirige le visiteur vers la page d'accueil
 		header('location: index.php');
+	}
+	
+	public function account()
+	{
+		
+		$this->render('users.account', compact('users', 'form', 'errors'));
 	}
 	
 	

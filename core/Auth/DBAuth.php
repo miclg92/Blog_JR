@@ -38,13 +38,15 @@ class DBAuth
 			WHERE username = ?', [$username], null, true);
 		
 		$verifiedPass = password_verify($password, $user->password);
-		$flag = $user->flag;
+//		$flag = $user->flag;
 		
 		if($user)
 		{
 			if($verifiedPass === true ){
 				$_SESSION['auth'] = $user->id;
 				$_SESSION['user'] = $user->username;
+				$_SESSION['password'] = $user->password;
+				$_SESSION['email'] = $user->email;
 				$_SESSION['flag'] = $user->flag;
 				return true;
 			}

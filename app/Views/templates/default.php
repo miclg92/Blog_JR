@@ -66,12 +66,12 @@
 				if(isset($_SESSION['auth'])){
 					if($_SESSION['flag'] == 1){
 					?>
-						<li >Bonjour <?= $_SESSION['user'];?> - <a href="">Mon compte</a></li>
+						<li >Bonjour <?= $_SESSION['user'];?> - <a href="index.php?p=users.account">Mon compte</a></li>
 						<li><a href="index.php?p=users.logout">Deconnexion</a></li>
 					<?php
 					} elseif($_SESSION['flag'] == 2) {
 					?>
-						<li >Bonjour <?= $_SESSION['user'];?> - <a href="">Mon compte</a></li>
+						<li >Bonjour <?= $_SESSION['user'];?> - <a href="index.php?p=users.account">Mon compte</a></li>
 						<li><a href="index.php?p=users.logout">Deconnexion</a></li>
 						<li><a href="index.php?p=posts.administration">Administration du site</a></li>
 					<?php
