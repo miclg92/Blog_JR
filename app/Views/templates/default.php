@@ -64,16 +64,16 @@
 				<li><a href="index.php?p=posts.allEpisodes">Tous les épisodes</a></li>
 				<?php
 				if(isset($_SESSION['auth'])){
-					if($_SESSION['flag'] == 1){
+					if($_SESSION['user']->flag == 1){
 					?>
-						<li >Bonjour <?= $_SESSION['user'];?> - <a href="index.php?p=users.account">Mon compte</a></li>
+						<li >Bonjour <?= $_SESSION['user']->username;?> - <a href="index.php?p=users.account">Mon compte</a></li>
 						<li><a href="index.php?p=users.logout">Deconnexion</a></li>
 					<?php
-					} elseif($_SESSION['flag'] == 2) {
+					} elseif($_SESSION['user']->flag == 2) {
 					?>
-						<li >Bonjour <?= $_SESSION['user'];?> - <a href="index.php?p=users.account">Mon compte</a></li>
-						<li><a href="index.php?p=users.logout">Deconnexion</a></li>
 						<li><a href="index.php?p=posts.administration">Administration du site</a></li>
+						<li >Bonjour <?= $_SESSION['user']->username;?> - <a href="index.php?p=users.account">Mon compte</a></li>
+						<li><a href="index.php?p=users.logout">Deconnexion</a></li>
 					<?php
 					}
 				} else {
@@ -85,6 +85,15 @@
 				?>
 			</ul>
 		</nav>
+		
+		<?php if(isset($_SESSION['flash'])): ?>
+			<?php foreach($_SESSION['flash'] as $type => $message): ?>
+				<div class="alert alert-<?= $type; ?>">
+					<?= $message; ?>
+				</div>
+			<?php endforeach; ?>
+			<?php unset($_SESSION['flash']); ?>
+		<?php endif; ?>
 
 		<section id="container">
 			<div id="content">

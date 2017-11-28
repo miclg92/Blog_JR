@@ -5,10 +5,12 @@
 		</br>
 		<?= $form->input('username', 'Pseudo : '); ?>
 		<?= $form->input('password', 'Mot de passe : ', ['type' => 'password']); ?>
-		<button>Connexion</button>
+		<button type="submit">Connexion</button>
+		<br>
+		<a href="index.php?p=users.forget">Mot de passe oublié</a>
 		<?php if($errors): ?>
 			<div class="errors">
-				Identifiants incorrects
+				Identifiant ou mot de passe incorrect
 			</div>
 		<?php endif; ?>
 	</form>

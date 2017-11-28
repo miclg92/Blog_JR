@@ -1,6 +1,8 @@
 <?php
 namespace Core\Table;
 use Core\Database\Database;
+use Core\Database\MysqlDatabase;
+
 
 class Table
 {
@@ -105,5 +107,7 @@ class Table
 		$alphabet = "0123456789azertyuiopmlkjhgfdsqwxcvbnAZERTYUIOPMLKJHGFDSQWXCVBN";
 		return substr(str_shuffle(str_repeat($alphabet, $length)), 0, $length);
 	}
+	
+
 	
 }

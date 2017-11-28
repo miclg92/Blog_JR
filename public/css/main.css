@@ -156,6 +156,22 @@ body {
 	color: black;
 }
 
+/* Messages flash */
+.alert{
+	text-align: center;
+	font-size: 1.5em;
+}
+
+.alert-danger{
+	color: #FF0000;
+	background-color: #edbcb6;
+}
+
+.alert-success{
+	color: #508cc7;
+	background-color: #d6ecf6;
+}
+
 
 /* -------------------- SECTION CONTAINER -------------------- */
 
@@ -173,7 +189,7 @@ body {
 	color: #508cc7;
 	font-size: 3em;
 	text-align: center;
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 #content{

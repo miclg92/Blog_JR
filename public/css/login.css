@@ -1,6 +1,9 @@
 #login_user form,
-#register form{
-	width: 40%;
+#register form,
+#account,
+#edit-user,
+#forget_password{
+	width: 50%;
 	margin: 100px auto;
 	padding: 20px;
 	background-color: #FFF;
@@ -10,7 +13,10 @@
 }
 
 #login_user form h3,
-#register form h3{
+#register form h3,
+#account h3,
+#edit-user form h3,
+#forget_password form h3{
 	font-size: 3em;
 	margin: 0 auto;
 	text-align: center;
@@ -19,7 +25,9 @@
 }
 
 #login_user form p,
-#register form p{
+#register form p,
+#edit-user form .text,
+#forget_password form p{
 	font-size: 1.53em;
 	margin: 0 auto;
 	text-align: center;
@@ -29,7 +37,9 @@
 }
 
 #login_user form div,
-#register form div{
+#register form div,
+#edit-user form div,
+#forget_password form div{
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -37,7 +47,8 @@
 }
 
 #login_user form div label,
-#register form div label{
+#register form div label,
+#edit-user form div label{
 	display: block;
 	width: 50%;
 	text-align: left;
@@ -46,8 +57,23 @@
 	font-style: italic;
 }
 
+#forget_password form div label{
+	display: block;
+	width: 20%;
+	text-align: left;
+	font-size: 1.5em;
+	color: #828383;
+	font-style: italic;
+}
+
+#forget_password form div input{
+	width: 30%;
+}
+
 #login_user form button,
-#register form button{
+#register form button,
+#edit-user form button,
+#forget_password form button{
 	width: 50%;
 	margin: 30px auto;
 	font-size: 1.5em;
@@ -61,14 +87,69 @@
 }
 
 #login_user form button:hover,
-#register form button:hover{
+#register form button:hover,
+#edit-user form button:hover,
+#forget_password form button:hover{
 	color: #000000;
 	cursor: pointer;
 }
 
 #login_user form .errors,
-#register form .errors{
+#register form .errors,
+#edit-user form .errors,
+#forget_password form .errors{
 	color: #FF0000;
 	background-color: #edbcb6;
 	font-size: 1.5em;
 }
+
+
+/* Edition de profil */
+#account table{
+	/*border-collapse: separate;*/
+	/*border-spacing: 10px 30px;*/
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 1.4em;
+	color: #FFF;
+	background-color: #508cc7;
+	border-radius: 10px;
+}
+
+#account table .param{
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding: 0;
+}
+
+#account table .param_value{
+	color: #000000;
+}
+
+#account table td{
+	text-align: left;
+}
+
+.account_btn{
+	display: flex;
+	flex-direction: row;
+}
+
+.account_btn .btn-edit{
+	width: 40%;
+	font-size: 1.5em;
+	margin-left: 20px;
+}
+
+.account_btn form{
+	width: 100%;
+	font-size: 1.5em;
+}
+
+.account_btn .btn-delete{
+	float: right;
+	margin-right: 20px;
+}
+

@@ -81,8 +81,6 @@ class PostsController extends AppController
 		}
 		$article = $this->Post->findWithCategory($_GET['id']);
 		$form = new BootstrapForm($_POST);
-//		var_dump($article);
-//		die();
 		$this->render('posts.show', compact('article', 'form', 'result'));
 	}
 	

@@ -7,6 +7,15 @@ class UserTable extends Table
 {
 	protected $table = "Users";
 	
+	public function getUserId($email)
+		{
+			$result = $this->query('
+			SELECT id
+			FROM users
+			WHERE email = ?', [$email], true);
+			return $result->id;
+		}
+	
 	public function checkUsername($username)
 	{
 		$result = $this->query('
@@ -44,5 +53,6 @@ class UserTable extends Table
 			WHERE id = ?',[$user_id] , true);
 	}
 	
+
 	
 }
