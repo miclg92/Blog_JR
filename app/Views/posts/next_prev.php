@@ -1,4 +1,4 @@
-<!-- Contenu du dernier épisode -->
+<!-- Extrait d'un épisode-->
 
 <div id="bloc_content">
 	
@@ -15,9 +15,6 @@
 		<?php foreach($posts as $post): ?>
 			<div class="post">
 				<h2 class="post_title"><a href="<?= $post->url ?>">Episode <?= $post->episode;?> : <?= $post->titre;?></a></h2>
-				
-				<p class="post_category"><em><?= $post->categorie; ?> - Publié le <?= $post->date_public_fr; ?></em></p>
-				
 				<p class="post_extrait"><?= $post->extrait; ?></p>
 			</div>
 		<?php endforeach; ?>
@@ -25,5 +22,4 @@
 		<button class="btn_all_episodes"><a href="index.php?p=posts.indexall">Tous les épisodes</a></button>
 	
 	</div>
-
 </div>

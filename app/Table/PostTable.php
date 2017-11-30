@@ -35,19 +35,6 @@ class PostTable extends Table
 		");
 	}
 	
- /**
- * Récupère le dernier article
- * @return array
- */
-	public function lastOne()
-	{
-		return $this->query("
-			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr
-			FROM articles
-			LEFT JOIN categories ON category_id = categories.id
-			ORDER BY articles.episode DESC LIMIT 1
-		");
-	}
 	
 	/**
 	 * Récupère le premier article
@@ -63,16 +50,46 @@ class PostTable extends Table
 		");
 	}
 	
+ /**
+ * Récupère le dernier article
+ * @return array
+ */
+	public function lastOne()
+	{
+		return $this->query("
+			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr
+			FROM articles
+			LEFT JOIN categories ON category_id = categories.id
+			ORDER BY articles.episode DESC LIMIT 1
+		");
+	}
 	
-	public function nextOne()
+	/**
+	 * Récupère l'article suivant
+	 * @param $current_id
+	 * @return mixed
+	 */
+	public function nextOne($current_id)
 	{
 		return $this->query("
 			SELECT *
 			FROM articles
-			LEFT JOIN categories ON category_id = categories.id
-			WHERE articles.id > ('id')
-			order by articles.id
-			LIMIT 1");
+			WHERE articles.id > $current_id
+			ORDER BY articles.id LIMIT 1");
+	}
+	
+	/**
+	 * Récupère l'article précédent
+	 * @param $current_id
+	 * @return mixed
+	 */
+	public function previousOne($current_id)
+	{
+		return $this->query("
+			SELECT *
+			FROM articles
+			WHERE articles.id < $current_id
+			ORDER BY articles.id DESC LIMIT 1");
 	}
 
 	

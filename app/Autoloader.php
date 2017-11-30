@@ -2,7 +2,6 @@
 
 namespace App;
 
-
 /**
  * Class Autoloader
  * @package App
@@ -34,8 +33,9 @@ class Autoloader
 			require __DIR__ . '/' . $class . '.php';
 		}
 		
-		
 	}
+	
+	
 	
 	
 }

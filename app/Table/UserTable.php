@@ -52,7 +52,25 @@ class UserTable extends Table
 			SET confirmation_token = NULL, confirmed_at = NOW()
 			WHERE id = ?',[$user_id] , true);
 	}
-	
 
 	
+	public function reset($user_id, $reset_token)
+	{
+		$this->query('
+			SELECT *
+			FROM users
+			WHERE id = ? AND reset_token = ? AND reset_at > DATE_SUB(NOW(), INTERVAL 30 MINUTE)', [$user_id, $reset_token], true);
+	}
+	
+	public function rememberMe($remember_token, $user_id)
+	{
+		$this->query('
+			UPDATE users
+			SET remember_token = ?
+			WHERE id = ?',[$remember_token, $user_id], true);
+//		var_dump($result);
+//		die();
+	}
+
+
 }

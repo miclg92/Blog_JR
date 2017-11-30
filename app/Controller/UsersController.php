@@ -2,11 +2,11 @@
 
 namespace App\Controller;
 
-use Core\Auth\DBAuth;
-use Core\HTML\BootstrapForm;
+use \Core\Auth\DBAuth;
+use \Core\HTML\BootstrapForm;
 use \App;
-use \PDO;
-use Core\Database\MysqlDatabase;
+
+//require_once('../vendor/autoload.php');
 
 class UsersController extends AppController
 {
@@ -32,7 +32,21 @@ class UsersController extends AppController
 				}
 			} else {
 				$errors = true;
+				$form = new BootstrapForm($_POST);
+				$this->render('users.login', compact('form', 'errors', 'message'));
 			}
+			
+			if($_POST['remember']){
+//				var_dump($_POST['remember']);
+//				die();
+				$remember_token = $this->str_random(250);
+				$user_id = $_SESSION['auth'];
+				$this->User->rememberMe($remember_token, $user_id);
+				setcookie('remember', $user_id . '==' . $remember_token . sha1($user_id . 'ratonslaveurs'), time() + 60 * 60 * 24 * 7);
+			}
+//			$form = new BootstrapForm($_POST);
+//			$this->render('users.account', compact('form', 'errors', 'message'));
+			
 		} else{
 			$form = new BootstrapForm($_POST);
 			$this->render('users.login', compact('form', 'errors', 'message'));
@@ -69,7 +83,7 @@ class UsersController extends AppController
 			
 			if (empty($errors)) {
 				$hashPass = password_hash($_POST['password'], PASSWORD_BCRYPT);
-				$token = $this->User->str_random(60);
+				$token = $this->str_random(60);
 				$auth = new DBAuth(App::getInstance()->getDb());
 				
 				$users = $this->User->create([
@@ -86,16 +100,46 @@ class UsersController extends AppController
 				
 				$_SESSION['flash']['success']= "Votre compte a bien été créé, et vous êtes maintenant connecté.";
 				$this->render('users.account');
+				
+				
+				
+//				// -------- Envoi d'un email à l'utilisateur -------------
+//				$user_id = $_SESSION['auth'];
+//				if($_SERVER['SERVER_NAME'] == 'localhost'){
+//					// Create the Transport
+//					$transport = (new Swift_SmtpTransport('smtp.mailtrap.io', 25))
+//						->setUsername('54b837440b5705')
+//						->setPassword('fb1b166bb718fe');
+//				} else{
+//					$transport = new Swift_MailTransport();
+//				}
+//
+//                // Create the Mailer using your created Transport
+//				$mailer = new Swift_Mailer($transport);
+//
+//				// Create a message
+//				$message = (new Swift_Message('Confirmation de votre compte'))
+//					->setFrom(['jforteroche@gmail.com' => 'Jean Forteroche'])
+//					->setTo(['$_POST[\'email\']' => '$_POST[\'username\']'])
+//					->setBody("Afin de valider votre compte, merci de cliquer sur ce lien :\n\nhttp://localhost:8888/index.php?p=users.confirm.php?id=$user_id&token=$token")
+//				;
+//				// Send the message
+//				$result = $mailer->send($message);
+//				var_dump($result);
+
 
 
 //				CONFIRMATION DU COMPTE PAR MAIL -> PB ACCES LASTINSERTID()
 //				$user_id = $auth->getUserId();
-				$user_id = $_SESSION['auth'];
-				$mail = mail($_POST['email'], 'Confirmation de votre compte', "Afin de valider votre compte, merci de cliquer sur ce lien :\n\nhttp://localhost:8888/index.php?p=users.confirm.php?id=$user_id&token=$token");
+//				$user_id = $_SESSION['auth'];
+//				$mail = mail($_POST['email'], 'Confirmation de votre compte', "Afin de valider votre compte, merci de cliquer sur ce lien :\n\nhttp://localhost:8888/index.php?p=users.confirm.php?id=$user_id&token=$token");
 //				var_dump($mail);
 //				die();
 //				header('Location: index.php');
-				exit();
+//				exit();
+			} else {
+				$form = new BootstrapForm($_POST);
+				$this->render('users.register', compact('users', 'form', 'errors'));
 			}
 			
 		} else {
@@ -204,7 +248,7 @@ class UsersController extends AppController
 		if(!empty($_POST) && !empty($_POST['email'])){
 			$user = $this->User->checkUsermail($_POST['email']);
 			if($user == 1){
-				$reset_token = $this->User->str_random(60);
+				$reset_token = $this->str_random(60);
 				$user_id = $this->User->getUserId($_POST['email']);
 				
 				$this->User->update($user_id, [
@@ -223,6 +267,37 @@ class UsersController extends AppController
 		}
 		$form = new BootstrapForm($_POST);
 		$this->render('users.forget', compact('user', 'form', 'errors'));
+	}
+	
+	
+	public function resetPassword()
+	{
+		if (isset($_GET['id']) && isset($_GET['token'])) {
+			$user = $this->User->reset($_GET['id'], $_GET['token']);
+			if ($user) {
+				if (!empty($_POST)) {
+					if (!empty($_POST['password']) || $_POST['password'] == $_POST['password_confirm']) {
+						$hashPass = password_hash($_POST['password'], PASSWORD_BCRYPT);
+						$this->User->update($_GET['id'], [
+							'password' => $hashPass,
+							'reset_token' => NULL,
+							'reset_at' => NULL
+						]);
+						$_SESSION['flash']['success'] = "Votre mot de passe a bien été modifié.";
+						$_SESSION['user'] = $user;
+						$this->render('users.account');
+						exit();
+					}
+				}
+			} else {
+				$_SESSION['flash']['danger'] = "Cette clé n'est pas valide";
+				header('Location: login.php');
+				exit();
+			}
+		} else {
+			header('Location: login.php');
+			exit();
+		}
 	}
 	
 	

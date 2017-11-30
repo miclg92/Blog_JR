@@ -50,11 +50,23 @@
 #register form div label,
 #edit-user form div label{
 	display: block;
-	width: 50%;
+	width: 40%;
 	text-align: left;
 	font-size: 1.5em;
 	color: #828383;
 	font-style: italic;
+	float: left;
+}
+
+#login_user form div input,
+#register form div input,
+#edit-user form div input{
+	width: 30%;
+}
+
+/* Checkbox */
+#login_user form div:nth-child(6) input{
+	height: 30px;
 }
 
 #forget_password form div label{

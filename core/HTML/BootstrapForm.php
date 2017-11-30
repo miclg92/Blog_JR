@@ -30,6 +30,12 @@ class BootstrapForm extends Form
 		return $this->surround($label . $input);
 	}
 	
+	public function checkbox ($name, $label, $value){
+		$label = '<label>' . $label . '</label>';
+		$input = '<input type="checkbox" name="' . $name . '" value="' . $value . '" class="form-control">';
+		return $this->surround($label . $input);
+	}
+	
 	public function select($name, $label, $options)
 	{
 		$label = '<label>' . $label . '</label>';

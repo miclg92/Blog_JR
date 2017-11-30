@@ -8,7 +8,7 @@
 		<p class="post_category"><em>(Dernière modification le <?= $article->date_modif_fr; ?>)</em></p>
 		<p class="post_full"><?= $article->contenu; ?></p>
 		<div class="other_episodes">
-			<p class="prev"><a href="">...Précédemment</a></p>
+			<p class="prev"><a href="?p=posts.previousEpisode">...Précédemment</a></p>
 			<p class="next"><a href="?p=posts.nextEpisode">Prochain épisode...</a></p>
 		</div>
 <!--		<p class="comment"><a href="" >Commenter</a> | <a href="" >Liste des commentaires</a></p>-->

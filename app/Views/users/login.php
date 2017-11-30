@@ -5,6 +5,7 @@
 		</br>
 		<?= $form->input('username', 'Pseudo : '); ?>
 		<?= $form->input('password', 'Mot de passe : ', ['type' => 'password']); ?>
+		<?= $form->checkbox('remember', 'Se souvenir de moi', '1'); ?>
 		<button type="submit">Connexion</button>
 		<br>
 		<a href="index.php?p=users.forget">Mot de passe oublié</a>

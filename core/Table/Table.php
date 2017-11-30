@@ -101,13 +101,4 @@ class Table
 		}
 	}
 	
-	//	Définition d'une clé aléatoire pour la confirmation par mail de la création d'un compte USER
-	public function str_random($length)
-	{
-		$alphabet = "0123456789azertyuiopmlkjhgfdsqwxcvbnAZERTYUIOPMLKJHGFDSQWXCVBN";
-		return substr(str_shuffle(str_repeat($alphabet, $length)), 0, $length);
-	}
-	
-
-	
 }
