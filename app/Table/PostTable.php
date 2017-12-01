@@ -79,7 +79,7 @@ class PostTable extends Table
 	}
 	
 	/**
-	 * Récupère l'article précédent
+	 * Récupère l'article suivant
 	 * @param $current_id
 	 * @return mixed
 	 */
@@ -138,4 +138,44 @@ class PostTable extends Table
 //			WHERE articles.id = ?
 //			GROUP BY comments.id", [$id]);
 //	}
+	
+	/**
+	 * Récupère l'id de l'article courant
+	 * @return array
+	 */
+	public function currentEpisodeId($currentEpisodeId)
+	{
+		return $this->query("
+			SELECT id
+			FROM articles
+			WHERE id = ?", $currentEpisodeId);
+	}
+	
+	/**
+	 * Récupère l'id du premier article
+	 * @return array
+	 */
+	public function firstEpisodeId()
+	{
+		$result = $this->query("
+			SELECT id
+			FROM articles
+			ORDER BY id LIMIT 1");
+		return $result;
+	}
+	
+	/**
+	 * Récupère l'id du dernier article
+	 * @return array
+	 */
+	public function lastEpisodeId()
+	{
+		$result = $this->query("
+			SELECT id
+			FROM articles
+			ORDER BY id DESC LIMIT 1");
+		return $result;
+	}
+	
+	
 }

@@ -150,17 +150,20 @@
 }
 
 .account_btn .btn-edit{
-	width: 40%;
+	width: 100%;
+	height: 30px;
 	font-size: 1.5em;
 	margin-left: 20px;
 }
 
 .account_btn form{
 	width: 100%;
+	height: 30px;
 	font-size: 1.5em;
 }
 
 .account_btn .btn-delete{
+	width: auto;
 	float: right;
 	margin-right: 20px;
 }

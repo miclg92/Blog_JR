@@ -42,7 +42,6 @@ class DBAuth
 			if($verifiedPass === true ){
 				$_SESSION['auth'] = $user->id;
 				$_SESSION['user'] = $user;
-				$_SESSION['visible_password'] = $password;
 				return true;
 			}
 		} return false;

@@ -67,7 +67,7 @@ class UserTable extends Table
 		$this->query('
 			UPDATE users
 			SET remember_token = ?
-			WHERE id = ?',[$remember_token, $user_id], true);
+			WHERE id = ?',[$remember_token, $user_id]);
 //		var_dump($result);
 //		die();
 	}

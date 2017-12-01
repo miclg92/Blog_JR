@@ -5,8 +5,10 @@ namespace App\Controller;
 use \Core\Auth\DBAuth;
 use \Core\HTML\BootstrapForm;
 use \App;
+use \vendor\autoload;
 
-//require_once('../vendor/autoload.php');
+//require_once('../../vendor/autoload.php');
+//require _DIR_ . '/vendor/autoload.php';
 
 class UsersController extends AppController
 {
@@ -19,6 +21,8 @@ class UsersController extends AppController
 	public function login()
 	{
 		$errors = false;
+//		var_dump($_SESSION['auth']);
+//		die();
 		
 		if (!empty($_POST)) {
 			$auth = new DBAuth(App::getInstance()->getDb());
@@ -36,7 +40,7 @@ class UsersController extends AppController
 				$this->render('users.login', compact('form', 'errors', 'message'));
 			}
 			
-			if($_POST['remember']){
+			if(isset($_POST['remember']) && $_POST['remember']){
 //				var_dump($_POST['remember']);
 //				die();
 				$remember_token = $this->str_random(250);
@@ -137,6 +141,7 @@ class UsersController extends AppController
 //				die();
 //				header('Location: index.php');
 //				exit();
+			
 			} else {
 				$form = new BootstrapForm($_POST);
 				$this->render('users.register', compact('users', 'form', 'errors'));
@@ -203,23 +208,16 @@ class UsersController extends AppController
 				}
 			}
 			
-			if (empty($_POST['password']) || $_POST['password'] != $_POST['password_confirm']) {
-				$errors['password'] = "Veuillez vérifier votre mot de passe.";
-			}
-			
 			if (empty($errors)) {
-				$hashPass = password_hash($_POST['password'], PASSWORD_BCRYPT);
 				$updatedUser = $this->User->update($_GET['id'], [
 					'username' => $_POST['username'],
 					'email' => $_POST['email'],
-					'password' => $hashPass
 				]);
 				$_SESSION['flash']['success']= "Votre compte a bien été mis à jour.";
 				
 				if ($updatedUser) {
 					$_SESSION['user']->username = $_POST['username'];
 					$_SESSION['user']->email = $_POST['email'];
-					$_SESSION['user']->password = $_POST['password']; // Probleme nouveau mdp qui ne s'affiche pas, mais il s'enregistre bien dans la bdd, et il s'affiche bien si logout puis login
 					return $this->account();
 				}
 				$this->render('users.account');
@@ -228,6 +226,34 @@ class UsersController extends AppController
 		$user = $_SESSION['user'];
 		$form = new BootstrapForm($user);
 		$this->render('users.edit', compact('user', 'form', 'errors'));
+	}
+	
+	public function changePasswd()
+	{
+		if (!empty($_POST)) {
+			$errors = array();
+			
+			if (empty($_POST['password']) || $_POST['password'] != $_POST['password_confirm']) {
+				$errors['password'] = "Veuillez vérifier votre mot de passe.";
+			}
+			
+			if (empty($errors)) {
+				$hashPass = password_hash($_POST['password'], PASSWORD_BCRYPT);
+				$updatedUser = $this->User->update($_GET['id'], [
+					'password' => $hashPass
+				]);
+				$_SESSION['flash']['success']= "Votre mot de passe a bien été changé.";
+				
+				if ($updatedUser) {
+					$_SESSION['user']->password = $_POST['password'];
+					return $this->account();
+				}
+				$this->render('users.account');
+			}
+		}
+		$user = $_SESSION['user'];
+		$form = new BootstrapForm($user);
+		$this->render('users.changePasswd', compact('user', 'form', 'errors'));
 	}
 	
 	public function delete(){

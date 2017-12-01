@@ -5,13 +5,11 @@ if(isset($_SESSION['auth'])){
 		
 		<form method="post" action="">
 			<p class="return"><a href="?p=users.account" >Retour</a></p>
-			<h3>Modifier votre compte</h3>
-			<p class="text">Vous pouvez modifier vos pseudo, email et mot de passe</p>
+			<h3>Editer mon profil</h3>
+			<p class="text">Vous pouvez modifier vos pseudo et email de contact</p>
 			<br><br>
-			<?= $form->input('username', 'Changer votre pseudo : ');?>
-			<?= $form->input('email', 'Changer votre email : ', ['type' => 'email']); ?>
-			<?= $form->input('password', 'Changer votre mot de passe : ', ['type' => 'password']); ?>
-			<?= $form->input('password_confirm', 'Confirmez votre nouveau mot de passe : ', ['type' => 'password']); ?>
+			<?= $form->input('username', 'Changer mon pseudo : ');?>
+			<?= $form->input('email', 'Changer mon email : ', ['type' => 'email']); ?>
 			<button type="submit">Enregistrer les changements</button>
 			
 			<?php if(!empty($errors)): ?>
