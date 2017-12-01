@@ -24,39 +24,73 @@
 			}
 			?>
 		</div>
-<!--		<p class="comment"><a href="" >Commenter</a> | <a href="" >Liste des commentaires</a></p>-->
 	</div>
 	
-	<div id="add-comment">
-		<form method="post">
-			<h3>Commenter </h3></br></br>
-			<input type= "hidden" name="id" value="<?= $article->id ?>">
-			<?= $form->input('author', 'Auteur : '); ?>
-			<?= $form->input('comment', 'Commentaire : ');?>
-			<button class="btn_post">Poster</button>
-		</form>
-	</div>
+	<?php
+	if(isset($_SESSION['auth'])){
+	?>
+		<div id="add-comment">
+			<form method="post">
+				<h3>Commenter cet épisode</h3></br></br>
+				<input type= "hidden" name="id" value="<?= $article->id ?>">
+				<div class="form-group">
+					<label for="Author">Auteur :</label>
+					<input name="author" type="password" placeholder="<?= $_SESSION{'user'}->username ?>">
+				</div>
+				<?= $form->input('comment', 'Commentaire : ');?>
+				<button class="btn_post">Poster</button>
+			</form>
+		</div>
+	<?php
+	} else {
+	?>
+		<div id="add-comment">
+			<form method="post">
+				<h3>Commenter cet épisode</h3></br></br>
+				<p class="no_show">Envie de laisser un commentaire ? <a href="index.php?p=users.login"> Connectez-vous </a> ou <a href="index.php?p=users.register"> Créez un compte </a> ;-)</p>
+			</form>
+		</div>
+	<?php
+	}
+	?>
 	
-	<div class="comments">
-		<h3>Liste des commentaires</h3>
-<!--		--><?php //foreach($comments as $comment): ?>
-		<input type= "hidden" name="id" value="<?= $article->id ?>">
-		<p class="comment_author"><br><?= $article->author; ?><span><em><?= $article->date_comment_fr; ?></span></em></p>
-		<p class="comment_text"><em><?= $article->comment; ?></em><a href="">Signaler ce commentaire</a></p>
-<!--		--><?php //endforeach; ?>
-	</div>
-	
-<!--	<div class="comments">-->
-<!--		<h3>Commentaires</h3>-->
-<!--		--><?php //foreach($comments as $comment): ?>
-<!--		<input type= "hidden" name="id" value="--><?//= $comment->id ?><!--">-->
-<!--		<p class="comment_author"></br>Commentaire de --><?//= $comment->author; ?><!--<span><em>, le --><?//= $comment->date_comment; ?><!--</span></em></p>-->
-<!--		<p class="comment_text"><em>--><?//= $comment->comment; ?><!--</em><a href="">Modérer ce commentaire</a></p>-->
-<!--		--><?php //endforeach; ?>
-<!--	</div>-->
-	
-	
-	
+	<?php
+	if(!empty($comments)){
+	?>
+		<div class="comments">
+			<h3>Commentaires liés à cet épisode</h3>
+			<?php foreach($comments as $comment): ?>
+				<input type= "hidden" name="id" value="<?= $comment->id ?>">
+				<p class="comment_author">Commentaire de <?= $comment->author; ?><span><em>, le <?= $comment->date_comment; ?></span></em></p>
+				<?php
+				if(isset($_SESSION['user'])) {
+					if ($_SESSION['user']->flag == 1) {
+						?>
+						<p class="comment_text"><em><?= $comment->comment; ?></em><a href="index.php?p=admin.comments.edit">Signaler ce commentaire</a></p>
+						<?php
+					} elseif ($_SESSION['user']->flag == 2) {
+						?>
+						<p class="comment_text"><em><?= $comment->comment; ?></p>
+						<?php
+					}
+				}	else {
+				?>
+					<p class="comment_text"><em><?= $comment->comment; ?></em><a href="index.php?p=admin.comments.edit">Signaler ce commentaire</a></p>
+					<?php
+				}
+				?>
+			<?php endforeach; ?>
+		</div>
+	<?php
+	} else{
+		?>
+			<div class="comments">
+				<h3>Commentaires liés à cet épisode</h3>
+				<p class="no_show">Aucun commentaire pour l'instant, soyez le premier ;-)</p>
+			</div>
+		<?php
+	}
+	?>
 	<button class="btn_all_episodes"><a href="index.php?p=posts.allEpisodes">Tous les épisodes</a></button>
 	
 

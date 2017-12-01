@@ -117,12 +117,6 @@ class PostTable extends Table
 	 */
 	public function findWithCategory($id)
 	{
-//		return $this->query("
-//			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr
-//			FROM articles
-//			LEFT JOIN categories ON category_id = categories.id
-//			WHERE articles.id = ?", [$id], true);
-		
 		return $this->query("
 			SELECT articles.id, articles.episode, articles.titre, articles.contenu, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr, categories.titre as categorie, comments.author as author, comments.comment as comment, DATE_FORMAT(comments.date_comment, '%d/%m/%Y') AS date_comment_fr
 			FROM articles
@@ -130,14 +124,6 @@ class PostTable extends Table
 			LEFT JOIN comments ON articles.id = comments.article_id
 			WHERE articles.id = ?", [$id], true);
 	}
-//
-//		return $this->query("
-//			SELECT *
-//			FROM articles
-//			LEFT JOIN comments ON articles.id = comments.article_id
-//			WHERE articles.id = ?
-//			GROUP BY comments.id", [$id]);
-//	}
 	
 	/**
 	 * Récupère l'id de l'article courant
@@ -176,6 +162,16 @@ class PostTable extends Table
 			ORDER BY id DESC LIMIT 1");
 		return $result;
 	}
+	
+	public function getPostComments($post_id){
+		$result = $this->query("
+			SELECT *
+			FROM comments
+			WHERE article_id = ?
+			ORDER BY date_comment", [$post_id]);
+		return $result;
+	}
+	
 	
 	
 }

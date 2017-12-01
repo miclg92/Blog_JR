@@ -143,3 +143,10 @@
 	color: #000000;
 	cursor: pointer;
 }
+
+.no_show{
+	text-align: center;
+	font-size: 1.5em;
+	color: #828383;
+	font-style: italic;
+}

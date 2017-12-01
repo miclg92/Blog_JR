@@ -26,22 +26,25 @@ class PostsController extends AppController
 	/* Affiche un épisode en particulier avec la catégorie correspondante et les commentaires correspondants */
 	public function show()
 	{
+		$article = $this->Post->findWithCategory($_GET['id']);
+		$post_id = $article->id;
+		$comments = $this->Post->getPostComments($post_id);
+		$form = new BootstrapForm($_POST);
+		
 		if (!empty($_POST)) {
-			$result = $this->comment->create([
+			$comment = $this->comment->create([
 				'author' => $_POST['author'],
 				'comment' => $_POST['comment'],
 				'article_id' => $_POST['id']
 			]);
-			return $this->index();
+			if($comment){
+				header("Refresh:0");
+			}
 		}
-		$article = $this->Post->findWithCategory($_GET['id']);
-		$form = new BootstrapForm($_POST);
-		$this->render('posts.show', compact('article', 'form', 'result'));
+		$this->render('posts.show', compact('article', 'form', 'comments', 'comment'));
 		$currentPost = $this->Post->find($_GET['id']);
 		$currentId = $currentPost->id;
 		$_SESSION['currentId'] = $currentId;
-//		var_dump($_SESSION['currentId']);
-//		die();
 	}
 	
 	/* Affiche la liste de tous les épisodes */
@@ -101,34 +104,7 @@ class PostsController extends AppController
 		$this->render('posts.category', compact('articles', 'categories', 'categorie'));
 	}
 	
-	
-	
-//	/* Affiche le formulaire d'ajout d'un commentaire sur un épisode en particulier */
-//	public function addComment()
-//	{
-//		if (!empty($_POST)) {
-//			$result = $this->comment->create([
-//				'author' => $_POST['author'],
-//				'comment' => $_POST['comment'],
-//				'article_id' => $_POST['id']
-//			]);
-//			return $this->index();
-//		}
-//
-//		$article = $this->Post->findWithCategory($_GET['id']);
-//		$form = new BootstrapForm($_POST);
-//		$this->render('posts.show', compact('article', 'form', 'comment'));
-//	}
-//
-//	/* Affiche les commentaires d'un épisode en particulier */
-//	public function showComments()
-//	{
-//		$comments = $this->comment->all();
-//		$this->render('posts.show', compact('comments'));
-//	}
-//
-	
-	/* Affiche la liste des épisodes à administrer (Episodes et catégories) */
+	/* Affiche le menu d'administration du site (Episodes et catégories) */
 	public function administration()
 	{
 		$errors = false;

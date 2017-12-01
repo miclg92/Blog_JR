@@ -130,7 +130,8 @@
 	
 	<script>
 		tinymce.init({
-			selector: '#content form div textarea',
+//			selector: '#content form div textarea',
+			selector: '#add-post form div textarea',
 			content_css: "/css/main.css,/css/admin.css",
 			menubar: false,
 			plugins: [

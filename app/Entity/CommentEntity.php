@@ -7,6 +7,6 @@ class CommentEntity extends Entity
 {
 	public function getUrl()
 	{
-		return 'index.php?p=comments.comment&id=' . $this->id;
+		return 'index.php?p=posts.comment&id=' . $this->id;
 	}
 }
