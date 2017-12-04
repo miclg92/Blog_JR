@@ -25,6 +25,7 @@ class CommentsController extends AppController
 			'comment' => $_POST['comment'],
 			'is_signaled' => 0
 			]);
+			$_SESSION['flash']['success'] = "Ce commentaire a bien été modifié.";
 			return $this->index();
 		}
 		$comment = $this->Comment->find($_GET['id']);
@@ -38,6 +39,7 @@ class CommentsController extends AppController
 		if(!empty($_POST))
 		{
 			$result = $this->Comment->delete($_POST['id']);
+			$_SESSION['flash']['success'] = "Ce commentaire a bien été supprimé.";
 			return $this->index();
 		}
 	}

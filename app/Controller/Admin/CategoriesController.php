@@ -23,6 +23,7 @@ class CategoriesController extends AppController
 			$result = $this->Category->create([
 				'titre' => $_POST['titre']
 			]);
+			$_SESSION['flash']['success'] = "Cette catégorie a bien été ajoutée.";
 			return $this->index();
 		}
 		$form = new BootstrapForm($_POST);
@@ -36,6 +37,7 @@ class CategoriesController extends AppController
 			$result = $this->Category->update($_GET['id'], [
 				'titre' => $_POST['titre']
 			]);
+			$_SESSION['flash']['success'] = "Cette catégorie a bien été modifiée.";
 			return $this->index();
 		}
 		$category = $this->Category->find($_GET['id']);
@@ -48,6 +50,7 @@ class CategoriesController extends AppController
 		if(!empty($_POST))
 		{
 			$result = $this->Category->delete($_POST['id']);
+			$_SESSION['flash']['success'] = "Cette catégorie a bien été supprimée.";
 			return $this->index();
 		}
 	}

@@ -18,33 +18,56 @@ class PostsController extends AppController
 	
 	public function add()
 	{
-		if(!empty($_POST))
-		{
-			$result = $this->Post->create([
-				'episode' => $_POST['episode'],
-				'titre' => $_POST['titre'],
-				'contenu' => $_POST['contenu'],
-				'category_id' => $_POST['category_id'],
-				'image_id' => $_POST['image_id'],
-			]);
+		if(!empty($_POST)){
+			$errors = array();
 			
-			if($result)
-			{
-				return $this->index();
+			if(empty($_POST['episode'])) {
+				$errors['episode'] = "Numéro d'épisode manquant.";
+			} else {
+				$episode = $this->Post->checkEpisodeNumber($_POST['episode']);
+				if ($episode) {
+					$errors['episode'] = "Ce numéro d'épisode est déjà utilisé.";
+				}
 			}
+			
+			if(empty($_POST['titre']) || empty($_POST['contenu'])) {
+				$errors['titre'] = "Titre manquant.";
+			}
+			
+			if(empty($_POST['contenu'])) {
+				$errors['contenu'] = "Contenu manquant.";
+			}
+			
+			if (empty($errors)) {
+				$result = $this->Post->create([
+					'episode' => $_POST['episode'],
+					'titre' => $_POST['titre'],
+					'contenu' => $_POST['contenu'],
+					'category_id' => $_POST['category_id'],
+					'image_id' => $_POST['image_id'],
+				]);
+				if($result) {
+					$_SESSION['flash']['success'] = "Cet épisode a bien été ajouté.";
+					return $this->index();
+				}
+			} else {
+				$this->loadModel('Category');
+				$categories = $this->Category->extract('id', 'titre');
+				$this->loadModel('Image');
+				$images = $this->Image->extract('id', 'nom');
+				$form = new BootstrapForm($_POST);
+				$this->render('admin.posts.add', compact('categories', 'images', 'form', 'errors'));
+			}
+		} else{
+			$this->loadModel('Category');
+			$categories = $this->Category->extract('id', 'titre');
+			$this->loadModel('Image');
+			$images = $this->Image->extract('id', 'nom');
+			$form = new BootstrapForm($_POST);
+			$this->render('admin.posts.add', compact('categories', 'images', 'form', 'errors'));
 		}
-		/*$this->loadModel('Category');
-		$categories = $this->Category->extract('id', 'titre');
-		$form = new BootstrapForm($_POST);
-		$this->render('admin.posts.edit', compact('categories', 'form'));*/
-		
-		$this->loadModel('Category');
-		$categories = $this->Category->extract('id', 'titre');
-		$this->loadModel('Image');
-		$images = $this->Image->extract('id', 'nom');
-		$form = new BootstrapForm($_POST);
-		$this->render('admin.posts.add', compact('categories', 'images', 'form'));
 	}
+	
 	
 	public function edit()
 	{
@@ -61,6 +84,7 @@ class PostsController extends AppController
 			
 			if($result)
 			{
+				$_SESSION['flash']['success'] = "Cet épisode a bien été modifié";
 				return $this->index();
 			}
 		}
@@ -80,6 +104,7 @@ class PostsController extends AppController
 		if(!empty($_POST))
 		{
 			$result = $this->Post->delete($_POST['id']);
+			$_SESSION['flash']['success'] = "Cet épisode a bien été supprimé";
 			return $this->index();
 		}
 	}

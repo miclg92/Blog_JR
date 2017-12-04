@@ -163,6 +163,15 @@ class PostTable extends Table
 		return $result;
 	}
 	
+	public function checkEpisodeNumber($episode)
+	{
+		$result = $this->query('
+			SELECT COUNT(*) AS episodeNb
+			FROM articles
+			WHERE episode = ?', [$episode], true);
+		return $result->episodeNb;
+	}
+	
 	public function getPostComments($post_id){
 		$result = $this->query("
 			SELECT *
