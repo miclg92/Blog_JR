@@ -127,6 +127,23 @@
 	width: 40%;
 }
 
+.comment_text button.btn-signal{
+	color: #f1292a;
+	float: right;
+}
+
+.comment_text button.btn-signal:hover {
+	cursor: pointer;
+	color: #FFF;
+	background-color: #f1292a;
+}
+
+.btn-disabled{
+	float: right;
+	border: none;
+	color: #508cc7;
+}
+
 .btn_post{
 	width: 15%;
 	margin: 10px auto;

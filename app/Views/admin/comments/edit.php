@@ -4,7 +4,7 @@
 		<h2 class="category_title">Modérer un commentaire</h2></br></br>
 		<div class="form-group">
 			<label for="comment">Contenu à modérer :</label>
-			<textarea name="comment" placeholder="<?= $commentContent ?>"></textarea>
+			<textarea name="comment" ><?= $commentContent ?></textarea>
 		</div>
 		<button class="btn-save">Enregistrer</button>
 	</form>

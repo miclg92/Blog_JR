@@ -106,10 +106,12 @@
 	cursor: pointer;
 }
 
-#login_user form .errors,
-#register form .errors,
-#edit-user form .errors,
-#forget_password form .errors{
+/*#login_user form .errors,*/
+/*#register form .errors,*/
+/*#edit-user form .errors,*/
+/*#forget_password form .errors{*/
+/*.errors*/
+.errors{
 	color: #FF0000;
 	background-color: #edbcb6;
 	font-size: 1.5em;

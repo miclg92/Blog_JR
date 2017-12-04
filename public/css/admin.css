@@ -71,6 +71,23 @@
 	color: #0206fc;
 }
 
+caption{
+	font-size: 1.3em;
+}
+
+.NO{
+	color: #f1292a;
+}
+
+.OK{
+	color: #508cc7;
+}
+
+thead{
+	color: #000000;
+}
+
+
 /* Bouton Retour */
 .return{
 	width: 7%;

@@ -35,10 +35,15 @@
 				<input type= "hidden" name="id" value="<?= $article->id ?>">
 				<div class="form-group">
 					<label for="Author">Auteur :</label>
-					<input name="author" type="password" placeholder="<?= $_SESSION{'user'}->username ?>">
+					<input name="author" type="text" readonly="readonly" value="<?= $_SESSION{'user'}->username ?>">
 				</div>
 				<?= $form->input('comment', 'Commentaire : ');?>
 				<button class="btn_post">Poster</button>
+				<?php if($errors): ?>
+					<div class="errors">
+						Merci de renseigner votre commentaire.
+					</div>
+				<?php endif; ?>
 			</form>
 		</div>
 	<?php
@@ -60,25 +65,55 @@
 		<div class="comments">
 			<h3>Commentaires liés à cet épisode</h3>
 			<?php foreach($comments as $comment): ?>
-				<input type= "hidden" name="id" value="<?= $comment->id ?>">
-				<p class="comment_author">Commentaire de <?= $comment->author; ?><span><em>, le <?= $comment->date_comment; ?></span></em></p>
-				<?php
-				if(isset($_SESSION['user'])) {
-					if ($_SESSION['user']->flag == 1) {
-						?>
-						<p class="comment_text"><em><?= $comment->comment; ?></em><a href="index.php?p=admin.comments.edit">Signaler ce commentaire</a></p>
-						<?php
-					} elseif ($_SESSION['user']->flag == 2) {
-						?>
-						<p class="comment_text"><em><?= $comment->comment; ?></p>
-						<?php
-					}
-				}	else {
-				?>
-					<p class="comment_text"><em><?= $comment->comment; ?></em><a href="index.php?p=admin.comments.edit">Signaler ce commentaire</a></p>
+				<form method="post">
+					<input type= "hidden" name="id" value="<?= $comment->id ?>">
+					<p class="comment_author">Commentaire de <?= $comment->author; ?><span><em>, le <?= $comment->date_comment; ?></span></em></p>
 					<?php
-				}
-				?>
+					if(isset($_SESSION['user'])) {
+						if ($_SESSION['user']->flag == 1) {
+					?>
+							<form action="" method="post" style="display: inline;">
+								<p class="comment_text"><em><?= $comment->comment; ?></em>
+									<input type="hidden" name="id" value="<?= $comment->id; ?>">
+									<?php
+									if($comment->is_signaled == 1){
+									?>
+										<button type="button" name="signal_comment" disabled class="btn-disabled">Ce commentaire a déjà été signalé</button>
+									<?php
+									} else{
+									?>
+										<button type="submit" name="signal_comment" class="btn-signal">Signaler ce commentaire</button>
+									<?php
+									}
+									?>
+							</form>
+					<?php
+						} elseif ($_SESSION['user']->flag == 2) {
+					?>
+							<p class="comment_text"><em><?= $comment->comment; ?></p>
+					<?php
+						}
+					}	else {
+					?>
+						<form action="" method="post" style="display: inline;">
+							<p class="comment_text"><em><?= $comment->comment; ?></em>
+								<input type="hidden" name="id" value="<?= $comment->id; ?>">
+								<?php
+								if($comment->is_signaled == 1){
+									?>
+									<button type="button" name="signal_comment" disabled class="btn-disabled">Ce commentaire a déjà été signalé</button>
+									<?php
+								} else{
+									?>
+									<button type="submit" name="signal_comment" class="btn-signal">Signaler ce commentaire</button>
+									<?php
+								}
+								?>
+						</form>
+					<?php
+					}
+					?>
+				</form>
 			<?php endforeach; ?>
 		</div>
 	<?php

@@ -30,18 +30,34 @@ class PostsController extends AppController
 		$post_id = $article->id;
 		$comments = $this->Post->getPostComments($post_id);
 		$form = new BootstrapForm($_POST);
+		$errors = false;
 		
-		if (!empty($_POST)) {
-			$comment = $this->comment->create([
-				'author' => $_POST['author'],
-				'comment' => $_POST['comment'],
-				'article_id' => $_POST['id']
-			]);
-			if($comment){
-				header("Refresh:0");
+		if(!empty($_POST)) {
+			if (empty($_POST['comment'])) {
+				$errors = true;
+			} else {
+				$comment = $this->comment->create([
+					'author' => $_POST['author'],
+					'comment' => $_POST['comment'],
+					'article_id' => $_POST['id']
+				]);
+				if ($comment) {
+					header("Refresh:0");
+					$_SESSION['flash']['success']= "Votre commentaire a bien été publié.";
+				}
 			}
 		}
-		$this->render('posts.show', compact('article', 'form', 'comments', 'comment'));
+		
+		if(isset($_POST['signal_comment'])){
+			$this->comment->update($_POST['id'], [
+				'is_signaled' => 1,
+				'signaled_at' => date('Y-m-d H:i:s')
+			]);
+			header("Refresh:0");
+			$_SESSION['flash']['success']= "Ce commentaire a bien été signalé, et sera traité dans les plus brefs délais.";
+		}
+		
+		$this->render('posts.show', compact('article', 'form', 'comments', 'comment', 'errors'));
 		$currentPost = $this->Post->find($_GET['id']);
 		$currentId = $currentPost->id;
 		$_SESSION['currentId'] = $currentId;
@@ -111,6 +127,7 @@ class PostsController extends AppController
 		$form = new BootstrapForm($_POST);
 		$this->render('posts.administration', compact('posts', 'categories', 'form', 'errors'));
 	}
+	
 
 	
 

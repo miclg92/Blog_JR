@@ -168,10 +168,21 @@ class PostTable extends Table
 			SELECT *
 			FROM comments
 			WHERE article_id = ?
-			ORDER BY date_comment", [$post_id]);
+			ORDER BY date_comment DESC", [$post_id]);
 		return $result;
+	}
+	
+	public function getCommentId($post_id)
+	{
+		$result = $this->query('
+			SELECT id
+			FROM comments
+			WHERE article_id = ?', [$post_id], true);
+		return $result->id;
 	}
 	
 	
 	
+
+
 }
