@@ -14,12 +14,14 @@
 			$lastEpisodeId = $this->Post->lastEpisodeId();
 			if($currentEpisodeId != $firstEpisodeId){
 			?>
-				<p class="prev"><a href="?p=posts.previousEpisode">...Précédemment</a></p>
+				<p class="prev"><a href="?p=posts.previousEpisode"><i class="fa fa-backward" aria-hidden="true"></i>
+						Précédemment</a></p>
 			<?php
 			}
 			if($currentEpisodeId != $lastEpisodeId){
 			?>
-				<p class="next"><a href="?p=posts.nextEpisode">Prochain épisode...</a></p>
+				<p class="next"><a href="?p=posts.nextEpisode">Prochain épisode<i class="fa fa-forward" aria-hidden="true"></i>
+					</a></p>
 			<?php
 			}
 			?>
@@ -126,6 +128,6 @@
 		<?php
 	}
 	?>
-	<button class="btn_all_episodes"><a href="index.php?p=posts.allEpisodes">Tous les épisodes</a></button>
+	<button class="btn_all_episodes"><a href="index.php?p=posts.allEpisodes"><i class="fa fa-book" aria-hidden="true"></i>Tous les épisodes</a></button>
 	
 

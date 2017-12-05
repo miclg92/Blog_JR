@@ -19,7 +19,7 @@
 			</div>
 		<?php endforeach; ?>
 		
-		<button class="btn_all_episodes"><a href="index.php?p=posts.indexall">Tous les épisodes</a></button>
+		<button class="btn_all_episodes"><a href="index.php?p=posts.allEpisodes"><i class="fa fa-book" aria-hidden="true"></i>Tous les épisodes</a></button>
 	
 	</div>
 </div>

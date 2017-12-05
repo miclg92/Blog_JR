@@ -7,7 +7,7 @@
 		<?= $form->input('email', 'Email : ', ['type' => 'email']); ?>
 		<?= $form->input('password', 'Mot de passe : ', ['type' => 'password']); ?>
 		<?= $form->input('password_confirm', 'Confirmez votre mot de passe : ', ['type' => 'password']); ?>
-		<button type="submit">M'inscrire</button>
+		<button type="submit"><i class="fa fa-user-plus" aria-hidden="true"></i>M'inscrire</button>
 	
 		<?php if(!empty($errors)): ?>
 			<div class="errors">

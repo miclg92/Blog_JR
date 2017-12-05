@@ -13,9 +13,8 @@ body {
 	margin: 0 auto;
 }
 
-
 /* -------------------- HEADER -------------------- */
-/* En-tête (Photo, Titre, auteur, et lien dernier article) */
+/* En-tête (Photo, Titre, auteur, et liens premier/dernier article) */
 #home{
 	display: block;
 	position: relative;
@@ -175,7 +174,6 @@ body {
 
 /* -------------------- SECTION CONTAINER -------------------- */
 
-
 /* Contenu général des épisodes */
 #bloc_content{
 	margin: 0 auto;
@@ -293,17 +291,13 @@ body {
 	padding: 10px;
 }
 
-.posts p:nth-child(5) img{
-	width: 60%;
-}
-
 .post_full{
 	border-top: 6px solid #d6dbdb;
 	padding: 20px 10px;
 }
 
-/* Lien "lire l'épisode" */
-.posts div blockquote p:nth-child(2){
+
+.btn_lire_episode{
 	width: 30%;
 	margin: 30px auto 0;
 	background-color: #508cc7;
@@ -314,13 +308,13 @@ body {
 	text-align: center;
 }
 
-.posts div blockquote p:nth-child(2) a{
+.btn_lire_episode a{
 	color: #FFF;
 	text-decoration: none;
 	font-size: 0.9em;
 }
 
-.posts div blockquote p:nth-child(2) a:hover{
+.btn_lire_episode a:hover{
 	color: #000000;
 }
 
@@ -343,7 +337,7 @@ body {
 	text-decoration: none;
 }
 
-.btn_all_episodes:hover{
+.btn_all_episodes a:hover{
 	color: #000000;
 }
 
@@ -415,4 +409,11 @@ footer{
 
 #copyright p{
 	margin: 0 20px;
+}
+
+
+/* ------------------------------------ ICONES ---------------------------------------*/
+
+.fa{
+	margin: 5px;
 }

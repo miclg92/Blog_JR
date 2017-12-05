@@ -23,6 +23,8 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=BenchNine">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 	<link href="https://fonts.googleapis.com/css?family=Meddon" rel="stylesheet">
+	<link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css" />
+	
 	
 	<!-- Accès CDN jQuery -->
 	<script src="https://code.jquery.com/jquery-1.12.3.js" integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc=" crossorigin="anonymous"></script>
@@ -45,8 +47,10 @@
 				<div id="title">
 					<h1 class="go_home" ><a href="index.php">" Billet Simple Pour L'Alaska "</a></h1>
 					<div id="link_episodes">
-						<p id="first_episode"><a href="index.php?p=posts.firstEpisode">Commencer l'Aventure</a></p>
-						<p id="last_episode"><a href="index.php?p=posts.lastEpisode">Dernier épisode publié</a></p>
+						<p id="first_episode"><a href="index.php?p=posts.firstEpisode"><i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+								Commencer l'Aventure</a></p>
+						<p id="last_episode"><a href="index.php?p=posts.lastEpisode"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+								Dernier épisode publié</a></p>
 					</div>
 				</div>
 				
@@ -60,26 +64,30 @@
 		
 		<nav id="menu">
 			<ul>
-				<li><a href="index.php">Accueil</a></li>
-				<li><a href="index.php?p=posts.allEpisodes">Tous les épisodes</a></li>
+				<li><a href="index.php"><i class="fa fa-home" aria-hidden="true"></i>Accueil</a></li>
+				<li><a href="index.php?p=posts.allEpisodes"><i class="fa fa-book" aria-hidden="true"></i>
+						Tous les épisodes</a></li>
 				<?php
 				if(isset($_SESSION['auth'])){
 					if($_SESSION['user']->flag == 1){
 					?>
 						<li >Bonjour <?= $_SESSION['user']->username;?> - <a href="index.php?p=users.account">Mon compte</a></li>
-						<li><a href="index.php?p=users.logout">Deconnexion</a></li>
+						<li><a href="index.php?p=users.logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Deconnexion</a></li>
 					<?php
 					} elseif($_SESSION['user']->flag == 2) {
 					?>
-						<li><a href="index.php?p=posts.administration">Administration du site</a></li>
+						<li><a href="index.php?p=posts.administration"><i class="fa fa-unlock" aria-hidden="true"></i>
+								Administration du site</a></li>
 						<li >Bonjour <?= $_SESSION['user']->username;?> - <a href="index.php?p=users.account">Mon compte</a></li>
-						<li><a href="index.php?p=users.logout">Deconnexion</a></li>
+						<li><a href="index.php?p=users.logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Deconnexion</a></li>
 					<?php
 					}
 				} else {
 				?>
-					<li><a href="index.php?p=users.login">Connexion</a></li>
-					<li><a href="index.php?p=users.register">Inscription</a></li>
+					<li><a href="index.php?p=users.login"><i class="fa fa-sign-in" aria-hidden="true"></i>
+							Connexion</a></li>
+					<li><a href="index.php?p=users.register"><i class="fa fa-user-plus" aria-hidden="true"></i>
+							Inscription</a></li>
 				<?php
 				}
 				?>
@@ -117,9 +125,8 @@
 				</div>
 			</div>
 			<div id="copyright">
-				<p>
-					C 2017 Jean Forteroche | Tous droits réservés
-				</p>
+				<p><i class="fa fa-copyright" aria-hidden="true"></i>
+					2017 Jean Forteroche | Tous droits réservés</p>
 			</div>
 		</footer>
 		

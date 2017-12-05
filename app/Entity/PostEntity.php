@@ -11,8 +11,9 @@ class PostEntity extends Entity
 	
 	public function getExtrait()
 	{
-		$html = '<p>' . substr($this->contenu, 0, 400) . '...</p>';
-		$html .= '<p><a href="' . $this->getURL() . '">Lire l\'épisode</a></p>';
+		$html = '<p class="extrait_episode">' . substr($this->contenu, 0, 400) . '...</p>';
+		$html .= '<p class="btn_lire_episode"><a href="' . $this->getURL() . '"><i class="fa fa-file-o" aria-hidden="true"></i>
+Lire l\'épisode</a></p>';
 		return $html;
 	}
 	
