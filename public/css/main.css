@@ -256,6 +256,11 @@ body {
 	height: auto;
 }
 
+/* Image de l'épisode */
+.post img{
+	width: 100%;
+}
+
 /* Titre de l'épisode */
 .post_title{
 	color: #508cc7;
@@ -281,8 +286,8 @@ body {
 
 /* Extrait de l'épisode */
 .post_extrait{
-	border: 2px solid #d6dbdb;
-	box-shadow: 0px 0px 6px #d6dbdb;
+	border-top: 2px solid #d6dbdb;
+	/*box-shadow: 0px 0px 6px #d6dbdb;*/
 	margin: 20px auto 40px;
 }
 

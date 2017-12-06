@@ -1,16 +1,18 @@
 <!-- Contenu de tous les épisodes disponibles -->
 
 <div id="bloc_content_all">
-	
 	<div class="posts_all">
 		<?php foreach($posts as $post): ?>
-			<div class="post_all">
+			<figure>
 				<a href="<?= $post->url ?>">
-					<h2>Episode <?= $post->episode;?></h2>
-					<h3><?= $post->titre;?></h3>
+					<img src="<?= $post->image ?>" alt="<?= $post->image_name ?>">
+					<figcaption>
+						Episode <?= $post->episode;?>
+						<br>
+						<?= $post->titre;?>
+					</figcaption>
 				</a>
-			</div>
+			</figure>
 		<?php  endforeach; ?>
 	</div>
-
 </div>

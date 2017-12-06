@@ -14,6 +14,7 @@
 		
 		<?php foreach($posts as $post): ?>
 			<div class="post">
+				<img src="<?= $post->image ?>" alt="<?= $post->image_name ?>">
 				<h2 class="post_title"><a href="<?= $post->url ?>">Episode <?= $post->episode;?> : <?= $post->titre;?></a></h2>
 				<p class="post_extrait"><?= $post->extrait; ?></p>
 			</div>

@@ -3,6 +3,7 @@
 	
 	<div class="post">
 		<p class="return_episodes"><a href="?p=posts.allEpisodes" >Retour aux épisodes</a></p>
+		<img src="<?= $article->image ?>" alt="<?= $article->image_name ?>">
 		<h2 class="post_title">Episode <?= $article->episode;?> : <?= $article->titre;?></h2>
 		<p class="post_category"><em><?= $article->categorie; ?> - Publié le <?= $article->date_public_fr; ?></em></p>
 		<p class="post_category"><em>(Dernière modification le <?= $article->date_modif_fr; ?>)</em></p>

@@ -14,9 +14,10 @@ class PostTable extends Table
 	public function all()
 	{
 		return $this->query("
-			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr
+			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr, images.img_name as image_name, images.img_url as image
 			FROM articles
 			LEFT JOIN categories ON category_id = categories.id
+			INNER JOIN images ON image_id = images.id
 			ORDER BY articles.date_public
 		");
 	}
@@ -28,9 +29,10 @@ class PostTable extends Table
 	public function last()
 	{
 		return $this->query("
-			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr
+			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr, images.img_name as image_name, images.img_url as image
 			FROM articles
 			LEFT JOIN categories ON category_id = categories.id
+			INNER JOIN images ON image_id = images.id
 			ORDER BY articles.id DESC LIMIT 0,3
 		");
 	}
@@ -43,9 +45,10 @@ class PostTable extends Table
 	public function firstOne()
 	{
 		return $this->query("
-			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr
+			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr, images.img_name as image_name, images.img_url as image
 			FROM articles
 			LEFT JOIN categories ON category_id = categories.id
+			INNER JOIN images ON image_id = images.id
 			ORDER BY articles.id LIMIT 1
 		");
 	}
@@ -57,9 +60,10 @@ class PostTable extends Table
 	public function lastOne()
 	{
 		return $this->query("
-			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr
+			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr, images.img_name as image_name, images.img_url as image
 			FROM articles
 			LEFT JOIN categories ON category_id = categories.id
+			INNER JOIN images ON image_id = images.id
 			ORDER BY articles.id DESC LIMIT 1
 		");
 	}
@@ -72,8 +76,10 @@ class PostTable extends Table
 	public function nextOne($current_id)
 	{
 		return $this->query("
-			SELECT *
+			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr, images.img_name as image_name, images.img_url as image
 			FROM articles
+			LEFT JOIN categories ON category_id = categories.id
+			INNER JOIN images ON image_id = images.id
 			WHERE articles.id > $current_id
 			ORDER BY articles.id LIMIT 1");
 	}
@@ -86,8 +92,10 @@ class PostTable extends Table
 	public function previousOne($current_id)
 	{
 		return $this->query("
-			SELECT *
+			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr, images.img_name as image_name, images.img_url as image
 			FROM articles
+			LEFT JOIN categories ON category_id = categories.id
+			INNER JOIN images ON image_id = images.id
 			WHERE articles.id < $current_id
 			ORDER BY articles.id DESC LIMIT 1");
 	}
@@ -101,9 +109,10 @@ class PostTable extends Table
 	public function lastByCategory($category_id)
 	{
 		return $this->query("
-			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr
+			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr, images.img_name as image_name, images.img_url as image
 			FROM articles
 			LEFT JOIN categories ON category_id = categories.id
+			INNER JOIN images ON image_id = images.id
 			WHERE articles.category_id = ?
 			ORDER BY articles.date_public DESC
 			", [$category_id]
@@ -118,10 +127,11 @@ class PostTable extends Table
 	public function findWithCategory($id)
 	{
 		return $this->query("
-			SELECT articles.id, articles.episode, articles.titre, articles.contenu, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr, categories.titre as categorie, comments.author as author, comments.comment as comment, DATE_FORMAT(comments.date_comment, '%d/%m/%Y') AS date_comment_fr
+			SELECT articles.id, articles.episode, articles.titre, articles.contenu, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr, categories.titre as categorie, comments.author as author, comments.comment as comment, DATE_FORMAT(comments.date_comment, '%d/%m/%Y') AS date_comment_fr, images.img_name as image_name, images.img_url as image
 			FROM articles
 			LEFT JOIN categories ON category_id = categories.id
 			LEFT JOIN comments ON articles.id = comments.article_id
+			INNER JOIN images ON image_id = images.id
 			WHERE articles.id = ?", [$id], true);
 	}
 	
@@ -191,6 +201,35 @@ class PostTable extends Table
 	}
 	
 	
+	
+//	public function lastInsertId()
+//	{
+//		$result = $this->query('
+//			SELECT LAST_INSERT_ID()
+//			');
+//		return $result;
+//	}
+	
+//	public function getImageId($post_id)
+//	{
+//		$result = $this->query('
+//			SELECT id
+//			FROM images
+//			WHERE article_id = ?', [$post_id], true);
+//		return $result;
+//	}
+	
+	
+//	public function getNextEpisodeId($attribute)
+//	{
+//		$result = $this->query('
+//			SHOW TABLE STATUS
+//			FROM blog
+//			LIKE "articles"', $attribute, true);
+//		return $result;
+//	}
+	
+
 	
 
 

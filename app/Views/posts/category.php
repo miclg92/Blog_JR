@@ -15,15 +15,12 @@
 	<div class="posts">
 	<?php foreach($articles as $post): ?>
 		<div class="post">
+			<img src="<?= $post->image ?>" alt="<?= $post->image_name ?>">
 			<h2 class="post_title"><a href="<?= $post->url ?>">Episode <?= $post->episode;?> : <?= $post->titre;?></a></h2>
-			
 			<p class="post_category"><em>Publié le <?= $post->date_public_fr; ?></em></p>
-			
 			<p class="post_extrait"><?= $post->extrait; ?></p>
 		</div>
 	<?php  endforeach; ?>
-		
 		<button class="btn_all_episodes"><a href="index.php">Retour Accueil</a></button>
-		
 	</div>
 </div>
