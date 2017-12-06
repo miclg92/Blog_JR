@@ -47,9 +47,9 @@
 				<div id="title">
 					<h1 class="go_home" ><a href="index.php">" Billet Simple Pour L'Alaska "</a></h1>
 					<div id="link_episodes">
-						<p id="first_episode"><a href="index.php?p=posts.firstEpisode"><i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+						<p id="first_episode"><a href="index.php?p=posts.firstEpisode"><i class="fa fa-plane" aria-hidden="true"></i>
 								Commencer l'Aventure</a></p>
-						<p id="last_episode"><a href="index.php?p=posts.lastEpisode"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+						<p id="last_episode"><a href="index.php?p=posts.lastEpisode"><i class="fa fa-file-o" aria-hidden="true"></i>
 								Dernier épisode publié</a></p>
 					</div>
 				</div>

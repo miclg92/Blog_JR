@@ -47,6 +47,15 @@ class DBAuth
 		} return false;
 	}
 	
+	public function loginWithId($user_id)
+	{
+		return $this->db->prepare('
+			SELECT *
+			FROM users
+			WHERE id = ?', [$user_id], null, true);
+	}
+	
+	
 	/**
 	 * @return bool
 	 */

@@ -21,12 +21,38 @@ class UsersController extends AppController
 	public function login()
 	{
 		$errors = false;
-//		var_dump($_SESSION['auth']);
-//		die();
+
+		if(isset($_COOKIE['remember'])){
+			$remember_token = $_COOKIE['remember'];
+			$parts = explode('==', $remember_token);
+			$user_id = $parts[0];
+			$auth = new DBAuth(App::getInstance()->getDb());
+			$user = $auth->loginWithId($user_id);
+			if($user){
+				$expected = $user_id . '==' . $user->remember_token . sha1($user_id . 'ratonslaveurs');
+				if($expected == $remember_token){
+					$_SESSION['auth'] = $user->id;
+					$_SESSION['user'] = $user;
+					setcookie('remember', $remember_token, time() + 60 * 60 * 24 * 7);
+				}
+			} else{
+				setcookie('remember', NULL, -1);
+			}
+		}
 		
 		if (!empty($_POST)) {
 			$auth = new DBAuth(App::getInstance()->getDb());
 			if ($auth->login($_POST['username'], $_POST['password'])) {
+				
+				if(isset($_POST['remember']) && $_POST['remember']){
+					$remember_token = $this->str_random(250);
+					$user_id = $_SESSION['auth'];
+					$this->User->update($user_id, [
+						'remember_token' => $remember_token,
+					]);
+					setcookie('remember', $user_id . '==' . $remember_token . sha1($user_id . 'ratonslaveurs'), time() + 60 * 60 * 24 * 7);
+				}
+				
 				if($_SESSION['user']->flag == 1){
 					$_SESSION['flash']['success']= "Vous êtes maintenant connecté en tant que Membre.";
 					$this->render('users.account');
@@ -38,15 +64,6 @@ class UsersController extends AppController
 				$errors = true;
 				$form = new BootstrapForm($_POST);
 				$this->render('users.login', compact('form', 'errors', 'message'));
-			}
-			
-			if(isset($_POST['remember']) && $_POST['remember']){
-//				var_dump($_POST['remember']);
-//				die();
-				$remember_token = $this->str_random(250);
-				$user_id = $_SESSION['auth'];
-				$this->User->rememberMe($remember_token, $user_id);
-				setcookie('remember', $user_id . '==' . $remember_token . sha1($user_id . 'ratonslaveurs'), time() + 60 * 60 * 24 * 7);
 			}
 //			$form = new BootstrapForm($_POST);
 //			$this->render('users.account', compact('form', 'errors', 'message'));
@@ -169,12 +186,11 @@ class UsersController extends AppController
 	
 	public function logout()
 	{
+		setcookie('remember', NULL, -1);
 		// On détruit les variables de notre session
 		session_unset();
-		
 		// On détruit notre session
 		session_destroy();
-		
 		session_start();
 		$_SESSION['flash']['success'] = "Vous êtes bien déconnecté. A bientôt !";
 		header('location: index.php');

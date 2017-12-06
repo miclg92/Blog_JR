@@ -10,11 +10,11 @@ class ImagesController extends AppController
 		$this->loadModel('Image');
 	}
 	
-	public function index()	{
-		$images = $this->Image->all();
-		$this->render('admin.images.index', compact('images'));
-	}
-	
+//	public function index()	{
+//		$images = $this->Image->all();
+//		$this->render('admin.images.index', compact('images'));
+//	}
+//
 	
 	
 }

@@ -81,7 +81,7 @@
 									<?php
 									if($comment->is_signaled == 1){
 									?>
-										<button type="button" name="signal_comment" disabled class="btn-disabled">Commentaire déjà signalé. En cours de traitement...</button>
+										<button type="button" name="signal_comment" disabled class="btn-disabled">Commentaire signalé. En cours de traitement...</button>
 									<?php
 									} else{
 									?>

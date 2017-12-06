@@ -90,7 +90,6 @@ class PostsController extends AppController
 				$this->loadModel('Category');
 				$categories = $this->Category->extract('id', 'titre');
 				$this->loadModel('Image');
-//				$images = $this->Image->extract('id', 'nom');
 				$form = new BootstrapForm($_POST);
 				$this->render('admin.posts.add', compact('categories', 'images', 'form', 'errors'));
 			}
@@ -98,7 +97,6 @@ class PostsController extends AppController
 			$this->loadModel('Category');
 			$categories = $this->Category->extract('id', 'titre');
 			$this->loadModel('Image');
-//			$images = $this->Image->extract('id', 'nom');
 			$form = new BootstrapForm($_POST);
 			$this->render('admin.posts.add', compact('categories', 'images', 'form', 'errors'));
 		}
