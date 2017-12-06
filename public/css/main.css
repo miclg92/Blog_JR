@@ -259,6 +259,7 @@ body {
 /* Image de l'épisode */
 .post img{
 	width: 100%;
+	border-radius: 10px 10px 0 0;
 }
 
 /* Titre de l'épisode */
