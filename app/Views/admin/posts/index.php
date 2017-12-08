@@ -1,3 +1,6 @@
+<?php
+if(isset($_SESSION['auth']) && isset($_SESSION['user']) && $_SESSION['user']->flag == 2){
+?>
 <div id="admin_episodes">
 	
 	<p class="return"><a href="?p=posts.administration" >Retour</a></p>
@@ -33,5 +36,8 @@
 		<?php endforeach; ?>
 		</tbody>
 	</table>
-	
 </div>
+	<?php
+} else {
+	$_SESSION['flash']['danger'] = "Vous ne pouvez pas afficher cette page. Veuillez vous connecter en tant qu'administrateur du site";
+}

@@ -1,3 +1,6 @@
+<?php
+if(isset($_SESSION['auth'])){
+?>
 <div id="forget_password">
 	<form method="post">
 		<h3>Mot de passe oublié</h3>
@@ -14,3 +17,8 @@
 		<?php endif; ?>
 	</form>
 </div>
+	<?php
+} else {
+	$_SESSION['flash']['danger'] = "Vous ne pouvez pas afficher cette page. Veuillez vous connecter ou créer un compte utilisateur";
+}
+?>

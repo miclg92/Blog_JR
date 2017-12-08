@@ -1,8 +1,5 @@
 <?php
-if(!isset($_SESSION['user'])){
-	$_SESSION['flash']['danger'] = "Vous ne pouvez pas afficher cette page. Veuillez vous connecter ou créer un compte utilisateur";
-	header('location: index.php?p=users.login');
-} else {
+if(isset($_SESSION['auth'])){
 ?>
 	<div id="account">
 		
@@ -39,11 +36,9 @@ if(!isset($_SESSION['user'])){
 				<button type="submit" class="btn-delete">Supprimer mon compte</button>
 			</form>
 		</div>
-		
-		
-		
-	
 	</div>
 <?php
+} else {
+	$_SESSION['flash']['danger'] = "Vous ne pouvez pas afficher cette page. Veuillez vous connecter ou créer un compte utilisateur";
 }
 ?>

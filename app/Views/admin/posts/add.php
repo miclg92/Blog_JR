@@ -1,6 +1,6 @@
 <?php
-if ($_SESSION['user']->flag == 2) {
-?>
+if(isset($_SESSION['auth']) && isset($_SESSION['user']) && $_SESSION['user']->flag == 2){
+	?>
 	<div id="add-post">
 		<form method="post" enctype="multipart/form-data">
 			<p class="return"><a href="?p=admin.posts.index" >Retour</a></p>
@@ -25,5 +25,7 @@ if ($_SESSION['user']->flag == 2) {
 		</form>
 	</div>
 	<?php
+} else {
+	$_SESSION['flash']['danger'] = "Vous ne pouvez pas afficher cette page. Veuillez vous connecter en tant qu'administrateur du site";
 }
 ?>

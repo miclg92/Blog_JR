@@ -1,3 +1,6 @@
+<?php
+if(isset($_SESSION['auth']) && isset($_SESSION['user']) && $_SESSION['user']->flag == 2){
+?>
 <div id="edit-comment">
 	<form method="post">
 		<p class="return"><a href="?p=admin.comments.index">Retour</a></p>
@@ -9,3 +12,8 @@
 		<button class="btn-save">Enregistrer</button>
 	</form>
 </div>
+	<?php
+} else {
+	$_SESSION['flash']['danger'] = "Vous ne pouvez pas afficher cette page. Veuillez vous connecter en tant qu'administrateur du site";
+}
+?>
