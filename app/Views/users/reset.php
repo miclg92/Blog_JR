@@ -1,15 +1,22 @@
-<div id="reset_password">
-	<form method="post">
-		<h3>Réinitialisation de mot de passe</h3>
-		<p>Indiquez votre nouveau mot de passe</p>
-		</br>
-		<?= $form->input('password', 'Mot de passe : ', ['type' => 'password']); ?>
-		<?= $form->input('password_confirm', 'Confirmez votre mot de passe : ', ['type' => 'password']); ?>
-		<button type="submit">Réinitialiser mon mot de passe</button>
+<div id="reset-passwd">
+	<form method="post" action="">
+		<h3>Réinitialiser mon mot de passe</h3>
+		<p class="text">Remplissez les deux champs puis validez</p>
+		<br><br>
+		<div class="form-group">
+			<label for="password">Nouveau mot de passe :</label>
+			<input name="password" type="password">
+		</div>
+		<div class="form-group">
+			<label for="password">Confirmez nouveau mot de passe :</label>
+			<input name="password_confirm" type="password">
+		</div>
 		<br>
+		<button type="submit">Réinitialiser</button>
+		
 		<?php if($errors): ?>
 			<div class="errors">
-				Merci de vrifier votre mot de passe
+				Merci de vérifier votre mot de passe
 			</div>
 		<?php endif; ?>
 	</form>

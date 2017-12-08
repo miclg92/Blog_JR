@@ -36,12 +36,8 @@
 			<form method="post">
 				<h3>Commenter cet épisode</h3></br></br>
 				<input type= "hidden" name="id" value="<?= $article->id ?>">
-				<div class="form-group">
-					<label for="Author">Auteur :</label>
-					<input name="author" type="text" readonly="readonly" value="<?= $_SESSION{'user'}->username ?>">
-				</div>
-				<?= $form->input('comment', 'Commentaire : ');?>
-				<button class="btn_post">Poster</button>
+				<?= $form->input('comment', 'Votre commentaire : ');?>
+				<button class="btn_post">Publier</button>
 				<?php if($errors): ?>
 					<div class="errors">
 						Merci de renseigner votre commentaire.

@@ -2,7 +2,8 @@
 #register form,
 #account,
 #edit-user,
-#forget_password{
+#forget_password,
+#reset-passwd{
 	width: 50%;
 	margin: 100px auto;
 	padding: 20px;
@@ -16,7 +17,8 @@
 #register form h3,
 #account h3,
 #edit-user form h3,
-#forget_password form h3{
+#forget_password form h3,
+#reset-passwd form h3{
 	font-size: 3em;
 	margin: 0 auto;
 	text-align: center;
@@ -27,7 +29,8 @@
 #login_user form p,
 #register form p,
 #edit-user form .text,
-#forget_password form p{
+#forget_password form p,
+#reset-passwd form p{
 	font-size: 1.53em;
 	margin: 0 auto;
 	text-align: center;
@@ -39,7 +42,8 @@
 #login_user form div,
 #register form div,
 #edit-user form div,
-#forget_password form div{
+#forget_password form div,
+#reset-passwd form div{
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -48,7 +52,8 @@
 
 #login_user form div label,
 #register form div label,
-#edit-user form div label{
+#edit-user form div label,
+#reset-passwd form div label{
 	display: block;
 	width: 40%;
 	text-align: left;
@@ -60,7 +65,8 @@
 
 #login_user form div input,
 #register form div input,
-#edit-user form div input{
+#edit-user form div input,
+#reset-passwd form div input{
 	width: 30%;
 }
 
@@ -85,7 +91,8 @@
 #login_user form button,
 #register form button,
 #edit-user form button,
-#forget_password form button{
+#forget_password form button,
+#reset-passwd form button{
 	width: 50%;
 	margin: 30px auto;
 	font-size: 1.5em;
@@ -101,7 +108,8 @@
 #login_user form button:hover,
 #register form button:hover,
 #edit-user form button:hover,
-#forget_password form button:hover{
+#forget_password form button:hover,
+#reset-passwd form button:hover{
 	color: #000000;
 	cursor: pointer;
 }

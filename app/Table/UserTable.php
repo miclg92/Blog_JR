@@ -16,6 +16,15 @@ class UserTable extends Table
 			return $result->id;
 		}
 	
+	public function getLastUserId()
+	{
+		return $this->query('
+			SELECT id
+			FROM users
+			WHERE id = LAST_INSERT_ID()
+		', [], true);
+	}
+	
 	public function checkUsername($username)
 	{
 		$result = $this->query('
@@ -37,29 +46,20 @@ class UserTable extends Table
 	// Confirmation du compte par mail (confirmation_token)
 	public function confirm($user_id)
 	{
-		$user =  $this->query('
+		$user = $this->query('
 			SELECT *
 			FROM users
-			WHERE id= ?',[$user_id] , true);
+			WHERE id = ?',[$user_id] , true);
 		return $user;
 	}
 	
-	// Quand le compte est confirmé, supprimer le token, et ajouter la date de confirmation du compte à la BDD
-	public function updateToken($user_id)
+	public function resetPassword($user_id, $reset_token)
 	{
-		$this->query('
-			UPDATE users
-			SET confirmation_token = NULL, confirmed_at = NOW()
-			WHERE id = ?',[$user_id] , true);
-	}
-
-	
-	public function reset($user_id, $reset_token)
-	{
-		$this->query('
+		$user = $this->query('
 			SELECT *
 			FROM users
 			WHERE id = ? AND reset_token = ? AND reset_at > DATE_SUB(NOW(), INTERVAL 30 MINUTE)', [$user_id, $reset_token], true);
+		return $user;
 	}
 	
 	

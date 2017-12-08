@@ -63,7 +63,6 @@ class PostsController extends AppController
 		$_SESSION['currentId'] = $currentId;
 	}
 	
-	/* Affiche la liste de tous les épisodes */
 	public function allEpisodes()
 	{
 		$posts = $this->Post->all();
@@ -71,7 +70,6 @@ class PostsController extends AppController
 		$this->render('posts.allEpisodes', compact('posts', 'categories'));
 	}
 	
-	/* Affiche le premier épisode */
 	public function firstEpisode()
 	{
 		$posts = $this->Post->firstOne();
@@ -79,7 +77,6 @@ class PostsController extends AppController
 		$this->render('posts.episode', compact('posts', 'categories'));
 	}
 	
-	/* Affiche le dernier épisode */
 	public function lastEpisode()
 	{
 		$posts = $this->Post->lastOne();
@@ -87,23 +84,17 @@ class PostsController extends AppController
 		$this->render('posts.episode', compact('posts', 'categories'));
 	}
 	
-	/* Affiche l'épisode suivant */
 	public function nextEpisode()
 	{
 		$posts = $this->Post->nextOne($_SESSION['currentId']);
 		$categories = $this->Category->all();
-//		var_dump($posts);
-//		die();
 		$this->render('posts.next_prev', compact('posts','categories'));
 	}
 	
-	/* Affiche l'épisode précédent */
 	public function previousEpisode()
 	{
 		$posts = $this->Post->previousOne($_SESSION['currentId']);
 		$categories = $this->Category->all();
-//		var_dump($posts);
-//		die();
 		$this->render('posts.next_prev', compact('posts','categories'));
 	}
 	
@@ -127,8 +118,5 @@ class PostsController extends AppController
 		$form = new BootstrapForm($_POST);
 		$this->render('posts.administration', compact('posts', 'categories', 'form', 'errors'));
 	}
-	
-
-	
 
 }

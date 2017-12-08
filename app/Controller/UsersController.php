@@ -71,6 +71,17 @@ class UsersController extends AppController
 		}
 	}
 	
+	public function logout()
+	{
+		setcookie('remember', NULL, -1);
+		// On détruit les variables de notre session
+		session_unset();
+		// On détruit notre session
+		session_destroy();
+		session_start();
+		$_SESSION['flash']['success'] = "Vous êtes bien déconnecté. A bientôt !";
+		header('location: index.php');
+	}
 	
 	public function register()
 	{
@@ -102,7 +113,7 @@ class UsersController extends AppController
 			if (empty($errors)) {
 				$hashPass = password_hash($_POST['password'], PASSWORD_BCRYPT);
 				$token = $this->str_random(60);
-				$auth = new DBAuth(App::getInstance()->getDb());
+//				$auth = new DBAuth(App::getInstance()->getDb());
 				
 				$users = $this->User->create([
 					'username' => $_POST['username'],
@@ -111,56 +122,27 @@ class UsersController extends AppController
 					'confirmation_token' => $token
 				]);
 				
-				if($users){
-					$auth->login($_POST['username'], $_POST['password']);
-					$auth->logged();
-				}
-				
-				$_SESSION['flash']['success']= "Votre compte a bien été créé, et vous êtes maintenant connecté.";
-				$this->render('users.account');
-				
-				
-				
-//				// -------- Envoi d'un email à l'utilisateur -------------
-//				$user_id = $_SESSION['auth'];
-//				if($_SERVER['SERVER_NAME'] == 'localhost'){
-//					// Create the Transport
-//					$transport = (new Swift_SmtpTransport('smtp.mailtrap.io', 25))
-//						->setUsername('54b837440b5705')
-//						->setPassword('fb1b166bb718fe');
-//				} else{
-//					$transport = new Swift_MailTransport();
+//				if($users){
+//					$auth->login($_POST['username'], $_POST['password']);
+//					$auth->logged();
 //				}
 //
-//                // Create the Mailer using your created Transport
-//				$mailer = new Swift_Mailer($transport);
-//
-//				// Create a message
-//				$message = (new Swift_Message('Confirmation de votre compte'))
-//					->setFrom(['jforteroche@gmail.com' => 'Jean Forteroche'])
-//					->setTo(['$_POST[\'email\']' => '$_POST[\'username\']'])
-//					->setBody("Afin de valider votre compte, merci de cliquer sur ce lien :\n\nhttp://localhost:8888/index.php?p=users.confirm.php?id=$user_id&token=$token")
-//				;
-//				// Send the message
-//				$result = $mailer->send($message);
-//				var_dump($result);
-
-
-
-//				CONFIRMATION DU COMPTE PAR MAIL -> PB ACCES LASTINSERTID()
-//				$user_id = $auth->getUserId();
-//				$user_id = $_SESSION['auth'];
-//				$mail = mail($_POST['email'], 'Confirmation de votre compte', "Afin de valider votre compte, merci de cliquer sur ce lien :\n\nhttp://localhost:8888/index.php?p=users.confirm.php?id=$user_id&token=$token");
-//				var_dump($mail);
-//				die();
-//				header('Location: index.php');
-//				exit();
+//				$_SESSION['flash']['success']= "Votre compte a bien été créé, et vous êtes maintenant connecté.";
+//				$this->render('users.account');
+				
+				// -------- Envoi d'un email à l'utilisateur -------------
+				$user_array = $this->User->getLastUserId();
+				$user_obj = $user_array;
+				$user_id = $user_obj->id;
+				$mail = mail($_POST['email'], 'Confirmation de votre compte', "Afin de valider votre compte, merci de cliquer sur ce lien :\n\nhttps://www.legoarant.com/projet4/public/index.php?p=users.confirm.php?&id=$user_id&token=$token");
+				$_SESSION['flash']['success']= "Un email vous a été envoyé afin de valider votre compte.";
+				header('Location: index.php');
+				exit();
 			
 			} else {
 				$form = new BootstrapForm($_POST);
 				$this->render('users.register', compact('users', 'form', 'errors'));
 			}
-			
 		} else {
 			$form = new BootstrapForm($_POST);
 			$this->render('users.register', compact('users', 'form', 'errors'));
@@ -169,28 +151,23 @@ class UsersController extends AppController
 	
 	public function confirm()
 	{
-		
 		$token = $_GET['token'];
-		$user = $this->User->confirm(['id']);
+		$id = $_GET['id'];
+		$user = $this->User->confirm($id);
 		
 		if ($user && $user->confirmation_token == $token) {
-			$this->User->updateToken();
-			header('Location: index.php?p=users.account');
+			$_SESSION['user'] = $user;
+			$user_id = $user->id;
+			$this->User->update($user_id, [
+				'confirmation_token' => NULL,
+				'confirmed_at' => date('Y-m-d H:i:s')
+			]);
+			$_SESSION['flash']['success']= "Votre compte a bien été confimé. Connectez-vous dès maintenant !";
+			header('location: index.php');
 		} else {
-			header('Location: index.php?p=users.login');
+			$_SESSION['flash']['danger']= "Ce lien n'est plus valide, vous avez déjà confirmé votre compte.";
+			header('location: index.php');
 		}
-	}
-	
-	public function logout()
-	{
-		setcookie('remember', NULL, -1);
-		// On détruit les variables de notre session
-		session_unset();
-		// On détruit notre session
-		session_destroy();
-		session_start();
-		$_SESSION['flash']['success'] = "Vous êtes bien déconnecté. A bientôt !";
-		header('location: index.php');
 	}
 	
 	public function account()
@@ -252,15 +229,10 @@ class UsersController extends AppController
 			
 			if (empty($errors)) {
 				$hashPass = password_hash($_POST['password'], PASSWORD_BCRYPT);
-				$updatedUser = $this->User->update($_GET['id'], [
+				$this->User->update($_GET['id'], [
 					'password' => $hashPass
 				]);
-				$_SESSION['flash']['success']= "Votre mot de passe a bien été changé.";
-				
-				if ($updatedUser) {
-					$_SESSION['user']->password = $_POST['password'];
-					return $this->account();
-				}
+				$_SESSION['flash']['success']= "Votre mot de passe a bien été mis à jour.";
 				$this->render('users.account');
 			}
 		}
@@ -296,9 +268,8 @@ class UsersController extends AppController
 				]);
 				
 				$_SESSION['flash']['success'] = "Les instructions de réinitialisation de mot de passe vous ont été envoyées par email.";
-				mail($_POST['email'], 'Réinitialisation de votre compte', "Afin de réinitialiser votre mot de passe, merci de cliquer sur ce lien :\n\nhttp://localhost:8888/index.php?p=users.reset.php?id=$user_id&token=$reset_token");
-				$form = new BootstrapForm($_POST);
-				$this->render('users.login', compact('user', 'form', 'errors'));
+				mail($_POST['email'], 'Réinitialisation de votre compte', "Afin de réinitialiser votre mot de passe, merci de cliquer sur ce lien :\n\nhttps://www.legoarant.com/projet4/public/index.php?p=users.reset.php?&id=$user_id&token=$reset_token");
+				header('Location: index.php');
 				exit();
 			} else {
 				$errors = true;
@@ -309,34 +280,42 @@ class UsersController extends AppController
 	}
 	
 	
-	public function resetPassword()
+	public function reset()
 	{
+		$errors = false;
+		
 		if (isset($_GET['id']) && isset($_GET['token'])) {
-			$user = $this->User->reset($_GET['id'], $_GET['token']);
+			$user = $this->User->resetPassword($_GET['id'], $_GET['token']);
+//			var_dump($user);
+//			die();
 			if ($user) {
 				if (!empty($_POST)) {
-					if (!empty($_POST['password']) || $_POST['password'] == $_POST['password_confirm']) {
+					if (!empty($_POST['password']) && $_POST['password'] == $_POST['password_confirm']) {
 						$hashPass = password_hash($_POST['password'], PASSWORD_BCRYPT);
 						$this->User->update($_GET['id'], [
 							'password' => $hashPass,
 							'reset_token' => NULL,
 							'reset_at' => NULL
 						]);
-						$_SESSION['flash']['success'] = "Votre mot de passe a bien été modifié.";
+						$_SESSION['flash']['success'] = "Votre mot de passe a bien été modifié. Vous pouvez vous connecter.";
 						$_SESSION['user'] = $user;
-						$this->render('users.account');
+						header('Location: index.php');
 						exit();
+					} else {
+						$errors = true;
 					}
 				}
 			} else {
-				$_SESSION['flash']['danger'] = "Cette clé n'est pas valide";
-				header('Location: login.php');
+				$_SESSION['flash']['danger'] = "Ce lien n'est plus valide.";
+				header('Location: index.php');
 				exit();
 			}
 		} else {
-			header('Location: login.php');
+			header('Location: index.php');
 			exit();
 		}
+		$form = new BootstrapForm($_POST);
+		$this->render('users.reset', compact('user', 'form', 'errors'));
 	}
 	
 	

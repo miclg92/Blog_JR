@@ -14,7 +14,7 @@
     <!-- style spécifique commentaires -->
     <link rel="stylesheet" type="text/css" href="css/comments.css" media="screen" />
     <!-- style spécifique onglet "Connexion/Inscription" -->
-    <link rel="stylesheet" type="text/css" href="css/login.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/user.css" media="screen" />
     <!-- style spécifique onglet "Administration du blog" -->
     <link rel="stylesheet" type="text/css" href="css/admin.css" media="screen" />
     <!-- style spécifique à TinyMCE -->
