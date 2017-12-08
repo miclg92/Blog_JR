@@ -88,14 +88,14 @@ class PostsController extends AppController
 	{
 		$posts = $this->Post->nextOne($_SESSION['currentId']);
 		$categories = $this->Category->all();
-		$this->render('posts.next_prev', compact('posts','categories'));
+		$this->render('posts.episode', compact('posts','categories'));
 	}
 	
 	public function previousEpisode()
 	{
 		$posts = $this->Post->previousOne($_SESSION['currentId']);
 		$categories = $this->Category->all();
-		$this->render('posts.next_prev', compact('posts','categories'));
+		$this->render('posts.episode', compact('posts','categories'));
 	}
 	
 	/* Affiche la liste des catégories */
