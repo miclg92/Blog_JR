@@ -5,5 +5,5 @@ use Core\Table\Table;
 
 class CategoryTable extends Table
 {
-	protected $table = "Categories";
+	protected $table = "categories";
 }

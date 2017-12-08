@@ -5,7 +5,7 @@ use Core\Table\Table;
 
 class CommentTable extends Table
 {
-	protected $table = "Comments";
+	protected $table = "comments";
 	
 	public function getSignaledComments(){
 		return $this->query('

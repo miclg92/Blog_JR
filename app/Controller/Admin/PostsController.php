@@ -64,7 +64,7 @@ class PostsController extends AppController
 					$this->loadModel('Image');
 					$image = $this->Image->create([
 						'img_name' => $img['name'],
-						'img_url' => '/img/'.$img['name'],
+						'img_url' => 'img/'.$img['name'],
 						'img_size' => $img['size'],
 					]);
 				}

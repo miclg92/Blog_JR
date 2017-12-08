@@ -5,7 +5,7 @@ use Core\Table\Table;
 
 class UserTable extends Table
 {
-	protected $table = "Users";
+	protected $table = "users";
 	
 	public function getUserId($email)
 		{

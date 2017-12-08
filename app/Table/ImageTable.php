@@ -6,7 +6,7 @@ use Core\Table\Table;
 
 class ImageTable extends Table
 {
-	protected $image = "Images";
+	protected $image = "images";
 	
 	public function getImageId()
 	{

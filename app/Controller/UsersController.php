@@ -7,9 +7,6 @@ use \Core\HTML\BootstrapForm;
 use \App;
 use \vendor\autoload;
 
-//require_once('../../vendor/autoload.php');
-//require _DIR_ . '/vendor/autoload.php';
-
 class UsersController extends AppController
 {
 	public function __construct()
