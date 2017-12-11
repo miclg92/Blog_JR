@@ -178,4 +178,16 @@
 		font-size: 1.2em;
 	}
 	
+	#add-comment form div label{
+		width: 30%;
+		font-size: 0.9em;
+	}
+	
+	#add-comment form div input{
+		width: 70%;
+	}
+	
+	.btn_post{
+		width: 40%;
+	}
 }

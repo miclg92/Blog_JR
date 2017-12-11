@@ -68,7 +68,7 @@
 			<?php foreach($comments as $comment): ?>
 				<form method="post">
 					<input type= "hidden" name="id" value="<?= $comment->id ?>">
-					<p class="comment_author">Commentaire de <?= $comment->author; ?><span><em>, le <?= $comment->date_comment; ?></span></em></p>
+					<p class="comment_author">Commentaire de <?= $comment->author;?><span><em>, le <?= $comment->date_comment; ?></span></em></p>
 					<?php
 					if(isset($_SESSION['user'])) {
 						if ($_SESSION['user']->flag == 1) {

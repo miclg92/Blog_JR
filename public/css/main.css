@@ -559,7 +559,7 @@ footer {
     }
     
     .go_home a {
-        font-size: 1.4em;
+        font-size: 1.1em;
     }
     
     #link_episodes{
@@ -590,6 +590,10 @@ footer {
         font-size: 0.6em;
     }
     
+    #content {
+        padding-bottom: 50px;
+    }
+    
     .category ul li {
         font-size: 1em;
     }
@@ -611,7 +615,7 @@ footer {
     }
     
     .btn_all_episodes {
-        font-size: 1em;
+        font-size: 0.9em;
     }
     
     #about_me {
@@ -622,7 +626,9 @@ footer {
         font-size: 1.5em;
     }
     
-   
+    #copyright {
+        font-size: 0.9em;
+    }
    
     
 }
