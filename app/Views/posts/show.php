@@ -51,7 +51,9 @@
 		<div id="add-comment">
 			<form method="post">
 				<h3>Commenter cet épisode</h3></br></br>
-				<p class="no_show">Envie de laisser un commentaire ? <a href="index.php?p=users.login"> Connectez-vous </a> ou <a href="index.php?p=users.register"> Créez un compte </a> ;-)</p>
+				<p class="no_show">Envie de laisser un commentaire ?
+				<br>
+				<a href="index.php?p=users.login"> Connectez-vous </a> ou <a href="index.php?p=users.register"> Créez un compte </a> ;-)</p>
 			</form>
 		</div>
 	<?php

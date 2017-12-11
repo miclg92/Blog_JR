@@ -64,3 +64,17 @@
 .post_full{
 	margin-bottom: 0;
 }
+
+/* ------------------------------------ MEDIA QUERIES ---------------------------------------*/
+
+@media all and (max-width: 1024px) {
+	.posts_all figure {
+		width: 40%;
+	}
+}
+
+@media all and (max-width: 800px) {
+	.posts_all figure {
+		width: 60%;
+	}
+}

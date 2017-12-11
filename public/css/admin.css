@@ -3,8 +3,8 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
+	width: 70%;
 	margin: 100px auto;
-	width: 50%;
 	padding: 20px;
 	background-color: #FFF;
 	text-align: center;
@@ -32,7 +32,7 @@
 /* Vue de gestion des épisodes/categories/compte utilisateur */
 #admin_episodes,
 #admin_categories{
-	width: 50%;
+	width: 70%;
 	margin: 100px auto;
 	padding: 20px;
 	background-color: #FFF;
@@ -48,7 +48,7 @@
 	background-color: #FFF;
 	text-align: center;
 	border-radius: 10px;
-	box-shadow: 0px 0px 50px #000000;
+	box-shadow: 0 0 50px #000000;
 }
 
 #admin_episodes table,
@@ -63,6 +63,31 @@
 	color: #FFF;
 	background-color: #508cc7;
 	border-radius: 10px;
+}
+
+#admin_comments table .td_id{
+	width: 5%;
+}
+
+#admin_comments table .td_date{
+	width: 10%;
+}
+
+#admin_comments table .td_author{
+	width: 10%;
+}
+
+#admin_comments table .td_comment{
+	width: 50%;
+	text-align: left;
+}
+
+#admin_comments table .td_article_id{
+	width: 5%;
+}
+
+#admin_comments table .td_btn{
+	width: 20%;
 }
 
 #admin_episodes table tr:hover,
@@ -248,4 +273,88 @@ thead{
 .btn-save:hover{
 	color: #000000;
 	cursor: pointer;
+}
+
+
+/* ------------------------------------ MEDIA QUERIES ---------------------------------------*/
+
+@media all and (max-width: 1024px) {
+	#admin_choices{
+		width: 80%;
+	}
+	
+	#admin_episodes,
+	#admin_categories{
+		width: 80%;
+	}
+	
+	#add-post form,
+	#add-category form,
+	#edit-comment form{
+		width: 80%;
+	}
+	
+	.btn-edit,
+	.btn-delete{
+		font-size: 0.7em;
+	}
+	
+	#admin_episodes table,
+	#admin_categories table,
+	#admin_comments table{
+		font-size: 1.3em;
+	}
+}
+
+@media all and (max-width: 800px) {
+	#admin_choices p a{
+		font-size: 1.2em;
+		justify-content: center;
+	}
+	
+	caption{
+		font-size: 1.1em;
+	}
+	
+	#admin_episodes table,
+	#admin_categories table,
+	#admin_comments table{
+		font-size: 1.2em;
+	}
+	
+	.btn-edit,
+	.btn-delete{
+		font-size: 0.6em;
+	}
+}
+
+@media all and (max-width: 640px) {
+	#admin_choices{
+		flex-direction: column;
+	}
+	
+	#admin_episodes table,
+	#admin_categories table,
+	#admin_comments table{
+		font-size: 0.8em;
+	}
+	
+	.btn-add {
+		font-size: 1em;
+	}
+	
+	#add-post form div label,
+	#add-category form div label,
+	#edit-comment form div label{
+		font-size: 1em;
+	}
+	
+	.td_id,
+	.td_date,
+	.td_article_id{
+		display: none;
+	}
+	
+	
+	
 }

@@ -4,7 +4,7 @@
 #edit-user,
 #forget_password,
 #reset-passwd{
-	width: 50%;
+	width: 60%;
 	margin: 100px auto;
 	padding: 20px;
 	background-color: #FFF;
@@ -57,7 +57,7 @@
 	display: block;
 	width: 40%;
 	text-align: left;
-	font-size: 1.5em;
+	font-size: 1.4em;
 	color: #828383;
 	font-style: italic;
 	float: left;
@@ -176,5 +176,82 @@
 	width: auto;
 	float: right;
 	margin-right: 20px;
+	padding-left: 10px;
+	right: 15px;
 }
 
+/* ------------------------------------ MEDIA QUERIES ---------------------------------------*/
+
+@media all and (max-width: 1024px) {
+	.account_btn .btn-edit{
+		font-size: 1.2em;
+	}
+	
+	.account_btn form{
+		font-size: 1.3em;
+	}
+	
+	.account_btn .btn-delete{
+		height: 42px;
+	}
+}
+
+@media all and (max-width: 800px) {
+	#login_user form,
+	#register form,
+	#account,
+	#edit-user,
+	#forget_password,
+	#reset-passwd{
+		width: 70%;
+	}
+}
+
+@media all and (max-width: 640px) {
+	
+	#login_user form div label,
+	#register form div label,
+	#edit-user form div label,
+	#reset-passwd form div label,
+	#forget_password form div label{
+		font-size: 1.2em;
+	}
+	
+	#login_user form button,
+	#register form button,
+	#edit-user form button,
+	#forget_password form button,
+	#reset-passwd form button{
+		font-size: 1em;
+	}
+	
+	#login_user form h3,
+	#register form h3,
+	#account h3,
+	#edit-user form h3,
+	#forget_password form h3,
+	#reset-passwd form h3{
+		font-size: 2em;
+	}
+	
+	#login_user form p,
+	#register form p,
+	#edit-user form .text,
+	#forget_password form p,
+	#reset-passwd form p{
+		font-size: 1em;
+	}
+	
+	.account_btn .btn-edit{
+		font-size: 0.8em;
+	}
+	
+	.account_btn form{
+		font-size: 0.8em;
+	}
+	
+	.account_btn .btn-delete{
+		height: 42px;
+	}
+	
+}

@@ -74,16 +74,20 @@
 				if(isset($_SESSION['auth'])){
 					if($_SESSION['user']->flag == 1){
 					?>
-                    <li>Bonjour
-                        <?= $_SESSION['user']->username;?> - <a href="index.php?p=users.account">Mon compte</a></li>
-                    <li><a href="index.php?p=users.logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Deconnexion</a></li>
+						<li class="account">
+							<p>Bonjour  <?= $_SESSION['user']->username;?></p>
+							<p><a href="index.php?p=users.account">Mon compte</a></p>
+						</li>
+                        <li><a href="index.php?p=users.logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Deconnexion</a></li>
                     <?php
 					} elseif($_SESSION['user']->flag == 2) {
 					?>
-                        <li><a href="index.php?p=posts.administration"><i class="fa fa-unlock" aria-hidden="true"></i>
-								Administration du site</a></li>
-                        <li>Bonjour
-                            <?= $_SESSION['user']->username;?> - <a href="index.php?p=users.account">Mon compte</a></li>
+                        <li class="account">
+	                        <p>Bonjour  <?= $_SESSION['user']->username;?></p>
+	                        <p><a href="index.php?p=users.account">Mon compte</a></p>
+                        </li>
+						<li><a href="index.php?p=posts.administration"><i class="fa fa-unlock" aria-hidden="true"></i>
+								Administration</a></li>
                         <li><a href="index.php?p=users.logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Deconnexion</a></li>
                         <?php
 					}

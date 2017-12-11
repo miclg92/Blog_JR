@@ -137,9 +137,8 @@ body {
 #menu ul {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    height: 45px;
-    line-height: 45px;
+    height: 70px;
+    line-height: 65px;
     list-style-type: none;
     margin: 0 auto;
     padding: 0;
@@ -148,15 +147,26 @@ body {
 }
 
 #menu li {
-    font-size: 1.5em;
-    margin: 0 auto;
-    width: 25%;
+    font-size: 1.6em;
+    margin: 0;
+    width: 100%;
     border: 2px solid #828383;
     box-shadow: 0px 0px 6px #d6dbdb;
     text-align: center;
+    vertical-align: middle;
+}
+
+#menu .account{
+    line-height: normal;
+}
+
+#menu .account p{
+    margin: 0;
 }
 
 #menu a {
+    display: inline-block;
+    vertical-align: middle;
     text-decoration: none;
     color: #FFF;
 }
@@ -224,6 +234,7 @@ body {
     flex-direction: row;
     justify-content: center;
     margin: 0 auto -40px auto;
+    padding: 0;
 }
 
 .category ul li {
@@ -449,4 +460,169 @@ footer {
 
 .fa {
     margin: 5px;
+}
+
+
+/* ------------------------------------ MEDIA QUERIES ---------------------------------------*/
+
+@media all and (max-width: 1024px) {
+    #bloc_page {
+        max-width: 980px;
+    }
+    
+    .go_home a {
+        font-size: 2.5em;
+    }
+    
+    #presentation h2 {
+        font-size: 2.2em;
+    }
+    
+    #menu li {
+        font-size: 1.4em;
+    }
+    
+    #bloc_content {
+        width: 80%;
+    }
+    
+    .btn_lire_episode {
+        width: 40%;
+    }
+    
+    .category_title {
+        font-size: 2.5em;
+    }
+}
+
+@media all and (max-width: 800px) {
+    #bloc_page {
+        max-width: 750px;
+    }
+    
+    .go_home a {
+        font-size: 2em;
+    }
+    
+    #presentation h2 {
+        font-size: 2em;
+    }
+    
+    #menu ul {
+        height: 50px;
+        line-height: 45px;
+    }
+    
+    #menu li {
+        font-size: 1.1em;
+    }
+    
+    #bloc_content {
+        width: 90%;
+    }
+    
+    .category_title {
+        font-size: 2em;
+    }
+    
+    #me{
+        flex-direction: column;
+    }
+    
+    #me_picture {
+        width: 80%;
+        margin: 30px auto 10px auto;
+    }
+    
+    #about_me {
+        width: 80%;
+        margin: 0 auto;
+    }
+    
+    #about_me p {
+        margin: 0 auto 10px auto;
+    }
+    
+    #about_me h2 {
+        margin: 10px auto;
+        text-align: center;
+    }
+}
+
+@media all and (max-width: 640px) {
+    #bloc_page {
+        max-width: 600px;
+    }
+    
+    #home {
+        height: 500px;
+    }
+    
+    .go_home a {
+        font-size: 1.4em;
+    }
+    
+    #link_episodes{
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        margin: 50px auto;
+    }
+    
+    #link_episodes p {
+        width: auto;
+        margin: 10px auto;
+        font-size: 1.4em;
+    }
+    
+    #presentation h2,
+    #presentation h4{
+        font-size: 1.4em;
+        margin: 0;
+    }
+    
+    #menu ul {
+        height: 30px;
+        line-height: 25px;
+    }
+    
+    #menu li {
+        font-size: 0.6em;
+    }
+    
+    .category ul li {
+        font-size: 1em;
+    }
+    
+    .post {
+        font-size: 1.2em;
+    }
+    
+   .post_title {
+        font-size: 1.2em;
+    }
+   
+    .post_extrait {
+        margin: 0;
+    }
+    
+    .btn_lire_episode {
+        width: 60%;
+    }
+    
+    .btn_all_episodes {
+        font-size: 1em;
+    }
+    
+    #about_me {
+        font-size: 1em;
+    }
+    
+    .category_title {
+        font-size: 1.5em;
+    }
+    
+   
+   
+    
 }

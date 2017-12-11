@@ -29,11 +29,11 @@ if(isset($_SESSION['auth'])){
 		<br>
 		
 		<div class="account_btn">
-			<a class="btn-edit" href="?p=users.edit&id=<?= $_SESSION['auth']; ?>">Editer mon profil</a>
-			<a class="btn-edit" href="?p=users.changePasswd&id=<?= $_SESSION['auth']; ?>">Changer mon mot de passe</a>
+			<a class="btn-edit" href="?p=users.edit&id=<?= $_SESSION['auth']; ?>">Editer Profil</a>
+			<a class="btn-edit" href="?p=users.changePasswd&id=<?= $_SESSION['auth']; ?>">Changer Mot de passe</a>
 			<form action="?p=users.delete" method="post" style="display: inline;">
 				<input type="hidden" name="id" value="<?= $_SESSION['auth']; ?>">
-				<button type="submit" class="btn-delete">Supprimer mon compte</button>
+				<button type="submit" class="btn-delete">Supprimer Compte</button>
 			</form>
 		</div>
 	</div>

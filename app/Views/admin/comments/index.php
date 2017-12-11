@@ -12,11 +12,11 @@ if(isset($_SESSION['auth']) && isset($_SESSION['user']) && $_SESSION['user']->fl
 		<caption class="NO">Commentaires signalés - Action requise : modérer/supprimer</caption>
 		<thead>
 		<tr>
-			<td>ID</td>
-			<td>Date du commentaire</td>
+			<td class="td_id">ID</td>
+			<td class="td_date">Date</td>
 			<td>Auteur</td>
-			<td>Commentaire</td>
-			<td>ID de l'épisode</td>
+			<td class="td_comment">Commentaire</td>
+			<td class="td_article_id">ID Episode</td>
 		</tr>
 		</thead>
 		
@@ -26,12 +26,12 @@ if(isset($_SESSION['auth']) && isset($_SESSION['user']) && $_SESSION['user']->fl
 			{
 			?>
 				<tr>
-					<td><?= $comment->id; ?></td>
-					<td><?= $comment->date_comment; ?></td>
-					<td><?= $comment->author; ?></td>
-					<td><?= $comment->comment; ?></td>
-					<td><?= $comment->article_id; ?></td>
-					<td>
+					<td class="td_id"><?= $comment->id; ?></td>
+					<td class="td_date"><?= $comment->date_comment; ?></td>
+					<td class="td_author"><?= $comment->author; ?></td>
+					<td class="td_comment"><?= $comment->comment; ?></td>
+					<td class="td_article_id"><?= $comment->article_id; ?></td>
+					<td class="td_btn">
 						<a class="btn-edit" href="?p=admin.comments.edit&id=<?= $comment->id; ?>">Modérer</a>
 						<form action="?p=admin.comments.delete" method="post" style="display: inline;">
 							<input type="hidden" name="id" value="<?= $comment->id ?>">
@@ -52,11 +52,11 @@ if(isset($_SESSION['auth']) && isset($_SESSION['user']) && $_SESSION['user']->fl
 		<caption class="OK">Commentaires non signalés - Action requise : contrôler</caption>
 		<thead>
 		<tr>
-			<td>ID</td>
-			<td>Date du commentaire</td>
+			<td class="td_id">ID</td>
+			<td class="td_date">Date</td>
 			<td>Auteur</td>
-			<td>Commentaire</td>
-			<td>ID de l'épisode</td>
+			<td class="td_comment">Commentaire</td>
+			<td class="td_article_id">ID Episode</td>
 		</tr>
 		</thead>
 		
@@ -66,12 +66,12 @@ if(isset($_SESSION['auth']) && isset($_SESSION['user']) && $_SESSION['user']->fl
 			{
 				?>
 				<tr>
-					<td><?= $comment->id; ?></td>
-					<td><?= $comment->date_comment; ?></td>
-					<td><?= $comment->author; ?></td>
-					<td><?= $comment->comment; ?></td>
-					<td><?= $comment->article_id; ?></td>
-					<td>
+					<td class="td_id"><?= $comment->id; ?></td>
+					<td class="td_date"><?= $comment->date_comment; ?></td>
+					<td class="td_author"><?= $comment->author; ?></td>
+					<td class="td_comment"><?= $comment->comment; ?></td>
+					<td class="td_article_id"><?= $comment->article_id; ?></td>
+					<td class="td_btn">
 						<a class="btn-edit" href="?p=admin.comments.edit&id=<?= $comment->id; ?>">Modérer</a>
 						<form action="?p=admin.comments.delete" method="post" style="display: inline;">
 							<input type="hidden" name="id" value="<?= $comment->id ?>">
