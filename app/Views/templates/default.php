@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Billet simple pour l'Alaska : Roman en ligne de Jean Forteroche">
+    <meta name="description" content="Billet simple pour l'Alaska : Nouveau Roman de Jean Forteroche, publié pour la première fois en ligne, et par épisode. Premiers épisodes déjà disponibles.">
     <meta name="author" content="Jean Forteroche">
 
     <!-- style général -->
@@ -131,6 +131,9 @@
                     <p>Romancier et dramaturge, je suis aussi auteur de nouvelles, d’un beau livre avec le photographe Oan Kim, d’un album pour enfants, de scénario. Je m'essaie à toutes ces formes pour le plaisir d’explorer sans cesse le vaste territoire de l’imaginaire et de l’écriture.</p>
                     <p>Aujourd'hui, je décide de publier mon nouveau roman d'une façon originale... directement en ligne...</p>
                     <p>Dès maintenant, SOYEZ ACTEURS AVEC MOI, en découvrant chaque nouvel épisode publié.</p>
+	                <p>Les premiers épisodes sont dores et déjà disponibles, et soyez également prévenus dès qu'un nouvel épisode est en ligne.</p>
+	                <p>Prenez vos bonnet, gants, manteau, et chaussez vos plus belles bottes, et rejoignez-moi dans cette folle aventure, dont vous ne sortirez pas indemne...</p>
+	                <p>Vous êtes Prêts ? Alors sans plus attendre, <a href="index.php?p=posts.firstEpisode">C'EST PARTI...</a></p>
                 </div>
             </div>
             <div id="copyright">

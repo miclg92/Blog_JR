@@ -9,6 +9,7 @@ class PostsController extends AppController
 		parent::__construct();
 		$this->loadModel('Post');
 		$this->loadModel('Image');
+		$this->loadModel('User');
 	}
 	
 	public function index()
@@ -83,6 +84,10 @@ class PostsController extends AppController
 					'image_id' => $image_id
 				]);
 				if($result) {
+					$mails_array = $this->User->allUsersMails();
+					foreach ($mails_array as $object => $mail) {
+						mail($mail->email, 'Nouvel épisode disponible', "Un nouvel épisode vient d'être mis en ligne. Rendez-vous dès maintenant sur le site en cliquant sur le lien ci-dessous : \n\nhttps://www.legoarant.com/projet4/public/");
+					}
 					$_SESSION['flash']['success'] = "Cet épisode a bien été ajouté.";
 					return $this->index();
 				}

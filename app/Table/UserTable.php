@@ -62,6 +62,14 @@ class UserTable extends Table
 		return $user;
 	}
 	
+	public function allUsersMails(){
+		$mails = $this->query('
+			SELECT email
+			FROM users
+			WHERE flag = 1', []);
+		return $mails;
+	}
+	
 	
 
 }

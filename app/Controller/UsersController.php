@@ -30,10 +30,10 @@ class UsersController extends AppController
 				if($expected == $remember_token){
 					$_SESSION['auth'] = $user->id;
 					$_SESSION['user'] = $user;
-					setcookie('remember', $remember_token, time() + 60 * 60 * 24 * 7);
+					setcookie('remember', $remember_token, time() + 60 * 60 * 24 * 7, '/', null, null, true);
 				}
 			} else{
-				setcookie('remember', NULL, -1);
+				setcookie('remember', NULL, -1, '/', null, null, true);
 			}
 		}
 		
@@ -47,7 +47,7 @@ class UsersController extends AppController
 					$this->User->update($user_id, [
 						'remember_token' => $remember_token,
 					]);
-					setcookie('remember', $user_id . '==' . $remember_token . sha1($user_id . 'ratonslaveurs'), time() + 60 * 60 * 24 * 7);
+					setcookie('remember', $user_id . '==' . $remember_token . sha1($user_id . 'ratonslaveurs'), time() + 60 * 60 * 24 * 7, '/', null, null, true);
 				}
 				
 				if($_SESSION['user']->flag == 1){
@@ -73,7 +73,7 @@ class UsersController extends AppController
 	
 	public function logout()
 	{
-		setcookie('remember', NULL, -1);
+		setcookie('remember', NULL, -1, '/', null, null, true);
 		// On détruit les variables de notre session
 		session_unset();
 		// On détruit notre session
