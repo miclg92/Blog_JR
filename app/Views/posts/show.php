@@ -36,7 +36,7 @@
 			<form method="post">
 				<h3>Commenter cet épisode</h3></br></br>
 				<input type= "hidden" name="id" value="<?= $article->id ?>">
-				<?= $form->input('comment', 'Votre commentaire : ');?>
+				<?= $form->input('comment', 'Commentaire : ');?>
 				<button class="btn_post">Publier</button>
 				<?php if($errors): ?>
 					<div class="errors">

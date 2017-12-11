@@ -37,10 +37,11 @@ class PostsController extends AppController
 				$errors = true;
 			} else {
 				$comment = $this->comment->create([
-					'author' => $_POST['author'],
+					'author' => $_SESSION['user']->username,
 					'comment' => $_POST['comment'],
 					'article_id' => $_POST['id']
 				]);
+				
 				if ($comment) {
 					header("Refresh:0");
 					$_SESSION['flash']['success']= "Votre commentaire a bien été publié.";
@@ -56,7 +57,6 @@ class PostsController extends AppController
 			header("Refresh:0");
 			$_SESSION['flash']['success']= "Ce commentaire a bien été signalé, et sera traité dans les plus brefs délais.";
 		}
-		
 		$this->render('posts.show', compact('article', 'form', 'comments', 'comment', 'errors'));
 		$currentPost = $this->Post->find($_GET['id']);
 		$currentId = $currentPost->id;
