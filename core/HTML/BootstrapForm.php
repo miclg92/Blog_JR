@@ -4,7 +4,7 @@ namespace Core\HTML;
 class BootstrapForm extends Form
 {
 	/**
-	 * @param $html string Code html à entourer d'un <p>
+	 * @param $html string Code html à entourer d'une DIV
 	 * @return string
 	 */
 	protected function surround($html){

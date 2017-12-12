@@ -1,9 +1,12 @@
 <?php
 
+// Création d'une constante ROOT qui ramène à la racine du site
 define ('ROOT', dirname(__DIR__));
+
 require ROOT . '/app/App.php';
 App::load();
 
+// Redirige vers l'action indiquée après ?p= dans la barre d'adresse
 if(isset($_GET['p']))
 {
 	$page = $_GET['p'];

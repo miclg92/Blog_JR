@@ -37,7 +37,6 @@ class PostTable extends Table
 		");
 	}
 	
-	
 	/**
 	 * Récupère le premier article
 	 * @return array
@@ -99,10 +98,9 @@ class PostTable extends Table
 			WHERE articles.id < $current_id
 			ORDER BY articles.id DESC LIMIT 1");
 	}
-
 	
 	/**
-	 * Récupère les derniers articles de la catégorie
+	 * Récupère les articles d'une catégorie spécifique
 	 * @param $category_id int
 	 * @return array
 	 */
@@ -173,6 +171,10 @@ class PostTable extends Table
 		return $result;
 	}
 	
+	/**
+	 * @param $episode Vérifie qu'un numéro d'épisode n'est pas déjà utilisé avec COUNT
+	 * @return mixed
+	 */
 	public function checkEpisodeNumber($episode)
 	{
 		$result = $this->query('
@@ -182,6 +184,10 @@ class PostTable extends Table
 		return $result->episodeNb;
 	}
 	
+	/**
+	 * @param $post_id Récupère les commentaires liés à un article spécifique
+	 * @return mixed
+	 */
 	public function getPostComments($post_id){
 		$result = $this->query("
 			SELECT *
@@ -191,6 +197,10 @@ class PostTable extends Table
 		return $result;
 	}
 	
+	/**
+	 * @param $post_id Récupère l'id d'un commentaire
+	 * @return mixed
+	 */
 	public function getCommentId($post_id)
 	{
 		$result = $this->query('
@@ -200,37 +210,4 @@ class PostTable extends Table
 		return $result->id;
 	}
 	
-	
-	
-//	public function lastInsertId()
-//	{
-//		$result = $this->query('
-//			SELECT LAST_INSERT_ID()
-//			');
-//		return $result;
-//	}
-	
-//	public function getImageId($post_id)
-//	{
-//		$result = $this->query('
-//			SELECT id
-//			FROM images
-//			WHERE article_id = ?', [$post_id], true);
-//		return $result;
-//	}
-	
-	
-//	public function getNextEpisodeId($attribute)
-//	{
-//		$result = $this->query('
-//			SHOW TABLE STATUS
-//			FROM blog
-//			LIKE "articles"', $attribute, true);
-//		return $result;
-//	}
-	
-
-	
-
-
 }

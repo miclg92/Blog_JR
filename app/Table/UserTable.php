@@ -7,6 +7,10 @@ class UserTable extends Table
 {
 	protected $table = "users";
 	
+	/**
+	 * @param $email Récupère l'id d'un user avec l'email
+	 * @return mixed
+	 */
 	public function getUserId($email)
 		{
 			$result = $this->query('
@@ -16,6 +20,9 @@ class UserTable extends Table
 			return $result->id;
 		}
 	
+	/**
+	 * @return mixed Récupère l'ID du dernier utilisateur
+	 */
 	public function getLastUserId()
 	{
 		return $this->query('
@@ -25,6 +32,10 @@ class UserTable extends Table
 		', [], true);
 	}
 	
+	/**
+	 * @param $username Vérifie d'un disponibilité d'un username avec COUNT
+	 * @return mixed
+	 */
 	public function checkUsername($username)
 	{
 		$result = $this->query('
@@ -33,7 +44,11 @@ class UserTable extends Table
 			WHERE username = ?', [$username], true);
 		return $result->nbUsername;
 	}
-
+	
+	/**
+	 * @param $email Vérifie d'un disponibilité d'un email avec COUNT
+	 * @return mixed
+	 */
 	public function checkUsermail($email)
 	{
 		$result = $this->query('
@@ -43,7 +58,10 @@ class UserTable extends Table
 		return $result->nbUsermail;
 	}
 	
-	// Confirmation du compte par mail (confirmation_token)
+	/**
+	 * @param $user_id  Récupère l'user avec l'ID pour la confirmation du compte par mail
+	 * @return mixed
+	 */
 	public function confirm($user_id)
 	{
 		$user = $this->query('
@@ -53,6 +71,11 @@ class UserTable extends Table
 		return $user;
 	}
 	
+	/**
+	 * @param $user_id
+	 * @param $reset_token Récupère le reset_token d'un user avec l'id
+	 * @return mixed
+	 */
 	public function resetPassword($user_id, $reset_token)
 	{
 		$user = $this->query('
@@ -62,6 +85,9 @@ class UserTable extends Table
 		return $user;
 	}
 	
+	/**
+	 * @return mixed Récupère tous les emails des users enregistrés
+	 */
 	public function allUsersMails(){
 		$mails = $this->query('
 			SELECT email
@@ -69,7 +95,5 @@ class UserTable extends Table
 			WHERE flag = 1', []);
 		return $mails;
 	}
-	
-	
 
 }

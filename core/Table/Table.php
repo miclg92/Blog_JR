@@ -9,6 +9,10 @@ class Table
 	protected $table;
 	protected $db;
 	
+	/**
+	 * Table constructor. Récupère le nom de la table à partir du nom de la classe (FACTORY)
+	 * @param Database $db
+	 */
 	public function __construct(Database $db)
 	{
 		$this->db = $db;
@@ -20,6 +24,36 @@ class Table
 		}
 	}
 	
+	/**
+	 * @param $statement
+	 * @param null $attributes
+	 * @param bool $one
+	 * @return mixed
+	 */
+	public function query($statement, $attributes = null, $one = false)
+	{
+		if($attributes)
+		{
+			// Requete préparée si les attributs sont définis
+			return $this->db->prepare(
+				$statement,
+				$attributes,
+				str_replace('Table', 'Entity', get_class($this)),
+				$one
+			);
+		// Sinon requete simple
+		} else {
+			return $this->db->query(
+				$statement,
+				str_replace('Table', 'Entity', get_class($this)),
+				$one
+			);
+		}
+	}
+	
+	/**
+	 * @return mixed Récupère tous les éléments d'une table
+	 */
 	public function all()
 	{
 		return $this->query('
@@ -28,6 +62,10 @@ class Table
 		);
 	}
 	
+	/**
+	 * @param $id Récupère tous les éléments d'une table ayant un ID spécifique
+	 * @return mixed
+	 */
 	public function find($id)
 	{
 		return $this->query("
@@ -37,6 +75,11 @@ class Table
 		);
 	}
 	
+	/**
+	 * @param $id
+	 * @param $fields Mets à jour les données d'une table
+	 * @return mixed
+	 */
 	public function update($id, $fields)
 	{
 		$sql_parts = [];
@@ -52,11 +95,19 @@ class Table
 		return $this->query("UPDATE {$this->table} SET $sql_part WHERE id = ?", $attributes, true);
 	}
 	
+	/**
+	 * @param $id Supprime une élément d'une table
+	 * @return mixed
+	 */
 	public function delete($id)
 	{
 		return $this->query("DELETE FROM {$this->table} WHERE id = ?", [$id], true);
 	}
 	
+	/**
+	 * @param $fields Créé un élément d'une table
+	 * @return mixed
+	 */
 	public function create($fields)
 	{
 		$sql_parts = [];
@@ -71,6 +122,11 @@ class Table
 		return $this->query("INSERT INTO {$this->table} SET $sql_part", $attributes, true);
 	}
 	
+	/**
+	 * @param $key
+	 * @param $value Extraie les données
+	 * @return array
+	 */
 	public function extract($key, $value)
 	{
 		$records = $this->all();
@@ -80,25 +136,6 @@ class Table
 			$return[$v->$key] = $v->$value;
 		}
 		return $return;
-	}
-	
-	public function query($statement, $attributes = null, $one = false)
-	{
-		if($attributes)
-		{
-			return $this->db->prepare(
-				$statement,
-				$attributes,
-				str_replace('Table', 'Entity', get_class($this)),
-				$one
-			);
-		} else {
-			return $this->db->query(
-				$statement,
-				str_replace('Table', 'Entity', get_class($this)),
-				$one
-			);
-		}
 	}
 	
 }

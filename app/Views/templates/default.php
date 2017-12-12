@@ -26,7 +26,6 @@
     <link href="https://fonts.googleapis.com/css?family=Meddon" rel="stylesheet">
     <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css" />
 
-
     <!-- Accès CDN jQuery -->
     <script src="https://code.jquery.com/jquery-1.12.3.js" integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc=" crossorigin="anonymous"></script>
     <!-- Accès aus différents fichiers JS -->
@@ -111,7 +110,7 @@
         <?php endforeach; ?>
         <?php unset($_SESSION['flash']); ?>
         <?php endif; ?>
-
+	    
         <section id="container">
             <div id="content">
                 <?= $content; ?>
@@ -142,13 +141,9 @@
         </footer>
 
     </div>
-
-
-    <!--	<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>-->
-
+    
     <script>
         tinymce.init({
-            //			selector: '#content form div textarea',
             selector: '#add-post form div textarea',
             content_css: "css/main.css,css/admin.css",
             menubar: false,

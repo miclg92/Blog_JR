@@ -1,6 +1,11 @@
 <?php
 namespace Core\HTML;
 
+/**
+ * Class Form
+ * @package Core\HTML
+ * Permet de générer un formulaire rapidement
+ */
 class Form
 {
 	/**
@@ -42,7 +47,7 @@ class Form
 	}
 	
 	/**
-	 * @param $name
+	 * @param $name string
 	 * @param $label
 	 * @param array $options
 	 * @return string

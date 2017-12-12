@@ -8,6 +8,9 @@ class ImageTable extends Table
 {
 	protected $image = "images";
 	
+	/**
+	 * @return mixed Récupère l'id de la dernière image uploadée
+	 */
 	public function getImageId()
 	{
 		return $this->query('

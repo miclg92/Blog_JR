@@ -10,6 +10,13 @@ class MysqlDatabase extends Database
 	private $db_host;
 	private $pdo;
 	
+	/**
+	 * MysqlDatabase constructor.
+	 * @param $db_name
+	 * @param string $db_user
+	 * @param string $db_pass
+	 * @param string $db_host
+	 */
 	public function __construct($db_name, $db_user = 'dbo713703916', $db_pass = 'Bordeaux1980*', $db_host = 'db713703916.db.1and1.com')
 	{
 		$this->db_name = $db_name;
@@ -18,6 +25,9 @@ class MysqlDatabase extends Database
 		$this->db_host = $db_host;
 	}
 	
+	/**
+	 * @return PDO Permet de n'accéder qu'une seule fois à la base de données
+	 */
 	private function getPDO()
 	{
 		if ($this->pdo === null) {
@@ -28,6 +38,12 @@ class MysqlDatabase extends Database
 		return $this->pdo;
 	}
 	
+	/**
+	 * @param $statement
+	 * @param null $class_name
+	 * @param bool $one
+	 * @return array|mixed|\PDOStatement
+	 */
 	public function query($statement, $class_name = null, $one = false)
 	{
 		$req = $this->getPDO()->query($statement);
@@ -56,6 +72,13 @@ class MysqlDatabase extends Database
 		return $datas;
 	}
 	
+	/**
+	 * @param $statement
+	 * @param $attributes
+	 * @param null $class_name
+	 * @param bool $one
+	 * @return array|bool|mixed
+	 */
 	public function prepare($statement, $attributes, $class_name = null, $one = false)
 	{
 		$req = $this->getPDO()->prepare($statement);
@@ -69,13 +92,19 @@ class MysqlDatabase extends Database
 			return $res;
 		}
 		
+		/**
+		 * Définit le fetchStyle selon si la $class_name existe ou pas
+		 */
 		if ($class_name === null)
 		{
 			$req->setFetchMode(PDO::FETCH_OBJ);
 		} else {
 			$req->setFetchMode(PDO::FETCH_CLASS, $class_name);
 		}
-	
+		
+		/**
+		 * Définit le type de fetch utilisé
+		 */
 		if($one)
 		{
 			$datas = $req->fetch();
@@ -86,6 +115,9 @@ class MysqlDatabase extends Database
 		return $datas;
 	}
 	
+	/**
+	 * @return string Récupère de dernier ID inséré dans la bdd
+	 */
 	public function lastInsertId()
 	{
 		return $this->getPDO()->lastInsertId();

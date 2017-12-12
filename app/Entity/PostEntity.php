@@ -4,11 +4,17 @@ use Core\Entity\Entity;
 
 class PostEntity extends Entity
 {
+	/**
+	 * @return string Permet de récupérer l'url d'un épisode
+	 */
 	public function getUrl()
 	{
 		return 'index.php?p=posts.show&id=' . $this->id;
 	}
 	
+	/**
+	 * @return string Permet de récupérer l'extrait d'un épisode
+	 */
 	public function getExtrait()
 	{
 		$html = '<p class="extrait_episode">' . substr($this->contenu, 0, 400) . '...</p>';
