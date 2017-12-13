@@ -5,7 +5,6 @@ namespace App\Controller;
 use \Core\Auth\DBAuth;
 use \Core\HTML\BootstrapForm;
 use \App;
-use \vendor\autoload;
 
 class UsersController extends AppController
 {

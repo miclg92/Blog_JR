@@ -116,7 +116,8 @@ class MysqlDatabase extends Database
 	}
 	
 	/**
-	 * @return string Récupère de dernier ID inséré dans la bdd
+	 * @return string
+	 * Récupère de dernier ID inséré dans la bdd
 	 */
 	public function lastInsertId()
 	{

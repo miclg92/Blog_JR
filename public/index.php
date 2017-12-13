@@ -11,11 +11,10 @@ if(isset($_GET['p']))
 {
 	$page = $_GET['p'];
 } else {
-	$page = 'posts.index';
+	$page = 'posts.index'; // Pointe vers index par défaut
 }
 
 $page = explode('.', $page);
-
 if($page[0] == 'admin')
 {
 	$controller = '\App\Controller\Admin\\' . ucfirst($page[1]) . 'Controller';

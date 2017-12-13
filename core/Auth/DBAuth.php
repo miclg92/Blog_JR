@@ -7,7 +7,7 @@ class DBAuth
 {
 	private $db;
 	
-	//	Connexion a la bdd avec injection de dépendance
+	//	Connexion a la bdd avec injection de dépendance (Instance de Database)
 	public function __construct(Database $db)
 	{
 		$this->db = $db;

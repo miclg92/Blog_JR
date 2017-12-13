@@ -16,7 +16,8 @@ class Config
 	}
 	
 	/**
-	 * @param $file Fonction statique permettant de récupérer une instance unique de la classe (SINGLETON)
+	 * @param $file
+	 * Fonction statique permettant de récupérer une instance unique de la classe (SINGLETON)
 	 * @return Config
 	 */
 	public static function getInstance($file)
@@ -29,7 +30,8 @@ class Config
 	}
 	
 	/**
-	 * @param $key Récupère la clé demandée
+	 * @param $key
+	 * Récupère la clé demandée
 	 * @return mixed|null
 	 */
 	public function get($key)

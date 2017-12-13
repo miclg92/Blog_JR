@@ -1,19 +1,17 @@
 <?php
 
-
 namespace Core\Controller;
-
 
 class Controller
 {
-	protected $viewPath;
+	protected $viewPath; // Chemin vers le dossier qui contient les vues
 	protected $template;
 	
 	/* Afficher les vues pour le visiteur */
 	protected function render($view, $variables = [])
 	{
 		ob_start();
-		extract($variables);
+		extract($variables); // Variables $posts, $categories, $comments....
 		require($this->viewPath . str_replace('.', '/', $view) . '.php');
 		$content = ob_get_clean();
 		require($this->viewPath . 'templates/' . $this->template . '.php');

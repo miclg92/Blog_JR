@@ -9,11 +9,11 @@ if(isset($_SESSION['auth'])){
 			<p class="text">Remplissez les deux champs puis enregistrez</p>
 			<br><br>
 			<div class="form-group">
-				<label for="password">Nouveau mot de passe :</label>
+				<label for="password">Nouveau mot de passe : </label>
 				<input name="password" type="password">
 			</div>
 			<div class="form-group">
-				<label for="password">Confirmez nouveau mot de passe :</label>
+				<label for="password">Confirmez nouveau mot de passe : </label>
 				<input name="password_confirm" type="password">
 			</div>
 			<br>

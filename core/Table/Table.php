@@ -10,7 +10,8 @@ class Table
 	protected $db;
 	
 	/**
-	 * Table constructor. Récupère le nom de la table à partir du nom de la classe (FACTORY)
+	 * Table constructor.
+	 * Récupère le nom de la table à partir du nom de la classe (FACTORY)
 	 * @param Database $db
 	 */
 	public function __construct(Database $db)
@@ -63,7 +64,8 @@ class Table
 	}
 	
 	/**
-	 * @param $id Récupère tous les éléments d'une table ayant un ID spécifique
+	 * @param $id
+	 * Récupère tous les éléments d'une table ayant un ID spécifique
 	 * @return mixed
 	 */
 	public function find($id)
@@ -77,7 +79,8 @@ class Table
 	
 	/**
 	 * @param $id
-	 * @param $fields Mets à jour les données d'une table
+	 * @param $fields
+	 * Met à jour les données d'une table
 	 * @return mixed
 	 */
 	public function update($id, $fields)
@@ -96,7 +99,8 @@ class Table
 	}
 	
 	/**
-	 * @param $id Supprime une élément d'une table
+	 * @param $id
+	 * Supprime une élément d'une table
 	 * @return mixed
 	 */
 	public function delete($id)
@@ -105,7 +109,8 @@ class Table
 	}
 	
 	/**
-	 * @param $fields Créé un élément d'une table
+	 * @param $fields
+	 * Créé un élément d'une table
 	 * @return mixed
 	 */
 	public function create($fields)
@@ -124,7 +129,8 @@ class Table
 	
 	/**
 	 * @param $key
-	 * @param $value Extraie les données
+	 * @param $value
+	 * Récupère tous les enregistrements, et créé un tableau pour chaque enregistrement
 	 * @return array
 	 */
 	public function extract($key, $value)

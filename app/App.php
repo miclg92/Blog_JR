@@ -12,7 +12,8 @@ class App
 	private static $_instance;
 	
 	/**
-	 * @param $file Fonction statique permettant de récupérer une instance unique de la classe (SINGLETON)
+	 * @param $file
+	 * Fonction statique permettant de récupérer une instance unique de la classe (SINGLETON)
 	 * @return Config
 	 */
 	public static function getInstance()
@@ -37,7 +38,8 @@ class App
 	}
 	
 	/**
-	 * @param $name Récupère le nom de la table automatiquement
+	 * @param $name
+	 * Récupère le nom de la table automatiquement
 	 * @return mixed
 	 */
 	public function getTable($name)
@@ -47,7 +49,8 @@ class App
 	}
 	
 	/**
-	 * @return MysqlDatabase Récupère les infos de connexion a la bdd automatiquement
+	 * @return MysqlDatabase
+	 * Récupère les infos de connexion a la bdd automatiquement
 	 */
 	public function getDb()
 	{

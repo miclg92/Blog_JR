@@ -5,12 +5,13 @@ if(isset($_SESSION['auth']) && isset($_SESSION['user']) && $_SESSION['user']->fl
 		<form method="post" enctype="multipart/form-data">
 			<p class="return"><a href="?p=admin.posts.index" >Retour</a></p>
 			<h2 class="category_title">Modifier un épisode</h2></br></br>
-			<?= $form->input('episode', 'Numéro de l\'épisode : '); ?>
+			<div class="form-group">
+				<label for="episode">Numéro de l'épisode : </label>
+				<input type="text" name="episode" value="<?= $post->id; ?>" readonly>
+			</div>
 			<?= $form->input('titre', 'Titre de l\'épisode : '); ?>
 			<?= $form->input('contenu', 'Contenu : ', ['type' => 'textarea']); ?>
 			<?= $form->select('category_id', 'Catégorie : ', $categories); ?>
-<!--			--><?//<input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
-//			= $form->input('image', 'Image de fond : ', ['type' => 'file']); ?>
 			<button type="submit" class="btn-save">Enregistrer</button>
 			
 			<?php if (!empty($errors)): ?>

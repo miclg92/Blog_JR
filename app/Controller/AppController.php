@@ -13,6 +13,10 @@ class AppController extends Controller
 		$this->viewPath = ROOT . '/app/Views/';
 	}
 	
+	/**
+	 * @param $model_name
+	 * Charge la table concernée
+	 */
 	protected function loadModel($model_name)
 	{
 		$this->$model_name = App::getInstance()->getTable($model_name);

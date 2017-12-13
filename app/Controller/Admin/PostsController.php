@@ -107,35 +107,49 @@ class PostsController extends AppController
 		}
 	}
 	
-	
 	public function edit()
 	{
-		if(!empty($_POST))
-		{
-			$result = $this->Post->update($_GET['id'], [
-				'episode' => $_POST['episode'],
-				'titre' => $_POST['titre'],
-				'contenu' => $_POST['contenu'],
-				'category_id' => $_POST['category_id'],
-				
-				'date_modif' => date('Y-m-d H:i:s')
-			]);
+		if(!empty($_POST)){
+			$errors = array();
 			
-			if($result)
-			{
-				$_SESSION['flash']['success'] = "Cet épisode a bien été modifié";
-				return $this->index();
+			if (empty($_POST['titre']) || empty($_POST['contenu'])) {
+				$errors['titre'] = "Titre manquant.";
 			}
+			
+			if (empty($_POST['contenu'])) {
+				$errors['contenu'] = "Contenu manquant.";
+			}
+			
+			if (empty($errors)) {
+				$result = $this->Post->update($_GET['id'], [
+					'episode' => $_POST['episode'],
+					'titre' => $_POST['titre'],
+					'contenu' => $_POST['contenu'],
+					'category_id' => $_POST['category_id'],
+					'date_modif' => date('Y-m-d H:i:s')
+				]);
+				
+				if($result)
+				{
+					$_SESSION['flash']['success'] = "Cet épisode a bien été modifié";
+					return $this->index();
+				}
+			} else {
+				$post = $this->Post->find($_GET['id']);
+				$this->loadModel('Category');
+				$categories = $this->Category->extract('id', 'titre');
+				$form = new BootstrapForm($post);
+				$this->render('admin.posts.edit', compact('categories',  'form', 'errors', 'post'));
+			}
+		} else {
+			$post = $this->Post->find($_GET['id']);
+			$this->loadModel('Category');
+			$categories = $this->Category->extract('id', 'titre');
+			$form = new BootstrapForm($post);
+			$this->render('admin.posts.edit', compact('categories',  'form', 'errors', 'post'));
 		}
-		
-		$post = $this->Post->find($_GET['id']);
-		
-		$this->loadModel('Category');
-		$categories = $this->Category->extract('id', 'titre');
-		$this->loadModel('Image');
-		$form = new BootstrapForm($post);
-		$this->render('admin.posts.edit', compact('categories',  'form'));
 	}
+	
 	
 	public function delete()
 	{
@@ -172,7 +186,5 @@ class PostsController extends AppController
 		imagejpeg($miniature,$chemin."/".$nom.".jpg",90);
 		return true;
 	}
-
-	
 	
 }

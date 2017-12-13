@@ -12,7 +12,7 @@ class PostsController extends AppController
 		parent::__construct();
 		$this->loadModel('Post');
 		$this->loadModel('Category');
-		$this->loadModel('comment');
+		$this->loadModel('Comment');
 	}
 	
 	/* Affiche la liste des 3 derniers épisodes */
@@ -36,7 +36,7 @@ class PostsController extends AppController
 			if (empty($_POST['comment'])) {
 				$errors = true;
 			} else {
-				$comment = $this->comment->create([
+				$comment = $this->Comment->create([
 					'author' => $_SESSION['user']->username,
 					'comment' => $_POST['comment'],
 					'article_id' => $_POST['id']
@@ -50,7 +50,7 @@ class PostsController extends AppController
 		}
 		
 		if(isset($_POST['signal_comment'])){
-			$this->comment->update($_POST['id'], [
+			$this->Comment->update($_POST['id'], [
 				'is_signaled' => 1,
 				'signaled_at' => date('Y-m-d H:i:s')
 			]);
