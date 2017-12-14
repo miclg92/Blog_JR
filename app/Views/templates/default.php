@@ -1,3 +1,27 @@
+<?php
+
+use \Core\Auth\DBAuth;
+
+if(isset($_COOKIE['remember'])){
+	$remember_token = $_COOKIE['remember'];
+	$parts = explode('==', $remember_token);
+	$user_id = $parts[0];
+	$auth = new DBAuth(App::getDb());
+	$user = $auth->loginWithId($user_id);
+	
+	if($user){
+		$expected = $user_id . '==' . $user->remember_token . sha1($user_id . 'ratonslaveurs');
+		if($expected == $remember_token){
+			$_SESSION['auth'] = $user->id;
+			$_SESSION['user'] = $user;
+			setcookie('remember', $remember_token, time() + 60 * 60 * 24 * 7, '/', null, null, true);
+		}
+	} else{
+		setcookie('remember', NULL, -1, '/', null, null, true);
+	}
+}
+?>
+
 <!doctype html>
 <html lang="fr">
 

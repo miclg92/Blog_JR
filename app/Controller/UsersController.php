@@ -18,25 +18,6 @@ class UsersController extends AppController
 	public function login()
 	{
 		$errors = false;
-
-		if(isset($_COOKIE['remember'])){
-			$remember_token = $_COOKIE['remember'];
-			$parts = explode('==', $remember_token);
-			$user_id = $parts[0];
-			$auth = new DBAuth(App::getDb());
-			$user = $auth->loginWithId($user_id);
-		
-			if($user){
-				$expected = $user_id . '==' . $user->remember_token . sha1($user_id . 'ratonslaveurs');
-				if($expected == $remember_token){
-					$_SESSION['auth'] = $user->id;
-					$_SESSION['user'] = $user;
-					setcookie('remember', $remember_token, time() + 60 * 60 * 24 * 7, '/', null, null, true);
-				}
-			} else{
-				setcookie('remember', NULL, -1, '/', null, null, true);
-			}
-		}
 		
 		if (!empty($_POST)) {
 			$auth = new DBAuth(App::getDb());
@@ -63,9 +44,6 @@ class UsersController extends AppController
 				$form = new BootstrapForm($_POST);
 				$this->render('users.login', compact('form', 'errors', 'message'));
 			}
-//			$form = new BootstrapForm($_POST);
-//			$this->render('users.account', compact('form', 'errors', 'message'));
-			
 		} else{
 			$form = new BootstrapForm($_POST);
 			$this->render('users.login', compact('form', 'errors', 'message'));
@@ -323,8 +301,6 @@ class UsersController extends AppController
 		$form = new BootstrapForm($_POST);
 		$this->render('users.reset', compact('user', 'form', 'errors'));
 	}
-	
-	
 	
 	
 }
