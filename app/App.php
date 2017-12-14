@@ -8,13 +8,12 @@ use Core\Database\MysqlDatabase;
 class App
 {
 	public $title = 'Billet simple pour l\'Alaska, Roman en ligne de Jean Forteroche';
-	private $db_instance;
+	private static $db_instance;
 	private static $_instance;
 	
 	/**
-	 * @param $file
+	 * @return App
 	 * Fonction statique permettant de récupérer une instance unique de la classe (SINGLETON)
-	 * @return Config
 	 */
 	public static function getInstance()
 	{
@@ -42,24 +41,24 @@ class App
 	 * Récupère le nom de la table automatiquement
 	 * @return mixed
 	 */
-	public function getTable($name)
+	public static function getTable($name)
 	{
 		$class_name = '\\App\\Table\\' . ucfirst($name) . 'Table';
-		return new $class_name($this->getDb());
+		return new $class_name(self::getDb());
 	}
 	
 	/**
 	 * @return MysqlDatabase
 	 * Récupère les infos de connexion a la bdd automatiquement
 	 */
-	public function getDb()
+	public static function getDb()
 	{
 		// SINGLETON
 		$config = Config::getInstance(ROOT . '/config/config.php');
-		if(is_null($this->db_instance))
+		if(is_null(self::$db_instance))
 		{
-			$this->db_instance = new MysqlDatabase($config->get('db_name'), $config->get('db_user'), $config->get('db_pass'), $config->get('db_host'));
+			self::$db_instance = new MysqlDatabase($config->get('db_name'), $config->get('db_user'), $config->get('db_pass'), $config->get('db_host'));
 		}
-		return $this->db_instance;
+		return self::$db_instance;
 	}
 }

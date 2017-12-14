@@ -1,14 +1,16 @@
 <?php
 namespace Core\Auth;
 
-use Core\Database\Database;
+use Core\Database\MysqlDatabase;
 
 class DBAuth
 {
 	private $db;
 	
-	//	Connexion a la bdd avec injection de dépendance (Instance de Database)
-	public function __construct(Database $db)
+	/**
+	 * Connexion a la bdd avec injection de dépendance (Instance de MysqlDatabase)
+	 * */
+	public function __construct(MysqlDatabase $db)
 	{
 		$this->db = $db;
 	}
@@ -55,7 +57,6 @@ class DBAuth
 			WHERE id = ?', [$user_id], null, true);
 	}
 	
-	
 	/**
 	 * @return bool
 	 */
@@ -63,6 +64,5 @@ class DBAuth
 	{
 		return isset($_SESSION['auth']);
 	}
-
 	
 }

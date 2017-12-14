@@ -11,8 +11,8 @@ class AppController extends \App\Controller\AppController
 		parent::__construct();
 		
 		// On récupère l'instance et on vérifie si l'utilisateur est connecté (Auth)
-		$app = App::getInstance();
-		$auth = new DBAuth($app->getDb());
+//		$app = App::getInstance();
+		$auth = new DBAuth(App::getDb());
 		if(!$auth->logged())
 		{
 			$this->forbidden();

@@ -1,5 +1,7 @@
 <?php
+
 namespace Core\Table;
+
 use Core\Database\Database;
 use Core\Database\MysqlDatabase;
 
@@ -14,7 +16,7 @@ class Table
 	 * Récupère le nom de la table à partir du nom de la classe (FACTORY)
 	 * @param Database $db
 	 */
-	public function __construct(Database $db)
+	public function __construct(MysqlDatabase $db)
 	{
 		$this->db = $db;
 		if(is_null($this->table))

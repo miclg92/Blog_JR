@@ -84,9 +84,16 @@ class PostsController extends AppController
 					'image_id' => $image_id
 				]);
 				if($result) {
+					// Envoi d'un email à l'utilisateur
 					$mails_array = $this->User->allUsersMails();
 					foreach ($mails_array as $object => $mail) {
-						mail($mail->email, 'Nouvel épisode disponible', "Un nouvel épisode vient d'être mis en ligne. Rendez-vous dès maintenant sur le site en cliquant sur le lien ci-dessous : \n\nhttps://www.legoarant.com/projet4/public/");
+						mail(
+							$mail->email,
+							'Nouvel épisode disponible',
+							"Bonjour. \n\nUn nouvel épisode vient d'être mis en ligne. Rendez-vous dès maintenant sur le site en cliquant sur le lien ci-dessous : \n\nhttps://www.legoarant.com/projet4/public/\n\nA bientôt.\n\nJean Forteroche",
+							'From: "Jean Forteroche"<jforteroche@gmail.com>'. "\r\n" .
+							'Reply-To: jforteroche@gmail.com' . "\r\n"
+						);
 					}
 					$_SESSION['flash']['success'] = "Cet épisode a bien été ajouté.";
 					return $this->index();

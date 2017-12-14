@@ -5,6 +5,7 @@ namespace App\Controller;
 use \Core\Auth\DBAuth;
 use \Core\HTML\BootstrapForm;
 use \App;
+use Core\Functions\Str;
 
 class UsersController extends AppController
 {
@@ -22,8 +23,9 @@ class UsersController extends AppController
 			$remember_token = $_COOKIE['remember'];
 			$parts = explode('==', $remember_token);
 			$user_id = $parts[0];
-			$auth = new DBAuth(App::getInstance()->getDb());
+			$auth = new DBAuth(App::getDb());
 			$user = $auth->loginWithId($user_id);
+		
 			if($user){
 				$expected = $user_id . '==' . $user->remember_token . sha1($user_id . 'ratonslaveurs');
 				if($expected == $remember_token){
@@ -37,11 +39,11 @@ class UsersController extends AppController
 		}
 		
 		if (!empty($_POST)) {
-			$auth = new DBAuth(App::getInstance()->getDb());
+			$auth = new DBAuth(App::getDb());
 			if ($auth->login($_POST['username'], $_POST['password'])) {
 				
 				if(isset($_POST['remember']) && $_POST['remember']){
-					$remember_token = $this->str_random(250);
+					$remember_token = Str::str_random(250);
 					$user_id = $_SESSION['auth'];
 					$this->User->update($user_id, [
 						'remember_token' => $remember_token,
@@ -111,29 +113,27 @@ class UsersController extends AppController
 			
 			if (empty($errors)) {
 				$hashPass = password_hash($_POST['password'], PASSWORD_BCRYPT);
-				$token = $this->str_random(60);
-//				$auth = new DBAuth(App::getInstance()->getDb());
-				
+				$token = Str::str_random(60);
+				$auth = new DBAuth(App::getDb());
+
 				$users = $this->User->create([
 					'username' => $_POST['username'],
 					'email' => $_POST['email'],
 					'password' => $hashPass,
 					'confirmation_token' => $token
 				]);
-				
-//				if($users){
-//					$auth->login($_POST['username'], $_POST['password']);
-//					$auth->logged();
-//				}
-//
-//				$_SESSION['flash']['success']= "Votre compte a bien été créé, et vous êtes maintenant connecté.";
-//				$this->render('users.account');
-				
-				// -------- Envoi d'un email à l'utilisateur -------------
+
+				// Envoi d'un email à l'utilisateur
 				$user_array = $this->User->getLastUserId();
 				$user_obj = $user_array;
 				$user_id = $user_obj->id;
-				$mail = mail($_POST['email'], 'Confirmation de votre compte', "Afin de valider votre compte, merci de cliquer sur ce lien :\n\nhttps://www.legoarant.com/projet4/public/index.php?p=users.confirm.php?&id=$user_id&token=$token");
+				mail(
+					$_POST['email'],
+					'Confirmation de votre compte',
+					"Bonjour. \n\nAfin de valider votre compte, merci de cliquer sur ce lien :\n\nhttps://www.legoarant.com/projet4/public/index.php?p=users.confirm.php?&id=$user_id&token=$token\n\nA bientôt.\n\nJean Forteroche",
+					'From: "Jean Forteroche"<jforteroche@gmail.com>'. "\r\n" .
+					'Reply-To: jforteroche@gmail.com' . "\r\n"
+				);
 				$_SESSION['flash']['success']= "Un email vous a été envoyé afin de valider votre compte.";
 				header('Location: index.php');
 				exit();
@@ -258,7 +258,7 @@ class UsersController extends AppController
 		if(!empty($_POST) && !empty($_POST['email'])){
 			$user = $this->User->checkUsermail($_POST['email']);
 			if($user == 1){
-				$reset_token = $this->str_random(60);
+				$reset_token = Str::str_random(60);
 				$user_id = $this->User->getUserId($_POST['email']);
 				
 				$this->User->update($user_id, [
@@ -266,8 +266,15 @@ class UsersController extends AppController
 					'reset_at' => date('Y-m-d H:i:s')
 				]);
 				
+				// Envoi d'un email à l'utilisateur
 				$_SESSION['flash']['success'] = "Les instructions de réinitialisation de mot de passe vous ont été envoyées par email.";
-				mail($_POST['email'], 'Réinitialisation de votre compte', "Afin de réinitialiser votre mot de passe, merci de cliquer sur ce lien :\n\nhttps://www.legoarant.com/projet4/public/index.php?p=users.reset.php?&id=$user_id&token=$reset_token");
+				mail(
+					$_POST['email'],
+					'Réinitialisation de votre compte',
+					"Bonjour. \n\nAfin de réinitialiser votre mot de passe, merci de cliquer sur ce lien :\n\nhttps://www.legoarant.com/projet4/public/index.php?p=users.reset.php?&id=$user_id&token=$reset_token\n\nA bientôt.\n\nJean Forteroche",
+					'From: "Jean Forteroche"<jforteroche@gmail.com>'. "\r\n" .
+					'Reply-To: jforteroche@gmail.com' . "\r\n"
+				);
 				header('Location: index.php');
 				exit();
 			} else {
