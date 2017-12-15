@@ -62,6 +62,9 @@ body {
 
 #link_episodes {
     display: flex;
+    display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;  /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
     flex-direction: row;
     justify-content: center;
     margin-bottom: 50px;
@@ -136,6 +139,9 @@ body {
 
 #menu ul {
     display: flex;
+    display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;  /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
     flex-direction: row;
     height: 70px;
     line-height: 65px;
@@ -231,6 +237,9 @@ body {
 
 .category ul {
     display: flex;
+    display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;  /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
     flex-direction: row;
     justify-content: center;
     margin: 0 auto -40px auto;
@@ -360,6 +369,9 @@ body {
 
 .btn_all_episodes {
     display: flex;
+    display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;  /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
     justify-content: center;
     margin: 80px auto;
     width: 50%;
@@ -389,6 +401,9 @@ footer {
 
 #me {
     display: flex;
+    display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;  /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
     flex-direction: row;
     color: #FFF;
     background-color: #508cc7;
@@ -564,6 +579,9 @@ footer {
     
     #link_episodes{
         display: flex;
+        display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+        display: -ms-flexbox;  /* TWEENER - IE 10 */
+        display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
         flex-direction: column;
         width: 70%;
         margin: 50px auto;

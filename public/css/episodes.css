@@ -3,6 +3,9 @@
 /* Contenu général des épisodes */
 #bloc_content_all{
 	display: flex;
+	display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+	display: -ms-flexbox;  /* TWEENER - IE 10 */
+	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	flex-direction: row;
 	margin: 0 auto;
 	color: #828383;
@@ -12,6 +15,9 @@
 /* Div contenant tous les épisodes */
 .posts_all{
 	display: flex;
+	display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+	display: -ms-flexbox;  /* TWEENER - IE 10 */
+	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	flex-wrap: wrap;
 	justify-content: space-around;
 	width: 100%;
@@ -21,6 +27,9 @@
 /* Episode spécifique */
 .posts_all figure{
 	display: flex;
+	display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+	display: -ms-flexbox;  /* TWEENER - IE 10 */
+	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	position: relative;
 	width: 25%;
 	text-align: center;
@@ -43,6 +52,9 @@
 .posts_all figcaption{
 	visibility: hidden;
 	display: flex;
+	display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+	display: -ms-flexbox;  /* TWEENER - IE 10 */
+	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	align-items: center;
 	justify-content: center;
 	position: absolute;

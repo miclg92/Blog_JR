@@ -45,6 +45,9 @@
 #forget_password form div,
 #reset-passwd form div{
 	display: flex;
+	display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+	display: -ms-flexbox;  /* TWEENER - IE 10 */
+	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	flex-direction: row;
 	justify-content: center;
 	margin: 10px auto;
@@ -156,6 +159,9 @@
 
 .account_btn{
 	display: flex;
+	display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+	display: -ms-flexbox;  /* TWEENER - IE 10 */
+	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	flex-direction: row;
 }
 

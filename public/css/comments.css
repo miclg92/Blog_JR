@@ -3,6 +3,9 @@
 /* Liens Précédemment et prochain épisode */
 .other_episodes{
 	display: flex;
+	display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+	display: -ms-flexbox;  /* TWEENER - IE 10 */
+	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	flex-direction: row;
 	justify-content: space-between;
 }
@@ -103,6 +106,9 @@
 
 #add-comment form div{
 	display: flex;
+	display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+	display: -ms-flexbox;  /* TWEENER - IE 10 */
+	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
 	flex-direction: row;
 	text-align: center;
 	margin: 10px 20px;
