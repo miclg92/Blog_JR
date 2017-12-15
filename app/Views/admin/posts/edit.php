@@ -9,8 +9,8 @@ if(isset($_SESSION['auth']) && isset($_SESSION['user']) && $_SESSION['user']->fl
 				<label for="episode">Numéro de l'épisode : </label>
 				<input type="text" name="episode" value="<?= $post->id; ?>" readonly>
 			</div>
-			<?= $form->input('titre', 'Titre de l\'épisode : '); ?>
-			<?= $form->input('contenu', 'Contenu : ', ['type' => 'textarea']); ?>
+			<?= $form->input('title', 'Titre de l\'épisode : '); ?>
+			<?= $form->input('content', 'Contenu : ', ['type' => 'textarea']); ?>
 			<?= $form->select('category_id', 'Catégorie : ', $categories); ?>
 			<button type="submit" class="btn-save">Enregistrer</button>
 			

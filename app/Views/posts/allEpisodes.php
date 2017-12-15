@@ -9,7 +9,7 @@
 					<figcaption>
 						Episode <?= $post->episode;?>
 						<br>
-						<?= $post->titre;?>
+						<?= $post->title;?>
 					</figcaption>
 				</a>
 			</figure>

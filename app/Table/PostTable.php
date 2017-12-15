@@ -5,35 +5,35 @@ use Core\Table\Table;
 
 class PostTable extends Table
 {
-	protected $table = 'articles';
+	protected $table = 'episodes';
 	
 /**
- * Récupère tous les articles
+ * Récupère tous les episodes
  * @return array
  */
 	public function all()
 	{
 		return $this->query("
-			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr, images.img_name as image_name, images.img_url as image
-			FROM articles
+			SELECT episodes.id, episodes.episode, episodes.title, episodes.content, categories.title as categorie, DATE_FORMAT(episodes.date_episode, '%d/%m/%Y') AS date_episode_fr, DATE_FORMAT(episodes.date_update, '%d/%m/%Y à %H:%i') AS date_update_fr, images.img_name as image_name, images.img_url as image
+			FROM episodes
 			LEFT JOIN categories ON category_id = categories.id
 			INNER JOIN images ON image_id = images.id
-			ORDER BY articles.date_public
+			ORDER BY episodes.date_episode
 		");
 	}
 	
 /**
- * Récupère les 3 derniers articles
+ * Récupère les 3 derniers episodes
  * @return array
  */
 	public function last()
 	{
 		return $this->query("
-			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr, images.img_name as image_name, images.img_url as image
-			FROM articles
+			SELECT episodes.id, episodes.episode, episodes.title, episodes.content, categories.title as categorie, DATE_FORMAT(episodes.date_episode, '%d/%m/%Y') AS date_episode_fr, DATE_FORMAT(episodes.date_update, '%d/%m/%Y à %H:%i') AS date_update_fr, images.img_name as image_name, images.img_url as image
+			FROM episodes
 			LEFT JOIN categories ON category_id = categories.id
 			INNER JOIN images ON image_id = images.id
-			ORDER BY articles.id DESC LIMIT 0,3
+			ORDER BY episodes.id DESC LIMIT 0,3
 		");
 	}
 	
@@ -44,11 +44,11 @@ class PostTable extends Table
 	public function firstOne()
 	{
 		return $this->query("
-			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr, images.img_name as image_name, images.img_url as image
-			FROM articles
+			SELECT episodes.id, episodes.episode, episodes.title, episodes.content, categories.title as categorie, DATE_FORMAT(episodes.date_episode, '%d/%m/%Y') AS date_episode_fr, DATE_FORMAT(episodes.date_update, '%d/%m/%Y à %H:%i') AS date_update_fr, images.img_name as image_name, images.img_url as image
+			FROM episodes
 			LEFT JOIN categories ON category_id = categories.id
 			INNER JOIN images ON image_id = images.id
-			ORDER BY articles.id LIMIT 1
+			ORDER BY episodes.id LIMIT 1
 		");
 	}
 	
@@ -59,11 +59,11 @@ class PostTable extends Table
 	public function lastOne()
 	{
 		return $this->query("
-			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr, images.img_name as image_name, images.img_url as image
-			FROM articles
+			SELECT episodes.id, episodes.episode, episodes.title, episodes.content, categories.title as categorie, DATE_FORMAT(episodes.date_episode, '%d/%m/%Y') AS date_episode_fr, DATE_FORMAT(episodes.date_update, '%d/%m/%Y à %H:%i') AS date_update_fr, images.img_name as image_name, images.img_url as image
+			FROM episodes
 			LEFT JOIN categories ON category_id = categories.id
 			INNER JOIN images ON image_id = images.id
-			ORDER BY articles.id DESC LIMIT 1
+			ORDER BY episodes.id DESC LIMIT 1
 		");
 	}
 	
@@ -75,12 +75,12 @@ class PostTable extends Table
 	public function nextOne($current_id)
 	{
 		return $this->query("
-			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr, images.img_name as image_name, images.img_url as image
-			FROM articles
+			SELECT episodes.id, episodes.episode, episodes.title, episodes.content, categories.title as categorie, DATE_FORMAT(episodes.date_episode, '%d/%m/%Y') AS date_episode_fr, DATE_FORMAT(episodes.date_update, '%d/%m/%Y à %H:%i') AS date_update_fr, images.img_name as image_name, images.img_url as image
+			FROM episodes
 			LEFT JOIN categories ON category_id = categories.id
 			INNER JOIN images ON image_id = images.id
-			WHERE articles.id > $current_id
-			ORDER BY articles.id LIMIT 1");
+			WHERE episodes.id > $current_id
+			ORDER BY episodes.id LIMIT 1");
 	}
 	
 	/**
@@ -91,28 +91,28 @@ class PostTable extends Table
 	public function previousOne($current_id)
 	{
 		return $this->query("
-			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr, images.img_name as image_name, images.img_url as image
-			FROM articles
+			SELECT episodes.id, episodes.episode, episodes.title, episodes.content, categories.title as categorie, DATE_FORMAT(episodes.date_episode, '%d/%m/%Y') AS date_episode_fr, DATE_FORMAT(episodes.date_update, '%d/%m/%Y à %H:%i') AS date_update_fr, images.img_name as image_name, images.img_url as image
+			FROM episodes
 			LEFT JOIN categories ON category_id = categories.id
 			INNER JOIN images ON image_id = images.id
-			WHERE articles.id < $current_id
-			ORDER BY articles.id DESC LIMIT 1");
+			WHERE episodes.id < $current_id
+			ORDER BY episodes.id DESC LIMIT 1");
 	}
 	
 	/**
-	 * Récupère les articles d'une catégorie spécifique
+	 * Récupère les episodes d'une catégorie spécifique
 	 * @param $category_id int
 	 * @return array
 	 */
 	public function lastByCategory($category_id)
 	{
 		return $this->query("
-			SELECT articles.id, articles.episode, articles.titre, articles.contenu, categories.titre as categorie, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr, images.img_name as image_name, images.img_url as image
-			FROM articles
+			SELECT episodes.id, episodes.episode, episodes.title, episodes.content, categories.title as categorie, DATE_FORMAT(episodes.date_episode, '%d/%m/%Y') AS date_episode_fr, DATE_FORMAT(episodes.date_update, '%d/%m/%Y à %H:%i') AS date_update_fr, images.img_name as image_name, images.img_url as image
+			FROM episodes
 			LEFT JOIN categories ON category_id = categories.id
 			INNER JOIN images ON image_id = images.id
-			WHERE articles.category_id = ?
-			ORDER BY articles.date_public DESC
+			WHERE episodes.category_id = ?
+			ORDER BY episodes.date_episode DESC
 			", [$category_id]
 		);
 	}
@@ -125,12 +125,12 @@ class PostTable extends Table
 	public function findWithCategory($id)
 	{
 		return $this->query("
-			SELECT articles.id, articles.episode, articles.titre, articles.contenu, DATE_FORMAT(articles.date_public, '%d/%m/%Y') AS date_public_fr, DATE_FORMAT(articles.date_modif, '%d/%m/%Y à %H:%i') AS date_modif_fr, categories.titre as categorie, comments.author as author, comments.comment as comment, DATE_FORMAT(comments.date_comment, '%d/%m/%Y') AS date_comment_fr, images.img_name as image_name, images.img_url as image
-			FROM articles
+			SELECT episodes.id, episodes.episode, episodes.title, episodes.content, DATE_FORMAT(episodes.date_episode, '%d/%m/%Y') AS date_episode_fr, DATE_FORMAT(episodes.date_update, '%d/%m/%Y à %H:%i') AS date_update_fr, categories.title as categorie, comments.author as author, comments.comment as comment, DATE_FORMAT(comments.date_comment, '%d/%m/%Y') AS date_comment_fr, images.img_name as image_name, images.img_url as image
+			FROM episodes
 			LEFT JOIN categories ON category_id = categories.id
-			LEFT JOIN comments ON articles.id = comments.article_id
+			LEFT JOIN comments ON episodes.id = comments.episode_id
 			INNER JOIN images ON image_id = images.id
-			WHERE articles.id = ?", [$id], true);
+			WHERE episodes.id = ?", [$id], true);
 	}
 	
 	/**
@@ -141,7 +141,7 @@ class PostTable extends Table
 	{
 		return $this->query("
 			SELECT id
-			FROM articles
+			FROM episodes
 			WHERE id = ?", $currentEpisodeId);
 	}
 	
@@ -153,7 +153,7 @@ class PostTable extends Table
 	{
 		$result = $this->query("
 			SELECT id
-			FROM articles
+			FROM episodes
 			ORDER BY id LIMIT 1");
 		return $result;
 	}
@@ -166,7 +166,7 @@ class PostTable extends Table
 	{
 		$result = $this->query("
 			SELECT id
-			FROM articles
+			FROM episodes
 			ORDER BY id DESC LIMIT 1");
 		return $result;
 	}
@@ -179,7 +179,7 @@ class PostTable extends Table
 	{
 		$result = $this->query('
 			SELECT COUNT(*) AS episodeNb
-			FROM articles
+			FROM episodes
 			WHERE episode = ?', [$episode], true);
 		return $result->episodeNb;
 	}
@@ -192,7 +192,7 @@ class PostTable extends Table
 		$result = $this->query("
 			SELECT *
 			FROM comments
-			WHERE article_id = ?
+			WHERE episode_id = ?
 			ORDER BY date_comment DESC", [$post_id]);
 		return $result;
 	}
@@ -206,7 +206,7 @@ class PostTable extends Table
 		$result = $this->query('
 			SELECT id
 			FROM comments
-			WHERE article_id = ?', [$post_id], true);
+			WHERE episode_id = ?', [$post_id], true);
 		return $result->id;
 	}
 	

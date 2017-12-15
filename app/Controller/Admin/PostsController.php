@@ -32,12 +32,12 @@ class PostsController extends AppController
 				}
 			}
 			
-			if(empty($_POST['titre']) || empty($_POST['contenu'])) {
-				$errors['titre'] = "Titre manquant.";
+			if(empty($_POST['title'])) {
+				$errors['title'] = "Titre manquant.";
 			}
 			
-			if(empty($_POST['contenu'])) {
-				$errors['contenu'] = "Contenu manquant.";
+			if(empty($_POST['content'])) {
+				$errors['content'] = "Contenu manquant.";
 			}
 			
 			if(empty($_FILES)){
@@ -78,8 +78,8 @@ class PostsController extends AppController
 				
 				$result = $this->Post->create([
 					'episode' => $_POST['episode'],
-					'titre' => $_POST['titre'],
-					'contenu' => $_POST['contenu'],
+					'title' => $_POST['title'],
+					'content' => $_POST['content'],
 					'category_id' => $_POST['category_id'],
 					'image_id' => $image_id
 				]);
@@ -100,14 +100,14 @@ class PostsController extends AppController
 				}
 			} else {
 				$this->loadModel('Category');
-				$categories = $this->Category->extract('id', 'titre');
+				$categories = $this->Category->extract('id', 'title');
 				$this->loadModel('Image');
 				$form = new BootstrapForm($_POST);
 				$this->render('admin.posts.add', compact('categories', 'images', 'form', 'errors'));
 			}
 		} else{
 			$this->loadModel('Category');
-			$categories = $this->Category->extract('id', 'titre');
+			$categories = $this->Category->extract('id', 'title');
 			$this->loadModel('Image');
 			$form = new BootstrapForm($_POST);
 			$this->render('admin.posts.add', compact('categories', 'images', 'form', 'errors'));
@@ -119,21 +119,21 @@ class PostsController extends AppController
 		if(!empty($_POST)){
 			$errors = array();
 			
-			if (empty($_POST['titre']) || empty($_POST['contenu'])) {
+			if (empty($_POST['title'])) {
 				$errors['titre'] = "Titre manquant.";
 			}
 			
-			if (empty($_POST['contenu'])) {
+			if (empty($_POST['content'])) {
 				$errors['contenu'] = "Contenu manquant.";
 			}
 			
 			if (empty($errors)) {
 				$result = $this->Post->update($_GET['id'], [
 					'episode' => $_POST['episode'],
-					'titre' => $_POST['titre'],
-					'contenu' => $_POST['contenu'],
+					'title' => $_POST['title'],
+					'content' => $_POST['content'],
 					'category_id' => $_POST['category_id'],
-					'date_modif' => date('Y-m-d H:i:s')
+					'date_update' => date('Y-m-d H:i:s')
 				]);
 				
 				if($result)
@@ -144,14 +144,14 @@ class PostsController extends AppController
 			} else {
 				$post = $this->Post->find($_GET['id']);
 				$this->loadModel('Category');
-				$categories = $this->Category->extract('id', 'titre');
+				$categories = $this->Category->extract('id', 'title');
 				$form = new BootstrapForm($post);
 				$this->render('admin.posts.edit', compact('categories',  'form', 'errors', 'post'));
 			}
 		} else {
 			$post = $this->Post->find($_GET['id']);
 			$this->loadModel('Category');
-			$categories = $this->Category->extract('id', 'titre');
+			$categories = $this->Category->extract('id', 'title');
 			$form = new BootstrapForm($post);
 			$this->render('admin.posts.edit', compact('categories',  'form', 'errors', 'post'));
 		}

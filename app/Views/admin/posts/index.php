@@ -22,7 +22,7 @@ if(isset($_SESSION['auth']) && isset($_SESSION['user']) && $_SESSION['user']->fl
 		<?php foreach ($posts as $post): ?>
 			<tr>
 				<td><?= $post->episode; ?></td>
-				<td><?= $post->titre; ?></td>
+				<td><?= $post->title; ?></td>
 				<td id="buttons-actions">
 					<a class="btn-edit" href="?p=admin.posts.edit&id=<?= $post->id; ?>">Modifier</a>
 					

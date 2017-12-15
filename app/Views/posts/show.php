@@ -3,14 +3,14 @@
 	
 	<div class="post">
 		<p class="return_episodes"><a href="?p=posts.allEpisodes" >Retour aux épisodes</a></p>
-		<img src="<?= $article->image ?>" alt="<?= $article->image_name ?>">
-		<h2 class="post_title">Episode <?= $article->episode;?> : <?= $article->titre;?></h2>
-		<p class="post_category"><em><?= $article->categorie; ?> - Publié le <?= $article->date_public_fr; ?></em></p>
-		<p class="post_category"><em>(Dernière modification le <?= $article->date_modif_fr; ?>)</em></p>
-		<p class="post_full"><?= $article->contenu; ?></p>
+		<img src="<?= $post->image ?>" alt="<?= $post->image_name ?>">
+		<h2 class="post_title">Episode <?= $post->episode;?> : <?= $post->title;?></h2>
+		<p class="post_category"><em><?= $post->categorie; ?> - Publié le <?= $post->date_episode_fr; ?></em></p>
+		<p class="post_category"><em>(Dernière modification le <?= $post->date_update_fr; ?>)</em></p>
+		<p class="post_full"><?= $post->content; ?></p>
 		<div class="other_episodes">
 			<?php
-			$currentEpisodeId = $this->Post->currentEpisodeId([$article->id]);
+			$currentEpisodeId = $this->Post->currentEpisodeId([$post->id]);
 			$firstEpisodeId = $this->Post->firstEpisodeId();
 			$lastEpisodeId = $this->Post->lastEpisodeId();
 			if($currentEpisodeId != $firstEpisodeId){
@@ -35,7 +35,7 @@
 		<div id="add-comment">
 			<form method="post">
 				<h3>Commenter cet épisode</h3></br></br>
-				<input type= "hidden" name="id" value="<?= $article->id ?>">
+				<input type= "hidden" name="id" value="<?= $post->id ?>">
 				<?= $form->input('comment', 'Commentaire : ');?>
 				<button class="btn_post">Publier</button>
 				<?php if($errors): ?>

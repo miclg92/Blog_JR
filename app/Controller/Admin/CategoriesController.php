@@ -21,7 +21,7 @@ class CategoriesController extends AppController
 		if(!empty($_POST))
 		{
 			$result = $this->Category->create([
-				'titre' => $_POST['titre']
+				'title' => $_POST['title']
 			]);
 			$_SESSION['flash']['success'] = "Cette catégorie a bien été ajoutée.";
 			return $this->index();
@@ -35,7 +35,7 @@ class CategoriesController extends AppController
 		if(!empty($_POST))
 		{
 			$result = $this->Category->update($_GET['id'], [
-				'titre' => $_POST['titre']
+				'title' => $_POST['title']
 			]);
 			$_SESSION['flash']['success'] = "Cette catégorie a bien été modifiée.";
 			return $this->index();

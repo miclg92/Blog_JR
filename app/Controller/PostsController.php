@@ -26,8 +26,8 @@ class PostsController extends AppController
 	/* Affiche un épisode en particulier avec la catégorie correspondante et les commentaires correspondants */
 	public function show()
 	{
-		$article = $this->Post->findWithCategory($_GET['id']);
-		$post_id = $article->id;
+		$post = $this->Post->findWithCategory($_GET['id']);
+		$post_id = $post->id;
 		$comments = $this->Post->getPostComments($post_id);
 		$form = new BootstrapForm($_POST);
 		$errors = false;
@@ -39,7 +39,7 @@ class PostsController extends AppController
 				$comment = $this->Comment->create([
 					'author' => $_SESSION['user']->username,
 					'comment' => $_POST['comment'],
-					'article_id' => $_POST['id']
+					'episode_id' => $_POST['id']
 				]);
 				
 				if ($comment) {
@@ -57,7 +57,7 @@ class PostsController extends AppController
 			header("Refresh:0");
 			$_SESSION['flash']['success']= "Ce commentaire a bien été signalé, et sera traité dans les plus brefs délais.";
 		}
-		$this->render('posts.show', compact('article', 'form', 'comments', 'comment', 'errors'));
+		$this->render('posts.show', compact('post', 'form', 'comments', 'comment', 'errors'));
 		$currentPost = $this->Post->find($_GET['id']);
 		$currentId = $currentPost->id;
 		$_SESSION['currentId'] = $currentId;
@@ -106,9 +106,9 @@ class PostsController extends AppController
 		{
 			$this->notFound();
 		}
-		$articles = $this->Post->lastByCategory($_GET['id']);
+		$posts = $this->Post->lastByCategory($_GET['id']);
 		$categories = $this->Category->all();
-		$this->render('posts.category', compact('articles', 'categories', 'categorie'));
+		$this->render('posts.category', compact('posts', 'categories', 'categorie'));
 	}
 	
 	/* Affiche le menu d'administration du site (Episodes et catégories) */

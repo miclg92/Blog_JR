@@ -19,7 +19,7 @@ if(isset($_SESSION['auth']) && isset($_SESSION['user']) && $_SESSION['user']->fl
 		<tbody>
 		<?php foreach ($categories as $category): ?>
 			<tr>
-				<td><?= $category->titre; ?></td>
+				<td><?= $category->title; ?></td>
 				<td>
 					<a class="btn-edit" href="?p=admin.categories.edit&id=<?= $category->id; ?>">Modifier</a>
 					

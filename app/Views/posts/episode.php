@@ -5,7 +5,7 @@
 	<div class="category">
 		<ul>
 			<?php foreach($categories as $categorie): ?>
-				<li><a href="<?= $categorie->url; ?>"><?= $categorie->titre; ?></a></li>
+				<li><a href="<?= $categorie->url; ?>"><?= $categorie->title; ?></a></li>
 			<?php endforeach; ?>
 		</ul>
 	</div>
@@ -15,8 +15,8 @@
 		<?php foreach($posts as $post): ?>
 			<div class="post">
 				<img src="<?= $post->image ?>" alt="<?= $post->image_name ?>">
-				<h2 class="post_title"><a href="<?= $post->url ?>">Episode <?= $post->episode;?> : <?= $post->titre;?></a></h2>
-				<p class="post_category"><em><?= $post->categorie; ?> - Publié le <?= $post->date_public_fr; ?></em></p>
+				<h2 class="post_title"><a href="<?= $post->url ?>">Episode <?= $post->episode;?> : <?= $post->title;?></a></h2>
+				<p class="post_category"><em><?= $post->categorie; ?> - Publié le <?= $post->date_episode_fr; ?></em></p>
 				<p class="post_extrait"><?= $post->extrait; ?></p>
 			</div>
 		<?php endforeach; ?>

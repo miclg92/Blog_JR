@@ -30,7 +30,7 @@ if(isset($_SESSION['auth']) && isset($_SESSION['user']) && $_SESSION['user']->fl
 					<td class="td_date"><?= $comment->date_comment; ?></td>
 					<td class="td_author"><?= $comment->author; ?></td>
 					<td class="td_comment"><?= $comment->comment; ?></td>
-					<td class="td_article_id"><?= $comment->article_id; ?></td>
+					<td class="td_article_id"><?= $comment->episode_id; ?></td>
 					<td class="td_btn">
 						<a class="btn-edit" href="?p=admin.comments.edit&id=<?= $comment->id; ?>">Modérer</a>
 						<form action="?p=admin.comments.delete" method="post" style="display: inline;">
@@ -70,7 +70,7 @@ if(isset($_SESSION['auth']) && isset($_SESSION['user']) && $_SESSION['user']->fl
 					<td class="td_date"><?= $comment->date_comment; ?></td>
 					<td class="td_author"><?= $comment->author; ?></td>
 					<td class="td_comment"><?= $comment->comment; ?></td>
-					<td class="td_article_id"><?= $comment->article_id; ?></td>
+					<td class="td_article_id"><?= $comment->episode_id; ?></td>
 					<td class="td_btn">
 						<a class="btn-edit" href="?p=admin.comments.edit&id=<?= $comment->id; ?>">Modérer</a>
 						<form action="?p=admin.comments.delete" method="post" style="display: inline;">

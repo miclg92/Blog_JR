@@ -7,7 +7,7 @@ if(isset($_SESSION['auth']) && isset($_SESSION['user']) && $_SESSION['user']->fl
 		<p class="return"><a href="?p=admin.categories.index" >Retour</a></p>
 		<h2 class="category_title">Ajouter une catégorie</h2></br></br>
 		
-		<?= $form->input('titre', 'Titre de la catégorie : '); ?>
+		<?= $form->input('title', 'Titre de la catégorie : '); ?>
 		<button class="btn-save">Enregistrer</button>
 	</form>
 </div>
