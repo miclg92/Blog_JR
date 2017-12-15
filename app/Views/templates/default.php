@@ -172,7 +172,7 @@ if(isset($_COOKIE['remember'])){
             content_css: "css/main.css,css/admin.css",
             menubar: false,
             plugins: [
-                'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+                'advlist autolink link lists charmap print preview hr anchor pagebreak spellchecker',
                 'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
                 'save table contextmenu directionality emoticons template paste textcolor'
             ]
