@@ -166,18 +166,24 @@ class UsersController extends AppController
 			if (empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {
 				$errors['username'] = "Ce pseudo n'est pas valide (alphanumérique).";
 			} else {
-				$user = $this->User->checkUsername($_POST['username']);
-				if ($user > 1) {
-					$errors['username'] = "Ce pseudo n'est pas disponible.";
+				if($_POST['username'] == $_SESSION['user']->username){
+				} else{
+					$user = $this->User->checkUsername($_POST['username']);
+					if ($user) {
+						$errors['username'] = "Ce pseudo n'est pas disponible.";
+					}
 				}
 			}
 			
 			if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 				$errors['email'] = "Cet email n'est pas valide.";
 			} else {
-				$user = $this->User->checkUsermail($_POST['email']);
-				if ($user > 1) {
-					$errors['email'] = "Cet email est déjà utilisé.";
+				if($_POST['email'] == $_SESSION['user']->email){
+				} else{
+					$user = $this->User->checkUsermail($_POST['email']);
+					if ($user) {
+						$errors['email'] = "Cet email est déjà utilisé.";
+					}
 				}
 			}
 			
