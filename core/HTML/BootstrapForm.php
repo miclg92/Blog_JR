@@ -4,7 +4,8 @@ namespace Core\HTML;
 class BootstrapForm extends Form
 {
 	/**
-	 * @param $html string Code html à entourer d'une DIV
+	 * @param $html string
+	 * Code html à entourer d'une DIV
 	 * @return string
 	 */
 	protected function surround($html){
@@ -30,12 +31,24 @@ class BootstrapForm extends Form
 		return $this->surround($label . $input);
 	}
 	
+	/**
+	 * @param $name
+	 * @param $label
+	 * @param $value
+	 * @return string
+	 */
 	public function checkbox ($name, $label, $value){
 		$label = '<label>' . $label . '</label>';
 		$input = '<input type="checkbox" name="' . $name . '" value="' . $value . '" class="form-control">';
 		return $this->surround($label . $input);
 	}
 	
+	/**
+	 * @param $name
+	 * @param $label
+	 * @param $options
+	 * @return string
+	 */
 	public function select($name, $label, $options)
 	{
 		$label = '<label>' . $label . '</label>';

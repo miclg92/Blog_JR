@@ -8,7 +8,8 @@ class CommentTable extends Table
 	protected $table = "comments";
 	
 	/**
-	 * @return mixed Récupère les commantaires signalés
+	 * @return mixed
+	 * Récupère les commantaires signalés
 	 */
 	public function getSignaledComments(){
 		return $this->query('

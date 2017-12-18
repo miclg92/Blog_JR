@@ -26,6 +26,12 @@ class PostsController extends AppController
 	/* Affiche un épisode en particulier avec la catégorie correspondante et les commentaires correspondants */
 	public function show()
 	{
+		$episode = $this->Post->find($_GET['id']);
+		if($episode === false)
+		{
+			$this->notFound();
+		}
+		
 		$post = $this->Post->findWithCategory($_GET['id']);
 		$post_id = $post->id;
 		$comments = $this->Post->getPostComments($post_id);

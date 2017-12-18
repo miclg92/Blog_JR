@@ -154,6 +154,12 @@ class UsersController extends AppController
 	
 	public function edit()
 	{
+		$user_id = $this->User->find($_GET['id'])->id;
+		if($user_id !== $_SESSION['auth'])
+		{
+			$this->forbidden();
+		}
+		
 		if (!empty($_POST)) {
 			$errors = array();
 			
@@ -197,6 +203,12 @@ class UsersController extends AppController
 	
 	public function changePasswd()
 	{
+		$user_id = $this->User->find($_GET['id'])->id;
+		if($user_id !== $_SESSION['auth'])
+		{
+			$this->forbidden();
+		}
+		
 		if (!empty($_POST)) {
 			$errors = array();
 			
@@ -270,8 +282,6 @@ class UsersController extends AppController
 		
 		if (isset($_GET['id']) && isset($_GET['token'])) {
 			$user = $this->User->resetPassword($_GET['id'], $_GET['token']);
-//			var_dump($user);
-//			die();
 			if ($user) {
 				if (!empty($_POST)) {
 					if (!empty($_POST['password']) && $_POST['password'] == $_POST['password_confirm']) {

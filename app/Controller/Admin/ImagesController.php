@@ -9,12 +9,5 @@ class ImagesController extends AppController
 		parent::__construct();
 		$this->loadModel('Image');
 	}
-	
-//	public function index()	{
-//		$images = $this->Image->all();
-//		$this->render('admin.images.index', compact('images'));
-//	}
-//
-	
-	
+
 }

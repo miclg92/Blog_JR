@@ -19,6 +19,12 @@ class CommentsController extends AppController
 
 	public function edit()
 	{
+		$comment = $this->Comment->find($_GET['id']);
+		if($comment === false)
+		{
+			$this->notFound();
+		}
+		
 		if(!empty($_POST))
 		{
 			$result = $this->Comment->update($_GET['id'], [

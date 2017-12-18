@@ -5,7 +5,8 @@ use Core\Entity\Entity;
 class PostEntity extends Entity
 {
 	/**
-	 * @return string Permet de récupérer l'url d'un épisode
+	 * @return string
+	 * Permet de récupérer l'url d'un épisode
 	 */
 	public function getUrl()
 	{
@@ -13,7 +14,8 @@ class PostEntity extends Entity
 	}
 	
 	/**
-	 * @return string Permet de récupérer l'extrait d'un épisode
+	 * @return string
+	 * Permet de récupérer l'extrait d'un épisode
 	 */
 	public function getExtrait()
 	{

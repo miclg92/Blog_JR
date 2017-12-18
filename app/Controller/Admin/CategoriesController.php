@@ -32,6 +32,12 @@ class CategoriesController extends AppController
 	
 	public function edit()
 	{
+		$categorie = $this->Category->find($_GET['id']);
+		if($categorie === false)
+		{
+			$this->notFound();
+		}
+		
 		if(!empty($_POST))
 		{
 			$result = $this->Category->update($_GET['id'], [

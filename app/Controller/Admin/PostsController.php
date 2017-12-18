@@ -116,6 +116,12 @@ class PostsController extends AppController
 	
 	public function edit()
 	{
+		$episode = $this->Post->find($_GET['id']);
+		if($episode === false)
+		{
+			$this->notFound();
+		}
+		
 		if(!empty($_POST)){
 			$errors = array();
 			

@@ -9,25 +9,29 @@ namespace Core\HTML;
 class Form
 {
 	/**
-	 * @var array Données utilisées par le formulaire
+	 * @var array
+	 * Données utilisées par le formulaire
 	 */
 	private $data;
 	
 	/**
-	 * @var string Tag utilisé pour entourer les champs d'un <p>
+	 * @var string
+	 * Tag utilisé pour entourer les champs d'un <p>
 	 */
 	public $surround = 'p';
 	
 	/**
 	 * Form constructor.
-	 * @param array $data Données utilisées par le formulaire
+	 * @param array $data
+	 * Données utilisées par le formulaire
 	 */
 	public function __construct($data = array()){
 		$this->data = $data;
 	}
 	
 	/**
-	 * @param $html string Code html à entourer d'un <p>
+	 * @param $html string
+	 * Code html à entourer d'un <p>
 	 * @return string
 	 */
 	protected function surround($html){
@@ -35,7 +39,8 @@ class Form
 	}
 	
 	/**
-	 * @param $index string Index de la valeur à récupérer
+	 * @param $index string
+	 * Index de la valeur à récupérer
 	 * @return mixed|null
 	 */
 	protected function getValue($index){

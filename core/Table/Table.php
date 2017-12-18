@@ -55,7 +55,8 @@ class Table
 	}
 	
 	/**
-	 * @return mixed Récupère tous les éléments d'une table
+	 * @return mixed
+	 * Récupère tous les éléments d'une table
 	 */
 	public function all()
 	{

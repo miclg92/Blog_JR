@@ -26,7 +26,8 @@ class MysqlDatabase extends Database
 	}
 	
 	/**
-	 * @return PDO Permet de n'accéder qu'une seule fois à la base de données
+	 * @return PDO
+	 * Permet de n'accéder qu'une seule fois à la base de données
 	 */
 	private function getPDO()
 	{
