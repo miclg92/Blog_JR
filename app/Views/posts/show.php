@@ -16,7 +16,7 @@
 			if($currentEpisodeId != $firstEpisodeId){
 			?>
 				<p class="prev"><a href="?p=posts.previousEpisode"><i class="fa fa-backward" aria-hidden="true"></i>
-						Précédemment</a></p>
+						Episode précédent</a></p>
 			<?php
 			}
 			if($currentEpisodeId != $lastEpisodeId){
@@ -102,7 +102,7 @@
 								<?php
 								if($comment->is_signaled == 1){
 									?>
-									<button type="button" name="signal_comment" disabled class="btn-disabled">Commentaire déjà signalé. En cours de traitement...</button>
+									<button type="button" name="signal_comment" disabled class="btn-disabled">Commentaire signalé. En cours de traitement...</button>
 									<?php
 								} else{
 									?>
